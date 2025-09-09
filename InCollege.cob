@@ -1,4 +1,4 @@
-identification division.
+       identification division.
        program-id. InCollege.
 *>    We are separating divisons with a blank line for readability
        environment division.
@@ -104,11 +104,13 @@ identification division.
                else
                    display "Please create a username:"
                    perform read-user-choice
-                   perform validate-username     
-                   display "Enter a password:"
-                   display "(8-12 chars, 1 uppercase, 1 lower, 1 special)"
-                   perform read-user-choice
-                   perform validate-password
+                   perform validate-username
+                   if not account-found and not input-ended
+                       display "Enter a password:"
+                       display "(8-12 chars, 1 uppercase, 1 lower, 1 special)"
+                       perform read-user-choice
+                       perform validate-password
+                   end-if
                end-if
            else if at-main-menu
                perform display-main-menu
@@ -160,8 +162,14 @@ identification division.
                    at end set accounts-file-ended to true
                    not at end
                        add 1 to ws-current-account-count
-                       move account-record
-                           to ws-user-account(ws-current-account-count)
+                       move username 
+                           to ws-username(ws-current-account-count)
+                       move password 
+                           to ws-password(ws-current-account-count)
+*>                     display "Debug - Loading user: '" 
+*>                           ws-username(ws-current-account-count) "'"
+*>                     display "Debug - Loading pass: '" 
+*>                           ws-password(ws-current-account-count) "'"
                end-read
            end-perform.
            close accounts-file.
@@ -212,30 +220,31 @@ identification division.
            move function trim(ws-user-choice) to ws-user-choice.
 
        username-lookup.
-           move ws-user-choice to ws-input-username.
-           move 'N' to ws-account-found.
-           perform varying ws-i from 1 by 1
-               until ws-i > ws-current-account-count or account-found
-               if ws-input-username = ws-username(ws-i)
-                   set account-found to true
-               end-if
-           end-perform.
-           if not account-found
-               display "Username not found. Returning to menu."
-               move "INITIAL-MENU" to ws-program-state
-           end-if.
+           move function trim(ws-user-choice) to ws-input-username
+               move 'N' to ws-account-found
+               perform varying ws-i from 1 by 1
+                   until ws-i > ws-current-account-count
+                   if ws-input-username = function trim(ws-username(ws-i))
+                       set account-found to true
+                       exit perform
+                   end-if
+               end-perform
+               if not account-found
+                   display "Username not found. Returning to menu."
+                   move "INITIAL-MENU" to ws-program-state
+               end-if.
 
        password-lookup.
-           move function trim(ws-user-choice) to ws-input-password.
+           move function trim(ws-user-choice) to ws-input-password
            if account-found
-               display "Debug - Login attempt with password: '" 
-                   ws-input-password "'".
-               display "Debug - Stored password for user: '" 
-                   ws-password(ws-i) "'".
-               display "Debug - Trimmed input: '" 
-                   function trim(ws-input-password) "'".
-               display "Debug - Trimmed stored: '" 
-                   function trim(ws-password(ws-i)) "'".
+*>               display "Debug - Login attempt with password: '" 
+*>                   ws-input-password "'"
+*>               display "Debug - Stored password for user: '" 
+*>                   ws-password(ws-i) "'"
+*>               display "Debug - Trimmed input: '" 
+*>                   function trim(ws-input-password) "'"
+*>               display "Debug - Trimmed stored: '" 
+*>                   function trim(ws-password(ws-i)) "'"
                if ws-input-password = function trim(ws-password(ws-i))
                    display "Login successful!"
                    move "MAIN-MENU" to ws-program-state
@@ -246,8 +255,8 @@ identification division.
            end-if.
 
        validate-username.
-           move ws-user-choice to ws-input-username.
-           move 'N' to ws-account-found.
+           move ws-user-choice to ws-input-username
+           move 'N' to ws-account-found
            if ws-input-username = spaces
                display "Username cannot be empty. Please try again."
                move "REGISTER-SCREEN" to ws-program-state
@@ -261,67 +270,55 @@ identification division.
                end-perform
                if account-found
                    display "Username already exists."
-                   move "REGISTER-SCREEN" to ws-program-state
+                   move "INITIAL-SCREEN" to ws-program-state
+                   move "Y" to ws-input-eof
                end-if
            end-if.
 
+ 
        validate-password.
-           move function trim(ws-user-choice) to ws-input-password.
-           display "Debug - Password received: " ws-input-password.
+           move function trim(ws-user-choice) to ws-input-password
            
-           initialize ws-validation-counters.
+           initialize ws-validation-counters
            inspect ws-input-password tallying ws-number-count
                for all "0", "1", "2", "3", "4",
-                       "5", "6", "7", "8", "9".
+                       "5", "6", "7", "8", "9"
            inspect ws-input-password tallying ws-specialchar-count
                for all "!", "@", "#", "$", "%",
-                       "^", "&", "*", "(", ")".
-           display "Debug - Number count: " ws-number-count.
-           display "Debug - Special char count: " ws-specialchar-count.
-
+                       "^", "&", "*", "(", ")"
+       
            if function length(function trim(ws-input-password)) < 8 or
               function length(function trim(ws-input-password)) > 12
                display "Password must be between 8 and 12 characters."
                move "REGISTER-SCREEN" to ws-program-state
-           
            else if ws-input-password = function upper-case(ws-input-password)
                display "Password must contain a lowercase letter."
                move "REGISTER-SCREEN" to ws-program-state
-           
            else if ws-input-password = function lower-case(ws-input-password)
                display "Password must contain an uppercase letter."
                move "REGISTER-SCREEN" to ws-program-state
-
            else if ws-number-count = zero
                display "Password must contain a number."
                move "REGISTER-SCREEN" to ws-program-state
-           
            else if ws-specialchar-count = zero
                display "Password must contain a special character."
                move "REGISTER-SCREEN" to ws-program-state
-           
            else
                add 1 to ws-current-account-count
-               move ws-input-username to 
-                   ws-username(ws-current-account-count)
-               display "Debug - Storing password: '"
-                   ws-input-password "'".
-               move ws-input-password to 
-                   ws-password(ws-current-account-count)
-               display "Debug - Stored password in array: '"
-                   ws-password(ws-current-account-count) "'."
-
+               move ws-input-username to ws-username(ws-current-account-count)
+               move ws-input-password to ws-password(ws-current-account-count)
                display "Account created successfully!"
-               move "INITIAL-MENU" to ws-program-state
+               move "MAIN-MENU" to ws-program-state
            end-if.
 
        cleanup-files.
-           open output accounts-file.
+           open output accounts-file
            perform varying ws-i from 1 by 1
                until ws-i > ws-current-account-count
-               move ws-user-account(ws-i) to account-record
+               move ws-username(ws-i) to username
+               move ws-password(ws-i) to password
                write account-record
-           end-perform.
+           end-perform
            close input-file, output-file, accounts-file.
            
        end program InCollege.
