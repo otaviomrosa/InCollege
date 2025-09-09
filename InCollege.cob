@@ -95,11 +95,15 @@
                move "Please enter your username:" to ws-message
                perform display-message
                perform read-user-choice
-               perform username-lookup     
-               move "Please enter your password:" to ws-message
-               perform display-message
-               perform read-user-choice
-               perform password-lookup
+               perform username-lookup
+               if account-found     
+                   perform until ws-program-state = "MAIN-MENU" or input-ended
+                       move "Please enter your password:" to ws-message
+                       perform display-message
+                       perform read-user-choice
+                       perform password-lookup
+                   end-perform
+                end-if
 
 *>    If they choose to create an account, prompt them for their username and password
            else if at-register-screen
@@ -113,12 +117,14 @@
                    perform read-user-choice
                    perform validate-username
                    if not account-found and not input-ended
-                       move "Enter a password:" to ws-message
-                       perform display-message
-                       move "(8-12 chars, 1 uppercase, 1 lower, 1 special)" to ws-message
-                       perform display-message
-                       perform read-user-choice
-                       perform validate-password
+                       perform until ws-program-state = "MAIN-MENU" or input-ended
+                           move "Enter a password:" to ws-message
+                           perform display-message
+                           move "(8-12 chars, 1 uppercase, 1 lower, 1 special)" to ws-message
+                           perform display-message
+                           perform read-user-choice
+                           perform validate-password
+                       end-perform
                    end-if
                end-if
            else if at-main-menu
@@ -153,7 +159,7 @@
                perform display-message
                open output accounts-file
                if ws-userdata-status not = "00"
-                   move "Error: Could not create accounts file. Status: " to ws-message *> UPDATED
+                   move "Error: Could not create accounts file. Status: " to ws-message 
                    perform display-message
                    display ws-userdata-status
                    stop run
@@ -163,7 +169,7 @@
                open i-o accounts-file
            end-if.
            if ws-userdata-status not = "00"
-               move "FATAL ERROR opening accounts file. Status: " to ws-message *> UPDATED
+               move "FATAL ERROR opening accounts file. Status: " to ws-message 
                perform display-message
                display ws-userdata-status
                stop run
@@ -278,7 +284,10 @@
 *>               display "Debug - Trimmed stored: '" 
 *>                   function trim(ws-password(ws-i)) "'"
                if ws-input-password = function trim(ws-password(ws-i))
-                   move "Login successful!" to ws-message 
+                   move "You have successfully logged in." to ws-message 
+                   perform display-message
+                   string "Welcome, " function trim(ws-input-username) "!" delimited by size
+                       into ws-message
                    perform display-message
                    move "MAIN-MENU" to ws-program-state
                else
