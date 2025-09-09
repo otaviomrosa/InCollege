@@ -99,7 +99,7 @@ identification division.
 *>    If they choose to create an account, prompt them for their username and password
            else if at-register-screen
                if ws-current-account-count >= ws-max-accounts
-                   display "All permitted accounts have been created"
+                   display "All permitted accounts have been created, please come back later."
                    move "INITIAL-MENU" to ws-program-state
                else
                    display "Please create a username:"
@@ -168,25 +168,25 @@ identification division.
 
        display-initial-menu.
            display "Welcome to InCollege!".
-           display "- Log In".
-           display "- Create an Account".
-           display "- Exit program".
+           display "Log In".
+           display "Create an Account".
+           display "Exit program".
            display "Enter your choice:".
 
        display-main-menu.
-           display "- Search for a job".
-           display "- Find someone you know".
-           display "- Learn a new skill".
-           display "- Exit program".
+           display "Search for a job".
+           display "Find someone you know".
+           display "Learn a new skill".
+           display "Exit program".
            display "Enter your choice:".
 
        display-skills.
-           display "- Skill 1".
-           display "- Skill 2".
-           display "- Skill 3".
-           display "- Skill 4".
-           display "- Skill 5".
-           display "- Return".
+           display "Time Management".
+           display "Professional Communication and Networking".
+           display "Coding".
+           display "Financial Literacy".
+           display "Physical Wellbeing".
+           display "Go Back".
 
        display-under-construction.
            if ws-user-choice = "Search for a job"
@@ -197,7 +197,7 @@ identification division.
                move "MAIN-MENU" to ws-program-state
 *>    This line makes it so every skill option entered will display the under construction message and return to main menu         
            else if ws-program-state = "SKILL-MENU"
-               if ws-user-choice = "Return"
+               if ws-user-choice = "Go Back"
                    move "MAIN-MENU" to ws-program-state
                else
                display "This skill is under construction."
