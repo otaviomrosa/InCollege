@@ -66,6 +66,9 @@
        01  ws-input-username   pic x(20).
        01  ws-input-password   pic x(12).
 
+*>    - Variable to hold message for display + write -
+       01  ws-message  pic x(80).
+
        procedure division.
 *>    Open all files that wil be used
        perform initialize-files.
@@ -89,25 +92,31 @@
                end-if
 *>    If they choose to log in, prompt for username and password and look them up in the accounts file (must match)
            else if at-login-screen
-               display "Please enter your username:"
+               move "Please enter your username:" to ws-message
+               perform display-message
                perform read-user-choice
                perform username-lookup     
-               display "Please enter your password:"
+               move "Please enter your password:" to ws-message
+               perform display-message
                perform read-user-choice
                perform password-lookup
 
 *>    If they choose to create an account, prompt them for their username and password
            else if at-register-screen
                if ws-current-account-count >= ws-max-accounts
-                   display "All permitted accounts have been created, please come back later."
+                   move "All permitted accounts have been created, please come back later." to ws-message
+                   perform display-message
                    move "INITIAL-MENU" to ws-program-state
                else
-                   display "Please create a username:"
+                   move "Please create a username:" to ws-message
+                   perform display-message
                    perform read-user-choice
                    perform validate-username
                    if not account-found and not input-ended
-                       display "Enter a password:"
-                       display "(8-12 chars, 1 uppercase, 1 lower, 1 special)"
+                       move "Enter a password:" to ws-message
+                       perform display-message
+                       move "(8-12 chars, 1 uppercase, 1 lower, 1 special)" to ws-message
+                       perform display-message
                        perform read-user-choice
                        perform validate-password
                    end-if
@@ -140,11 +149,13 @@
            open i-o accounts-file.
 
            if ws-userdata-status = "35"
-               display "Accounts file not found. Creating a new one."
+               move "Accounts file not found. Creating a new one." to ws-message
+               perform display-message
                open output accounts-file
                if ws-userdata-status not = "00"
-                   display "Error: Could not create accounts file. Status: "
-                       ws-userdata-status
+                   move "Error: Could not create accounts file. Status: " to ws-message *> UPDATED
+                   perform display-message
+                   display ws-userdata-status
                    stop run
                end-if
                close accounts-file
@@ -152,8 +163,9 @@
                open i-o accounts-file
            end-if.
            if ws-userdata-status not = "00"
-               display "FATAL ERROR opening accounts file. Status: "
-                   ws-userdata-status
+               move "FATAL ERROR opening accounts file. Status: " to ws-message *> UPDATED
+               perform display-message
+               display ws-userdata-status
                stop run
            end-if.
 
@@ -175,41 +187,60 @@
            close accounts-file.
 
        display-initial-menu.
-           display "Welcome to InCollege!".
-           display "Log In".
-           display "Create an Account".
-           display "Exit program".
-           display "Enter your choice:".
+           move "Welcome to InCollege!" to ws-message 
+           perform display-message
+           move "Log In" to ws-message 
+           perform display-message
+           move "Create an Account" to ws-message 
+           perform display-message
+           move "Exit program" to ws-message 
+           perform display-message
+           move "Enter your choice:" to ws-message 
+           perform display-message.
 
        display-main-menu.
-           display "Search for a job".
-           display "Find someone you know".
-           display "Learn a new skill".
-           display "Exit program".
-           display "Enter your choice:".
+           move "Search for a job" to ws-message 
+           perform display-message
+           move "Find someone you know" to ws-message
+           perform display-message
+           move "Learn a new skill" to ws-message 
+           perform display-message
+           move "Exit program" to ws-message
+           perform display-message
+           move "Enter your choice:" to ws-message 
+           perform display-message.
 
        display-skills.
-           display "Time Management".
-           display "Professional Communication and Networking".
-           display "Coding".
-           display "Financial Literacy".
-           display "Physical Wellbeing".
-           display "Go Back".
+           move "Time Management" to ws-message 
+           perform display-message
+           move "Professional Communication and Networking" to ws-message 
+           perform display-message
+           move "Coding" to ws-message 
+           perform display-message
+           move "Financial Literacy" to ws-message 
+           perform display-message
+           move "Physical Wellbeing" to ws-message 
+           perform display-message
+           move "Go Back" to ws-message 
+           perform display-message.
 
        display-under-construction.
            if ws-user-choice = "Search for a job"
-               display "Job search/internship is under construction."
+               move "Job search/internship is under construction." to ws-message 
+               perform display-message
                move "MAIN-MENU" to ws-program-state
            else if ws-user-choice = "Find someone you know"
-               display "Find someone you know is under construction."
+               move "Find someone you know is under construction." to ws-message 
+               perform display-message
                move "MAIN-MENU" to ws-program-state
 *>    This line makes it so every skill option entered will display the under construction message and return to main menu         
            else if ws-program-state = "SKILL-MENU"
                if ws-user-choice = "Go Back"
                    move "MAIN-MENU" to ws-program-state
                else
-               display "This skill is under construction."
-               move "SKILL-MENU" to ws-program-state
+                   move "This skill is under construction." to ws-message
+                   perform display-message
+                   move "SKILL-MENU" to ws-program-state
            end-if.
 
        read-user-choice.
@@ -230,7 +261,8 @@
                    end-if
                end-perform
                if not account-found
-                   display "Username not found. Returning to menu."
+                   move "Username not found. Returning to menu." to ws-message
+                   perform display-message
                    move "INITIAL-MENU" to ws-program-state
                end-if.
 
@@ -246,10 +278,12 @@
 *>               display "Debug - Trimmed stored: '" 
 *>                   function trim(ws-password(ws-i)) "'"
                if ws-input-password = function trim(ws-password(ws-i))
-                   display "Login successful!"
+                   move "Login successful!" to ws-message 
+                   perform display-message
                    move "MAIN-MENU" to ws-program-state
                else
-                   display "Incorrect password. Returning to menu."
+                   move "Incorrect password. Returning to menu." to ws-message
+                   perform display-message
                    move "INITIAL-MENU" to ws-program-state
                end-if
            end-if.
@@ -258,7 +292,8 @@
            move ws-user-choice to ws-input-username
            move 'N' to ws-account-found
            if ws-input-username = spaces
-               display "Username cannot be empty. Please try again."
+               move "Username cannot be empty. Please try again." to ws-message
+               perform display-message
                move "REGISTER-SCREEN" to ws-program-state
            else
                perform varying ws-i from 1 by 1
@@ -269,7 +304,8 @@
                    end-if
                end-perform
                if account-found
-                   display "Username already exists."
+                   move "Username already exists." to ws-message 
+                   perform display-message
                    move "INITIAL-SCREEN" to ws-program-state
                    move "Y" to ws-input-eof
                end-if
@@ -289,27 +325,38 @@
        
            if function length(function trim(ws-input-password)) < 8 or
               function length(function trim(ws-input-password)) > 12
-               display "Password must be between 8 and 12 characters."
+               move "Password must be between 8 and 12 characters." to ws-message 
+               perform display-message
                move "REGISTER-SCREEN" to ws-program-state
            else if ws-input-password = function upper-case(ws-input-password)
-               display "Password must contain a lowercase letter."
+               move "Password must contain a lowercase letter." to ws-message 
+               perform display-message
                move "REGISTER-SCREEN" to ws-program-state
            else if ws-input-password = function lower-case(ws-input-password)
-               display "Password must contain an uppercase letter."
+               move "Password must contain an uppercase letter." to ws-message 
+               perform display-message
                move "REGISTER-SCREEN" to ws-program-state
            else if ws-number-count = zero
-               display "Password must contain a number."
+               move "Password must contain a number." to ws-message 
+               perform display-message
                move "REGISTER-SCREEN" to ws-program-state
            else if ws-specialchar-count = zero
-               display "Password must contain a special character."
+               move "Password must contain a special character." to ws-message 
+               perform display-message
                move "REGISTER-SCREEN" to ws-program-state
            else
                add 1 to ws-current-account-count
                move ws-input-username to ws-username(ws-current-account-count)
                move ws-input-password to ws-password(ws-current-account-count)
-               display "Account created successfully!"
+               move "Account created successfully!" to ws-message 
+               perform display-message
                move "MAIN-MENU" to ws-program-state
            end-if.
+
+       display-message.
+           display ws-message
+           move ws-message to output-record
+           write output-record
 
        cleanup-files.
            open output accounts-file
