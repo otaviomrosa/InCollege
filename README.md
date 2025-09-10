@@ -22,7 +22,7 @@ It allows users to:
 Run the following command to compile:
 
 ```bash
-cobc -x InCollege.cob -o InCollege
+cobc -x -free -o InCollege InCollege.cob
 ```
 
 This will create an executable named `InCollege`.
