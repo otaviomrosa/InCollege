@@ -97,12 +97,10 @@
                perform read-user-choice
                perform username-lookup
                if account-found     
-                   perform until ws-program-state = "MAIN-MENU" or input-ended
-                       move "Please enter your password:" to ws-message
-                       perform display-message
-                       perform read-user-choice
-                       perform password-lookup
-                   end-perform
+                   move "Please enter your password:" to ws-message
+                   perform display-message
+                   perform read-user-choice
+                   perform password-lookup
                 end-if
 
 *>    If they choose to create an account, prompt them for their username and password
