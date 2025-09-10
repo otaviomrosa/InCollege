@@ -303,9 +303,9 @@
                if ws-input-password = function trim(ws-password(ws-i))
                    move "You have successfully logged in." to ws-message 
                    perform display-message
+                   move spaces to ws-message
                    string "Welcome, " function trim(ws-input-username) "!" delimited by size
                        into ws-message
-                   move spaces to ws-message
                    perform display-message
                    move "MAIN-MENU" to ws-program-state
                else
