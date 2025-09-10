@@ -6,7 +6,7 @@
        file-control.
 *>    Define three files: input-file, output-file, and accounts-file and assign them to text files
 *>    The accounts-file will be used to store user account information
-           select input-file assign to 'InCollege-Input.txt'
+           select input-file assign to 'InCollege-Test.txt'
                organization is line sequential.
            select output-file assign to 'InCollege-Output.txt'
                organization is line sequential.
@@ -94,6 +94,7 @@
                    move "Invalid option. Please try again" to ws-message
                    perform display-message
                    move "INITIAL-MENU" to ws-program-state
+                   perform cleanup-files
                    stop run
                 
 
@@ -176,6 +177,7 @@
                    move "Error: Could not create accounts file. Status: " to ws-message 
                    perform display-message
                    display ws-userdata-status
+                   perform cleanup-files
                    stop run
                end-if
                close accounts-file

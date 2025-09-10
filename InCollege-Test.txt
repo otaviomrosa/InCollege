@@ -1,15 +1,55 @@
 Create an Account
-JohnCena
-CantSeeMe!23
-Find someone you know
-Learn a new skill
-Go Back
-Logout
+alice
+Aa1!
+Create an Account
+alice
+Abcdefghijk1!X
+Create an Account
+alice
+ABCDEFG1!
+Create an Account
+alice
+abcdefg1!
+Create an Account
+alice
+Abcdefg!
+Create an Account
+alice
+Abcdefg1
+Create an Account
+alice
+Aa1!aaaa
+Log Out
+Create an Account
+bob
+Abcdef1!
+Log Out
+Create an Account
+carol
+Abcdefg1!
+Log Out
+Create an Account
+dave
+AbcDef1!Gh$Q
+Log Out
+Create an Account
+eve
+Aa1!aaaaa
+Log Out
+Create an Account
 Log In
-testuser
-Password1!
+idontexist
+Log In
+alice
+WrongPass1!
+Log In
+alice
+Aa1!aaaa
+Find someone you know
 Search for a job
-Logout
+Learn a new skill
+Coding
+Go Back
+Foobar
+Log Out
 Exit Program
-
-
