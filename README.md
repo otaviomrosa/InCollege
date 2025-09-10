@@ -37,7 +37,7 @@ Run the program with:
 ./InCollege
 ```
 
-The program expects an **input file** (`InCollege-Test.txt`) to simulate user input.
+The program expects an **input file** (`InCollege-Input.txt`) to simulate user input.
 
 ---
 
