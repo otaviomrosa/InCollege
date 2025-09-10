@@ -6,10 +6,56 @@ Enter your choice:
 Please create a username:
 Enter a password:
 (8-12 chars, 1 uppercase, 1 lower, 1 special)
-Password must contain a number.
-Please create a username:
-Enter a password:
-(8-12 chars, 1 uppercase, 1 lower, 1 special)
-Password must be between 8 and 12 characters.
-Please create a username:
-Username cannot be empty. Please try again.
+Account created successfully!
+Search for a job
+Find someone you know
+Learn a new skill
+Logout
+Exit program
+Enter your choice:
+Find someone you know is under construction.
+Search for a job
+Find someone you know
+Learn a new skill
+Logout
+Exit program
+Enter your choice:
+Time Management
+Professional Communication and Networking
+Coding
+Financial Literacy
+Physical Wellbeing
+Go Back
+Search for a job
+Find someone you know
+Learn a new skill
+Logout
+Exit program
+Enter your choice:
+Welcome to InCollege!
+Log In
+Create an Account
+Exit program
+Enter your choice:
+Please enter your username:
+Please enter your password:
+You have successfully logged in.
+Welcome, testuser!lly logged in.
+Search for a job
+Find someone you know
+Learn a new skill
+Logout
+Exit program
+Enter your choice:
+Job search/internship is under construction.
+Search for a job
+Find someone you know
+Learn a new skill
+Logout
+Exit program
+Enter your choice:
+Welcome to InCollege!
+Log In
+Create an Account
+Exit program
+Enter your choice:

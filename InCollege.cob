@@ -44,6 +44,7 @@
            88  at-job-search-menu      value 'JOB-SEARCH-MENU'.
            88  at-find-someone-menu    value 'FIND-SOMEONE-MENU'.
            88  at-learn-skill-menu     value 'SKILL-MENU'.
+           88 at-logout                value 'LOGOUT-SCREEN'.
        01  ws-user-choice      pic x(40).
 *>    - ACCOUNT DATA - We keep a copy of the accounts file locally at runtime for faster access instead of reading the file everytime (simply for good practice)
        01  ws-account-table.
@@ -91,9 +92,9 @@
                    perform cleanup-files
                    stop run
                else    
-                   move "Invalid option. Program will now exit." to ws-message
+                   move "Invalid option. Please try again" to ws-message
                    perform display-message
-                   perform cleanup-files
+                   move "INITIAL-MENU" to ws-program-state
                    stop run
                 
 
@@ -116,9 +117,7 @@
                if ws-current-account-count >= ws-max-accounts
                    move "All permitted accounts have been created, please come back later." to ws-message
                    perform display-message
-                   perform cleanup-files
-                   stop run
-                   *>move "INITIAL-MENU" to ws-program-state
+                   move "INITIAL-MENU" to ws-program-state
                else
                    move "Please create a username:" to ws-message
                    perform display-message
@@ -135,6 +134,7 @@
                        end-perform
                    end-if
                end-if
+
            else if at-main-menu
                perform display-main-menu
                perform read-user-choice
@@ -144,9 +144,17 @@
                      move "FIND-SOMEONE-MENU" to ws-program-state
                 else if ws-user-choice = 'Learn a new skill'
                      move "SKILL-MENU" to ws-program-state
+                else if ws-user-choice = 'Logout'
+                     move "Successfully Logged Out!" to ws-message
+                     perform display-message                      
+                     move "INITIAL-MENU" to ws-program-state
                 else if ws-user-choice = 'Exit Program'
                      perform cleanup-files
-                     stop run  *> added this line 
+                     stop run  
+                else    
+                     move "Invalid option. Please try again" to ws-message
+                     perform display-message
+                     move "MAIN-MENU" to ws-program-state
                 end-if
            else if at-job-search-menu
                perform display-under-construction
@@ -219,6 +227,8 @@
            move "Find someone you know" to ws-message
            perform display-message
            move "Learn a new skill" to ws-message 
+           perform display-message
+           move "Logout" to ws-message
            perform display-message
            move "Exit program" to ws-message
            perform display-message
@@ -324,7 +334,7 @@
                if account-found
                    move "Username already exists." to ws-message 
                    perform display-message
-                   move "INITIAL-SCREEN" to ws-program-state
+                   move "INITIAL-MENU" to ws-program-state
                    move "Y" to ws-input-eof
                end-if
            end-if.
