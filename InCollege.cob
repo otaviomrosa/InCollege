@@ -64,8 +64,8 @@
        01  ws-accounts-eof           pic a(1) value 'N'.
            88 accounts-file-ended    value 'Y'.
 *>    - TEMPORARY INPUT FOR LOGIN/REGISTRATION -
-       01  ws-input-username   pic x(20).
-       01  ws-input-password   pic x(12).
+       01  ws-input-username   pic x(99).
+       01  ws-input-password   pic x(99).
 
 *>    - Variable to hold message for display + write -
        01  ws-message  pic x(80).
@@ -124,14 +124,12 @@
                    perform read-user-choice
                    perform validate-username
                    if not account-found and not input-ended
-                       perform until ws-program-state = "MAIN-MENU" or input-ended
-                           move "Enter a password:" to ws-message
-                           perform display-message
-                           move "(8-12 chars, 1 uppercase, 1 lower, 1 special)" to ws-message
-                           perform display-message
-                           perform read-user-choice
-                           perform validate-password
-                       end-perform
+                       move "Enter a password:" to ws-message
+                       perform display-message
+                       move "(8-12 chars, 1 uppercase, 1 lower, 1 special)" to ws-message
+                       perform display-message
+                       perform read-user-choice
+                       perform validate-password
                    end-if
                end-if
 
@@ -350,28 +348,28 @@
            inspect ws-input-password tallying ws-specialchar-count
                for all "!", "@", "#", "$", "%",
                        "^", "&", "*", "(", ")"
-       *> Needs to be fixed
+
            if function length(function trim(ws-input-password)) < 8 or
               function length(function trim(ws-input-password)) > 12
                move "Password must be between 8 and 12 characters." to ws-message 
                perform display-message
-               move "REGISTER-SCREEN" to ws-program-state
+               move "INITIAL-MENU" to ws-program-state
            else if ws-input-password = function upper-case(ws-input-password)
                move "Password must contain a lowercase letter." to ws-message 
                perform display-message
-               move "REGISTER-SCREEN" to ws-program-state
+               move "INITIAL-MENU" to ws-program-state
            else if ws-input-password = function lower-case(ws-input-password)
                move "Password must contain an uppercase letter." to ws-message 
                perform display-message
-               move "REGISTER-SCREEN" to ws-program-state
+               move "INITIAL-MENU" to ws-program-state
            else if ws-number-count = zero
                move "Password must contain a number." to ws-message 
                perform display-message
-               move "REGISTER-SCREEN" to ws-program-state
+               move "INITIAL-MENU" to ws-program-state
            else if ws-specialchar-count = zero
                move "Password must contain a special character." to ws-message 
                perform display-message
-               move "REGISTER-SCREEN" to ws-program-state
+               move "INITIAL-MENU" to ws-program-state
            else
                add 1 to ws-current-account-count
                move ws-input-username to ws-username(ws-current-account-count)
