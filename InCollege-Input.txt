@@ -1,23 +1,23 @@
 Create an Account
 RockyTheBull
 GoBulls1@
-Logout
+Log Out
 Create an Account
 PeterParker
 Spiderman1!
-Logout
+Log Out
 Create an Account
 BruceWayne
 Batman1%
-Logout
+Log Out
 Create an Account
 TonyStark
 IronMan1$
-Logout
+Log Out
 Create an Account
 CaptainAmerica
 Shield1#
-Logout
+Log Out
 Create an Account
 Log In
 RockyTheBull
@@ -31,5 +31,5 @@ Coding
 Financial Literacy                                                              
 Physical Wellbeing
 Go Back
-Logout
+Log Out
 Exit Program

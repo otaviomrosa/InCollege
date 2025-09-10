@@ -94,6 +94,7 @@
                    move "Invalid option. Please try again" to ws-message
                    perform display-message
                    move "INITIAL-MENU" to ws-program-state
+                   perform cleanup-files
                    stop run
                 
 
@@ -176,6 +177,7 @@
                    move "Error: Could not create accounts file. Status: " to ws-message 
                    perform display-message
                    display ws-userdata-status
+                   perform cleanup-files
                    stop run
                end-if
                close accounts-file
