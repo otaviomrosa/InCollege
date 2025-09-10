@@ -141,7 +141,7 @@
                      move "FIND-SOMEONE-MENU" to ws-program-state
                 else if ws-user-choice = 'Learn a new skill'
                      move "SKILL-MENU" to ws-program-state
-                else if ws-user-choice = 'Logout'
+                else if ws-user-choice = 'Log Out'
                      move "Successfully Logged Out!" to ws-message
                      perform display-message                      
                      move "INITIAL-MENU" to ws-program-state
@@ -263,6 +263,11 @@
                    move "This skill is under construction." to ws-message
                    perform display-message
                    move "SKILL-MENU" to ws-program-state
+                end-if
+           else    
+               move "Invalid option. Please try again" to ws-message
+               perform display-message
+               move "MAIN-MENU" to ws-program-state
            end-if.
 
        read-user-choice.
