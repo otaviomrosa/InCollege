@@ -1,12 +1,4 @@
 Create an Account
-testuser
-Password1!
-Log In
-testuser
-Password1!
-Search for a job
-Find someone you know
-Learn a new skill
-Time Management
-Go Back
+DanielMurati
+Password2!
 Exit Program

@@ -1,0 +1,15 @@
+Welcome to InCollege!
+Log In
+Create an Account
+Exit program
+Enter your choice:
+Please create a username:
+Enter a password:
+(8-12 chars, 1 uppercase, 1 lower, 1 special)
+Password must contain a number.
+Please create a username:
+Enter a password:
+(8-12 chars, 1 uppercase, 1 lower, 1 special)
+Password must be between 8 and 12 characters.
+Please create a username:
+Username cannot be empty. Please try again.

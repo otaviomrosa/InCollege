@@ -6,7 +6,7 @@
        file-control.
 *>    Define three files: input-file, output-file, and accounts-file and assign them to text files
 *>    The accounts-file will be used to store user account information
-           select input-file assign to 'InCollege-Input.txt'
+           select input-file assign to 'InCollege-Test.txt'
                organization is line sequential.
            select output-file assign to 'InCollege-Output.txt'
                organization is line sequential.
@@ -89,6 +89,14 @@
                    move "REGISTER-SCREEN" to ws-program-state
                else if ws-user-choice = 'Exit Program'
                    perform cleanup-files
+                   stop run
+               else    
+                   move "Invalid option. Program will now exit." to ws-message
+                   perform display-message
+                   perform cleanup-files
+                   stop run
+                
+
                end-if
 *>    If they choose to log in, prompt for username and password and look them up in the accounts file (must match)
            else if at-login-screen
@@ -106,7 +114,9 @@
                if ws-current-account-count >= ws-max-accounts
                    move "All permitted accounts have been created, please come back later." to ws-message
                    perform display-message
-                   move "INITIAL-MENU" to ws-program-state
+                   perform cleanup-files
+                   stop run
+                   *>move "INITIAL-MENU" to ws-program-state
                else
                    move "Please create a username:" to ws-message
                    perform display-message
@@ -132,6 +142,7 @@
                      move "SKILL-MENU" to ws-program-state
                 else if ws-user-choice = 'Exit Program'
                      perform cleanup-files
+                     stop run  *> added this line 
                 end-if
            else if at-job-search-menu
                perform display-under-construction
@@ -322,7 +333,7 @@
            inspect ws-input-password tallying ws-specialchar-count
                for all "!", "@", "#", "$", "%",
                        "^", "&", "*", "(", ")"
-       
+       *> Needs to be fixed
            if function length(function trim(ws-input-password)) < 8 or
               function length(function trim(ws-input-password)) > 12
                move "Password must be between 8 and 12 characters." to ws-message 
@@ -356,7 +367,7 @@
        display-message.
            display ws-message
            move ws-message to output-record
-           write output-record
+           write output-record.
 
        cleanup-files.
            open output accounts-file
