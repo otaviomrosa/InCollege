@@ -44,7 +44,6 @@
            88  at-job-search-menu      value 'JOB-SEARCH-MENU'.
            88  at-find-someone-menu    value 'FIND-SOMEONE-MENU'.
            88  at-learn-skill-menu     value 'SKILL-MENU'.
-           88 at-logout                value 'LOGOUT-SCREEN'.
        01  ws-user-choice      pic x(40).
 *>    - ACCOUNT DATA - We keep a copy of the accounts file locally at runtime for faster access instead of reading the file everytime (simply for good practice)
        01  ws-account-table.
@@ -226,7 +225,7 @@
            perform display-message
            move "Learn a new skill" to ws-message 
            perform display-message
-           move "Logout" to ws-message
+           move "Log Out" to ws-message
            perform display-message
            move "Exit program" to ws-message
            perform display-message
@@ -318,9 +317,9 @@
            move ws-user-choice to ws-input-username
            move 'N' to ws-account-found
            if ws-input-username = spaces
-               move "Username cannot be empty. Please try again." to ws-message
+               move "Username cannot be empty. Returning to menu." to ws-message
                perform display-message
-               move "REGISTER-SCREEN" to ws-program-state
+               move "INITIAL-MENU" to ws-program-state
            else
                perform varying ws-i from 1 by 1
                    until ws-i > ws-current-account-count 
@@ -330,7 +329,7 @@
                    end-if
                end-perform
                if account-found
-                   move "Username already exists." to ws-message 
+                   move "Username already exists. Returning to menu." to ws-message
                    perform display-message
                    move "INITIAL-MENU" to ws-program-state
                    move "Y" to ws-input-eof
