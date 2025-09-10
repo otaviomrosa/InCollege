@@ -44,7 +44,7 @@
            88  at-job-search-menu      value 'JOB-SEARCH-MENU'.
            88  at-find-someone-menu    value 'FIND-SOMEONE-MENU'.
            88  at-learn-skill-menu     value 'SKILL-MENU'.
-       01  ws-user-choice      pic x(20).
+       01  ws-user-choice      pic x(40).
 *>    - ACCOUNT DATA - We keep a copy of the accounts file locally at runtime for faster access instead of reading the file everytime (simply for good practice)
        01  ws-account-table.
            05  ws-user-account     occurs 5 times.
@@ -365,7 +365,7 @@
        display-message.
            display ws-message
            move ws-message to output-record
-           write output-record
+           write output-record.
 
        cleanup-files.
            open output accounts-file
