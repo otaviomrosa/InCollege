@@ -13,25 +13,77 @@ Learn a new skill
 Logout
 Exit program
 Enter your choice:
-Find someone you know is under construction.
+Successfully Logged Out!
+Welcome to InCollege!
+Log In
+Create an Account
+Exit program
+Enter your choice:
+Please create a username:
+Enter a password:
+(8-12 chars, 1 uppercase, 1 lower, 1 special)
+Account created successfully!
 Search for a job
 Find someone you know
 Learn a new skill
 Logout
 Exit program
 Enter your choice:
-Time Management
-Professional Communication and Networking
-Coding
-Financial Literacy
-Physical Wellbeing
-Go Back
+Successfully Logged Out!
+Welcome to InCollege!
+Log In
+Create an Account
+Exit program
+Enter your choice:
+Please create a username:
+Enter a password:
+(8-12 chars, 1 uppercase, 1 lower, 1 special)
+Account created successfully!
 Search for a job
 Find someone you know
 Learn a new skill
 Logout
 Exit program
 Enter your choice:
+Successfully Logged Out!
+Welcome to InCollege!
+Log In
+Create an Account
+Exit program
+Enter your choice:
+Please create a username:
+Enter a password:
+(8-12 chars, 1 uppercase, 1 lower, 1 special)
+Account created successfully!
+Search for a job
+Find someone you know
+Learn a new skill
+Logout
+Exit program
+Enter your choice:
+Successfully Logged Out!
+Welcome to InCollege!
+Log In
+Create an Account
+Exit program
+Enter your choice:
+Please create a username:
+Enter a password:
+(8-12 chars, 1 uppercase, 1 lower, 1 special)
+Account created successfully!
+Search for a job
+Find someone you know
+Learn a new skill
+Logout
+Exit program
+Enter your choice:
+Successfully Logged Out!
+Welcome to InCollege!
+Log In
+Create an Account
+Exit program
+Enter your choice:
+All permitted accounts have been created, please come back later.
 Welcome to InCollege!
 Log In
 Create an Account
@@ -40,7 +92,14 @@ Enter your choice:
 Please enter your username:
 Please enter your password:
 You have successfully logged in.
-Welcome, testuser!lly logged in.
+Welcome, RockyTheBull!logged in.
+Search for a job
+Find someone you know
+Learn a new skill
+Logout
+Exit program
+Enter your choice:
+Find someone you know is under construction.
 Search for a job
 Find someone you know
 Learn a new skill
@@ -54,6 +113,54 @@ Learn a new skill
 Logout
 Exit program
 Enter your choice:
+Time Management
+Professional Communication and Networking
+Coding
+Financial Literacy
+Physical Wellbeing
+Go Back
+This skill is under construction.
+Time Management
+Professional Communication and Networking
+Coding
+Financial Literacy
+Physical Wellbeing
+Go Back
+This skill is under construction.
+Time Management
+Professional Communication and Networking
+Coding
+Financial Literacy
+Physical Wellbeing
+Go Back
+This skill is under construction.
+Time Management
+Professional Communication and Networking
+Coding
+Financial Literacy
+Physical Wellbeing
+Go Back
+This skill is under construction.
+Time Management
+Professional Communication and Networking
+Coding
+Financial Literacy
+Physical Wellbeing
+Go Back
+This skill is under construction.
+Time Management
+Professional Communication and Networking
+Coding
+Financial Literacy
+Physical Wellbeing
+Go Back
+Search for a job
+Find someone you know
+Learn a new skill
+Logout
+Exit program
+Enter your choice:
+Successfully Logged Out!
 Welcome to InCollege!
 Log In
 Create an Account

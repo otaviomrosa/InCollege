@@ -1,4 +1,35 @@
 Create an Account
-DanielMurati
-Password2!
+RockyTheBull
+GoBulls1@
+Logout
+Create an Account
+PeterParker
+Spiderman1!
+Logout
+Create an Account
+BruceWayne
+Batman1%
+Logout
+Create an Account
+TonyStark
+IronMan1$
+Logout
+Create an Account
+CaptainAmerica
+Shield1#
+Logout
+Create an Account
+Log In
+RockyTheBull
+GoBulls1@
+Find someone you know
+Search for a job
+Learn a new skill
+Time Management
+Professional Communication and Networking                                       
+Coding                                                                          
+Financial Literacy                                                              
+Physical Wellbeing
+Go Back
+Logout
 Exit Program
