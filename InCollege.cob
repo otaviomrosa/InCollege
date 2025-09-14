@@ -214,10 +214,12 @@
                 else if ws-user-choice = '4'
                      move "PROFILE-MENU" to ws-program-state
                 else if ws-user-choice = '5'
+                     perform view-profile
+                else if ws-user-choice = '6'
                      move "Successfully Logged Out!" to ws-message
                      perform display-success                      
                      move "INITIAL-MENU" to ws-program-state
-                else if ws-user-choice = '6'
+                else if ws-user-choice = '7'
                      perform cleanup-files
                      stop run  
                 else    
@@ -307,9 +309,11 @@
            perform write-separator
            move "4. Create/Edit My Profile" to ws-message 
            perform display-special-option
-           move "5. Log Out" to ws-message
+           move "5. View My Profile" to ws-message 
            perform display-special-option
-           move "6. Exit program" to ws-message
+           move "6. Log Out" to ws-message
+           perform display-special-option
+           move "7. Exit program" to ws-message
            perform display-special-option
            display ws-line-separator
            perform write-separator
@@ -530,6 +534,55 @@
                perform create-profile
            end-if
            move "MAIN-MENU" to ws-program-state.
+
+       view-profile.
+           perform check-profile-exists
+           if profile-found
+               move "Your Profile" to ws-message
+               perform display-title
+               
+               if ws-profile-about not = spaces
+                   move "About Me:" to ws-message
+                   perform display-info
+                   move ws-profile-about to ws-message
+                   perform display-info
+               end-if
+               
+               move "Experience:" to ws-message
+               perform display-info
+               perform varying ws-i from 1 by 1 until ws-i > 3
+                   if ws-exp-title(ws-i) not = spaces
+                       move ws-exp-title(ws-i) to ws-message
+                       perform display-option
+                       move ws-exp-company(ws-i) to ws-message
+                       perform display-option
+                       move ws-exp-dates(ws-i) to ws-message
+                       perform display-option
+                       move ws-exp-desc(ws-i) to ws-message
+                       perform display-option
+                       move " " to ws-message
+                       perform display-info
+                   end-if
+               end-perform
+               
+               move "Education:" to ws-message
+               perform display-info
+               perform varying ws-i from 1 by 1 until ws-i > 3
+                   if ws-edu-degree(ws-i) not = spaces
+                       move ws-edu-degree(ws-i) to ws-message
+                       perform display-option
+                       move ws-edu-school(ws-i) to ws-message
+                       perform display-option
+                       move ws-edu-years(ws-i) to ws-message
+                       perform display-option
+                       move " " to ws-message
+                       perform display-info
+                   end-if
+               end-perform
+           else
+               move "No profile found. Please create a profile first." to ws-message
+               perform display-error
+           end-if.
 
              check-profile-exists.
            move 'N' to ws-profile-found
