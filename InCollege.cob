@@ -15,8 +15,13 @@
                file status is ws-userdata-status.
 *>    A - New file creation for each user linked by username 
            select profiles-file assign to 'InCollege-Profiles.txt'
-           organization is line sequential
-           file status is ws-profiles-status.
+               organization is line sequential
+               file status is ws-profiles-status.
+*>    temp file used for atomic profile updates
+           select temp-profiles-file assign to 'InCollege-Profiles.tmp'
+               organization is line sequential
+               file status is ws-profiles-status.
+
 
        data division.
        file section.
@@ -32,12 +37,35 @@
            05  password        pic x(12).
 *>    A - profile file structure added here 
        fd  profiles-file.
-       01  profile-record.
-           05  profile-username      pic x(20).
-           05  profile-name          pic x(30).
-           05  profile-title         pic x(30).
-           05  profile-education     pic x(50).
-           05  profile-experience    pic x(100).
+        01  profile-record.
+            05  profile-username     pic x(20).
+            05  profile-about        pic x(200).  *> optional "about me"
+            05  profile-exp occurs 3.
+                10  exp-title        pic x(30).
+                10  exp-company      pic x(40).
+                10  exp-dates        pic x(30).
+                10  exp-desc         pic x(120).
+            05  profile-edu occurs 3.
+                10  edu-degree       pic x(30).
+                10  edu-school       pic x(40).
+                10  edu-years        pic x(20).
+
+*>    A - temp files for profile editing
+       fd  temp-profiles-file.
+        01  temp-profile-record.
+            05  temp-profile-username     pic x(20).
+            05  temp-profile-about        pic x(200).
+            05  temp-profile-exp occurs 3.
+                10  temp-exp-title        pic x(30).
+                10  temp-exp-company      pic x(40).
+                10  temp-exp-dates        pic x(30).
+                10  temp-exp-desc         pic x(120).
+            05  temp-profile-edu occurs 3.
+                10  temp-edu-degree       pic x(30).
+                10  temp-edu-school       pic x(40).
+                10  temp-edu-years        pic x(20).
+
+
        working-storage section.
 *>    Ensure all variables here start with "ws" to indicate they are in working-storage section.
 *>    For example, ws-username, ws-password, etc
@@ -84,10 +112,25 @@
        01  ws-profile-found          pic a(1) value 'N'.
            88 profile-found          value 'Y'.
        01  ws-profile-data.
-           05  ws-profile-name       pic x(30).
-           05  ws-profile-title      pic x(30).
-           05  ws-profile-education  pic x(50).
-           05  ws-profile-experience pic x(100).
+        05  ws-profile-about        pic x(200).
+
+        *> experiences (up to 3 entries)
+        05  ws-profile-exp occurs 3.
+            10  ws-exp-title        pic x(30).
+            10  ws-exp-company      pic x(40).
+            10  ws-exp-dates        pic x(30).
+            10  ws-exp-desc         pic x(120).
+
+        *> education (up to 3 entries)
+        05  ws-profile-edu occurs 3.
+            10  ws-edu-degree       pic x(30).
+            10  ws-edu-school       pic x(40).
+            10  ws-edu-years        pic x(20).
+
+
+       01  ws-profile-updated    pic a(1) value 'N'.
+           88 profile-updated    value 'Y'.
+
 *>    - TEMPORARY INPUT FOR LOGIN/REGISTRATION -
        01  ws-input-username   pic x(99).
        01  ws-input-password   pic x(99).
@@ -310,13 +353,9 @@
 
 *>    A - updated to get rid of "invalid option" line at end
       read-user-choice.
-           read input-file into ws-user-choice
-               at end set input-ended to true
-           end-read
-           if input-ended
-               exit paragraph
-           end-if
+           accept ws-user-choice
            move function trim(ws-user-choice) to ws-user-choice.
+
 
 
        username-lookup.
@@ -465,72 +504,258 @@
            end-evaluate
 
            perform until profiles-file-ended
+               
+                read profiles-file next record
+                    at end
+                        set profiles-file-ended to true
+                    not at end
+                        if profile-username = ws-input-username
+                            set profile-found to true
+
+                            *> copy scalar
+                            move profile-about to ws-profile-about
+
+                            *> copy the 3 experience entries
+                            perform varying ws-i from 1 by 1 until ws-i > 3
+                                move exp-title   (ws-i) to ws-exp-title   (ws-i)
+                                move exp-company (ws-i) to ws-exp-company (ws-i)
+                                move exp-dates   (ws-i) to ws-exp-dates   (ws-i)
+                                move exp-desc    (ws-i) to ws-exp-desc    (ws-i)
+                            end-perform
+
+                            *> copy the 3 education entries
+                            perform varying ws-i from 1 by 1 until ws-i > 3
+                                move edu-degree  (ws-i) to ws-edu-degree  (ws-i)
+                                move edu-school  (ws-i) to ws-edu-school  (ws-i)
+                                move edu-years   (ws-i) to ws-edu-years   (ws-i)
+                            end-perform
+
+                            set profiles-file-ended to true  *> stop early once found
+                        end-if
+                end-read
+            end-perform
+            close profiles-file.
+
+
+
+           create-profile.
+        *> optional: clear working fields so blanks don't keep stale data
+        move spaces to ws-profile-about
+        perform varying ws-i from 1 by 1 until ws-i > 3
+            move spaces to ws-exp-title   (ws-i)
+            move spaces to ws-exp-company (ws-i)
+            move spaces to ws-exp-dates   (ws-i)
+            move spaces to ws-exp-desc    (ws-i)
+        end-perform
+        perform varying ws-i from 1 by 1 until ws-i > 3
+            move spaces to ws-edu-degree (ws-i)
+            move spaces to ws-edu-school (ws-i)
+            move spaces to ws-edu-years  (ws-i)
+        end-perform
+
+        perform collect-profile-input.
+
+        *> write new profile record
+        open extend profiles-file
+        move ws-input-username to profile-username
+        move ws-profile-about  to profile-about
+
+        perform varying ws-i from 1 by 1 until ws-i > 3
+            move ws-exp-title   (ws-i) to exp-title   (ws-i)
+            move ws-exp-company (ws-i) to exp-company (ws-i)
+            move ws-exp-dates   (ws-i) to exp-dates   (ws-i)
+            move ws-exp-desc    (ws-i) to exp-desc    (ws-i)
+        end-perform
+
+        perform varying ws-i from 1 by 1 until ws-i > 3
+            move ws-edu-degree  (ws-i) to edu-degree  (ws-i)
+            move ws-edu-school  (ws-i) to edu-school  (ws-i)
+            move ws-edu-years   (ws-i) to edu-years   (ws-i)
+        end-perform
+
+        write profile-record
+        close profiles-file
+
+        move "Profile created successfully!" to ws-message
+        perform display-message.
+
+
+
+*>    A - collect user edits/new data
+           collect-profile-input.
+           *> about me (blank = keep existing)
+           move "enter your about me (blank to keep current):" to ws-message
+           perform display-message
+           perform read-user-choice
+           if ws-user-choice not = spaces
+               move ws-user-choice to ws-profile-about
+           end-if
+
+           *> experience entries (up to 3)
+           perform varying ws-i from 1 by 1 until ws-i > 3
+               display "experience " ws-i ": current title: " ws-exp-title(ws-i)
+               move "new title (blank to skip):" to ws-message
+               perform display-message
+               perform read-user-choice
+               if ws-user-choice = spaces
+                   continue
+                   *> keep existing title; if first title is blank and we are creating, user is done
+               else
+                   move ws-user-choice to ws-exp-title(ws-i)
+
+                   move "company/organization:" to ws-message
+                   perform display-message
+                   perform read-user-choice
+                   if ws-user-choice not = spaces
+                       move ws-user-choice to ws-exp-company(ws-i)
+                   end-if
+
+                   move "dates (e.g., summer 2024):" to ws-message
+                   perform display-message
+                   perform read-user-choice
+                   if ws-user-choice not = spaces
+                       move ws-user-choice to ws-exp-dates(ws-i)
+                   end-if
+
+                   move "description (blank to keep/skip):" to ws-message
+                   perform display-message
+                   perform read-user-choice
+                   if ws-user-choice not = spaces
+                       move ws-user-choice to ws-exp-desc(ws-i)
+                   end-if
+               end-if
+           end-perform
+
+           *> education entries (up to 3)
+           perform varying ws-i from 1 by 1 until ws-i > 3
+               display "education " ws-i ": current degree: " ws-edu-degree(ws-i)
+               move "new degree (blank to skip):" to ws-message
+               perform display-message
+               perform read-user-choice
+               if ws-user-choice = spaces
+                   continue
+                   *> keep existing degree
+               else
+                   move ws-user-choice to ws-edu-degree(ws-i)
+
+                   move "university/college:" to ws-message
+                   perform display-message
+                   perform read-user-choice
+                   if ws-user-choice not = spaces
+                       move ws-user-choice to ws-edu-school(ws-i)
+                   end-if
+
+                   move "years attended (e.g., 2023-2025):" to ws-message
+                   perform display-message
+                   perform read-user-choice
+                   if ws-user-choice not = spaces
+                       move ws-user-choice to ws-edu-years(ws-i)
+                   end-if
+               end-if
+           end-perform.
+
+
+           edit-profile.
+           move 'N' to ws-profile-updated
+           move 'N' to ws-profiles-eof     *> reset EOF so the read loop runs
+
+           *> open source file (old)
+           open input profiles-file
+           evaluate ws-profiles-status
+              when "35"
+                 close profiles-file
+                 perform create-profile
+                 exit paragraph
+              when not = "00"
+                 move "Profile file error" to ws-message
+                 perform display-message
+                 close profiles-file
+                 exit paragraph
+           end-evaluate
+
+           *> open temp (new)
+           open output temp-profiles-file
+
+           perform until profiles-file-ended
                read profiles-file next record
                    at end set profiles-file-ended to true
                    not at end
                        if profile-username = ws-input-username
-                           set profile-found to true
-                           move profile-name       to ws-profile-name
-                           move profile-title      to ws-profile-title
-                           move profile-education  to ws-profile-education
-                           move profile-experience to ws-profile-experience
-                           set profiles-file-ended to true
+                           *> allow user to edit existing values in memory
+                           perform collect-profile-input
+
+                           move ws-input-username to temp-profile-username
+                           move ws-profile-about  to temp-profile-about
+
+                           perform varying ws-i from 1 by 1 until ws-i > 3
+                               move ws-exp-title   (ws-i) to temp-exp-title   (ws-i)
+                               move ws-exp-company (ws-i) to temp-exp-company (ws-i)
+                               move ws-exp-dates   (ws-i) to temp-exp-dates   (ws-i)
+                               move ws-exp-desc    (ws-i) to temp-exp-desc    (ws-i)
+                           end-perform
+
+                           perform varying ws-i from 1 by 1 until ws-i > 3
+                               move ws-edu-degree  (ws-i) to temp-edu-degree  (ws-i)
+                               move ws-edu-school  (ws-i) to temp-edu-school  (ws-i)
+                               move ws-edu-years   (ws-i) to temp-edu-years   (ws-i)
+                           end-perform
+
+                           write temp-profile-record
+                           set profile-updated to true
+                       else
+                           move profile-username to temp-profile-username
+                           move profile-about    to temp-profile-about
+
+                           perform varying ws-i from 1 by 1 until ws-i > 3
+                               move exp-title   (ws-i) to temp-exp-title   (ws-i)
+                               move exp-company (ws-i) to temp-exp-company (ws-i)
+                               move exp-dates   (ws-i) to temp-exp-dates   (ws-i)
+                               move exp-desc    (ws-i) to temp-exp-desc    (ws-i)
+                           end-perform
+
+                           perform varying ws-i from 1 by 1 until ws-i > 3
+                               move edu-degree  (ws-i) to temp-edu-degree  (ws-i)
+                               move edu-school  (ws-i) to temp-edu-school  (ws-i)
+                               move edu-years   (ws-i) to temp-edu-years   (ws-i)
+                           end-perform
+
+                           write temp-profile-record
                        end-if
                end-read
            end-perform
-           close profiles-file.
 
-
-       create-profile.
-           move "Enter your name:" to ws-message
-           perform display-message
-           perform read-user-choice
-           move ws-user-choice to ws-profile-name
-           
-           move "Enter your title:" to ws-message
-           perform display-message
-           perform read-user-choice
-           move ws-user-choice to ws-profile-title
-           
-           move "Enter your education:" to ws-message
-           perform display-message
-           perform read-user-choice
-           move ws-user-choice to ws-profile-education
-           
-           move "Enter your experience:" to ws-message
-           perform display-message
-           perform read-user-choice
-           move ws-user-choice to ws-profile-experience
-
-           *> try to append; if file not found (35) create it, then append
-           open extend profiles-file
-           if ws-profiles-status = "35"
-               open output profiles-file
-               close profiles-file
-               open extend profiles-file
-           end-if
-           if ws-profiles-status not = "00"
-               move "profile open failed. status: " to ws-message
-               perform display-message
-               display ws-profiles-status
-               exit paragraph
-           end-if
-
-           move ws-input-username     to profile-username
-           move ws-profile-name       to profile-name
-           move ws-profile-title      to profile-title
-           move ws-profile-education  to profile-education
-           move ws-profile-experience to profile-experience
-           write profile-record
            close profiles-file
+           close temp-profiles-file
 
-           move "Profile created successfully!" to ws-message
-           perform display-message.
+           *> if user had no record, append as new
+           if not profile-updated
+               open extend temp-profiles-file
+               move ws-input-username to temp-profile-username
+               move ws-profile-about  to temp-profile-about
 
+               perform varying ws-i from 1 by 1 until ws-i > 3
+                   move ws-exp-title   (ws-i) to temp-exp-title   (ws-i)
+                   move ws-exp-company (ws-i) to temp-exp-company (ws-i)
+                   move ws-exp-dates   (ws-i) to temp-exp-dates   (ws-i)
+                   move ws-exp-desc    (ws-i) to temp-exp-desc    (ws-i)
+               end-perform
 
-       edit-profile.
-           *> For now, just use the same as create (will overwrite)
-           perform create-profile
+               perform varying ws-i from 1 by 1 until ws-i > 3
+                   move ws-edu-degree  (ws-i) to temp-edu-degree  (ws-i)
+                   move ws-edu-school  (ws-i) to temp-edu-school  (ws-i)
+                   move ws-edu-years   (ws-i) to temp-edu-years   (ws-i)
+               end-perform
+
+               write temp-profile-record
+               close temp-profiles-file
+           end-if
+
+           *> swap temp -> live
+           call "CBL_DELETE_FILE" using by reference "InCollege-Profiles.txt"
+           call "CBL_RENAME_FILE" using
+                by reference "InCollege-Profiles.tmp"
+                by reference "InCollege-Profiles.txt"
+
            move "Profile updated successfully!" to ws-message
            perform display-message.
 
