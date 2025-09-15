@@ -27,7 +27,7 @@
        file section.
 *>    Define the record structure for each of the three files
        fd input-file.
-       01  input-record      pic x(80).
+       01  input-record      pic x(256).
        fd  output-file.
        01  output-record     pic x(80).
        fd  accounts-file.
@@ -73,7 +73,10 @@
 *>    - FILE STATUS AND EOF FLAGS - 
        01  ws-userdata-status  pic x(2).
        01  ws-input-eof        pic a(1) value 'N'.
-           88  input-ended         value 'Y'.
+       88  input-ended         value 'Y'.
+
+       01  ws-last-input     pic x(256) value spaces.
+
 *>    - PROGRAM FLOW AND INPUT -
        01  ws-program-state    pic x(20) value 'INITIAL-MENU'.
 *>    Initial menu is the first thing the user sees, prompting them to choose between logging in or creating an account 
@@ -136,7 +139,10 @@
        01  ws-input-password   pic x(99).
 
 *>    - Variable to hold message for display + write -
-       01  ws-message  pic x(80).
+       01  ws-message          pic x(80).
+       01  ws-temp-message     pic x(80).
+       01  ws-blank-line       pic x(80) value spaces.
+       01  ws-line-separator   pic x(80) value all "-".
 
        procedure division.
 *>    Open all files that wil be used
@@ -152,31 +158,27 @@
            if at-initial-menu
                perform display-initial-menu
                perform read-user-choice
-               if ws-user-choice = 'Log In'
+               if ws-user-choice = '1'
                    move "LOGIN-SCREEN" to ws-program-state
-               else if ws-user-choice = 'Create an Account'
+               else if ws-user-choice = '2'
                    move "REGISTER-SCREEN" to ws-program-state
-               else if ws-user-choice = 'Exit Program'
+               else if ws-user-choice = '3'
                    perform cleanup-files
                    stop run
                else    
                    move "Invalid option. Please try again" to ws-message
-                   perform display-message
+                   perform display-error
                    move "INITIAL-MENU" to ws-program-state
-                   perform cleanup-files
-                   stop run
-                
-
                end-if
 *>    If they choose to log in, prompt for username and password and look them up in the accounts file (must match)
            else if at-login-screen
                move "Please enter your username:" to ws-message
-               perform display-message
+               perform display-prompt
                perform read-user-choice
                perform username-lookup
                if account-found     
                    move "Please enter your password:" to ws-message
-                   perform display-message
+                   perform display-prompt
                    perform read-user-choice
                    perform password-lookup
                 end-if
@@ -185,18 +187,18 @@
            else if at-register-screen
                if ws-current-account-count >= ws-max-accounts
                    move "All permitted accounts have been created, please come back later." to ws-message
-                   perform display-message
+                   perform display-info
                    move "INITIAL-MENU" to ws-program-state
                else
                    move "Please create a username:" to ws-message
-                   perform display-message
+                   perform display-prompt
                    perform read-user-choice
                    perform validate-username
                    if not account-found and not input-ended
                        move "Enter a password:" to ws-message
-                       perform display-message
+                       perform display-prompt
                        move "(8-12 chars, 1 uppercase, 1 lower, 1 special)" to ws-message
-                       perform display-message
+                       perform display-info
                        perform read-user-choice
                        perform validate-password
                    end-if
@@ -205,25 +207,27 @@
            else if at-main-menu
                perform display-main-menu
                perform read-user-choice
-                if ws-user-choice = 'Search for a job'
+                if ws-user-choice = '1'
                      move "JOB-SEARCH-MENU" to ws-program-state
-                else if ws-user-choice = 'Find someone you know'
+                else if ws-user-choice = '2'
                      move "FIND-SOMEONE-MENU" to ws-program-state
-                else if ws-user-choice = 'Learn a new skill'
+                else if ws-user-choice = '3'
                      move "SKILL-MENU" to ws-program-state
       *>   A - profile create/edit else if 
-                else if ws-user-choice = 'Create/Edit My Profile'
+                else if ws-user-choice = '4'
                      move "PROFILE-MENU" to ws-program-state
-                else if ws-user-choice = 'Log Out'
+                else if ws-user-choice = '5'
+                     perform view-profile
+                else if ws-user-choice = '6'
                      move "Successfully Logged Out!" to ws-message
-                     perform display-message                      
+                     perform display-success                      
                      move "INITIAL-MENU" to ws-program-state
-                else if ws-user-choice = 'Exit Program'
+                else if ws-user-choice = '7'
                      perform cleanup-files
                      stop run  
                 else    
                      move "Invalid option. Please try again" to ws-message
-                     perform display-message
+                     perform display-error
                      move "MAIN-MENU" to ws-program-state
                 end-if
            else if at-job-search-menu
@@ -246,12 +250,12 @@
 
            if ws-userdata-status = "35"
                move "Accounts file not found. Creating a new one." to ws-message
-               perform display-message
+               perform display-info
                open output accounts-file
                if ws-userdata-status not = "00"
-                   move "Error: Could not create accounts file. Status: " to ws-message 
-                   perform display-message
-                   display ws-userdata-status
+                   move "Could not create accounts file. Status: " to ws-message 
+                   string ws-message ws-userdata-status into ws-message
+                   perform display-error
                    perform cleanup-files
                    stop run
                end-if
@@ -261,8 +265,8 @@
            end-if.
            if ws-userdata-status not = "00"
                move "FATAL ERROR opening accounts file. Status: " to ws-message 
-               perform display-message
-               display ws-userdata-status
+               string ws-message ws-userdata-status into ws-message
+               perform display-error
                stop run
            end-if.
 
@@ -275,87 +279,91 @@
                            to ws-username(ws-current-account-count)
                        move password 
                            to ws-password(ws-current-account-count)
-*>                     display "Debug - Loading user: '" 
-*>                           ws-username(ws-current-account-count) "'"
-*>                     display "Debug - Loading pass: '" 
-*>                           ws-password(ws-current-account-count) "'"
                end-read
            end-perform.
            close accounts-file.
 
        display-initial-menu.
            move "Welcome to InCollege!" to ws-message 
-           perform display-message
-           move "Log In" to ws-message 
-           perform display-message
-           move "Create an Account" to ws-message 
-           perform display-message
-           move "Exit program" to ws-message 
-           perform display-message
-           move "Enter your choice:" to ws-message 
-           perform display-message.
+           perform display-title
+           move "1. Log In" to ws-message 
+           perform display-option
+           move "2. Create an Account" to ws-message 
+           perform display-option
+           display ws-line-separator
+           perform write-separator
+           move "3. Exit Program" to ws-message 
+           perform display-special-option
+           display ws-line-separator
+           perform write-separator
+           move "Enter your choice: " to ws-message 
+           perform display-prompt.
 
        display-main-menu.
-           move "Search for a job" to ws-message 
-           perform display-message
-           move "Find someone you know" to ws-message
-           perform display-message
-           move "Learn a new skill" to ws-message 
-           perform display-message
-      *> A - profile creation menu option
-           move "Create/Edit My Profile" to ws-message 
-           perform display-message
-           move "Log Out" to ws-message
-           perform display-message
-           move "Exit program" to ws-message
-           perform display-message
-           move "Enter your choice:" to ws-message 
-           perform display-message.
+           move "Main Menu" to ws-message
+           perform display-title
+           move "1. Search for a job" to ws-message 
+           perform display-option
+           move "2. Find someone you know" to ws-message
+           perform display-option
+           move "3. Learn a new skill" to ws-message 
+           perform display-option
+           display ws-line-separator
+           perform write-separator
+           move "4. Create/Edit My Profile" to ws-message 
+           perform display-special-option
+           move "5. View My Profile" to ws-message 
+           perform display-special-option
+           move "6. Log Out" to ws-message
+           perform display-special-option
+           move "7. Exit program" to ws-message
+           perform display-special-option
+           display ws-line-separator
+           perform write-separator
+           move "Enter your choice: " to ws-message 
+           perform display-prompt.
 
        display-skills.
-           move "Time Management" to ws-message 
-           perform display-message
-           move "Professional Communication and Networking" to ws-message 
-           perform display-message
-           move "Coding" to ws-message 
-           perform display-message
-           move "Financial Literacy" to ws-message 
-           perform display-message
-           move "Physical Wellbeing" to ws-message 
-           perform display-message
-           move "Go Back" to ws-message 
-           perform display-message.
+           move "Learn a New Skill" to ws-message
+           perform display-title
+           move "1. Time Management" to ws-message 
+           perform display-option
+           move "2. Professional Communication and Networking" to ws-message 
+           perform display-option
+           move "3. Coding" to ws-message 
+           perform display-option
+           move "4. Financial Literacy" to ws-message 
+           perform display-option
+           move "5. Physical Wellbeing" to ws-message 
+           perform display-option
+           display ws-line-separator
+           perform write-separator
+           move "6. Go Back" to ws-message 
+           perform display-special-option
+           display ws-line-separator
+           perform write-separator
+           move "Enter your choice: " to ws-message
+           perform display-prompt.
 
        display-under-construction.
-           if ws-user-choice = "Search for a job"
-               move "Job search/internship is under construction." to ws-message 
-               perform display-message
-               move "MAIN-MENU" to ws-program-state
-           else if ws-user-choice = "Find someone you know"
-               move "Find someone you know is under construction." to ws-message 
-               perform display-message
-               move "MAIN-MENU" to ws-program-state
-*>    This line makes it so every skill option entered will display the under construction message and return to main menu         
-           else if ws-program-state = "SKILL-MENU"
-               if ws-user-choice = "Go Back"
-                   move "MAIN-MENU" to ws-program-state
-               else
-                   move "This skill is under construction." to ws-message
-                   perform display-message
-                   move "SKILL-MENU" to ws-program-state
-                end-if
-           else    
-               move "Invalid option. Please try again" to ws-message
-               perform display-message
-               move "MAIN-MENU" to ws-program-state
-           end-if.
+           move "This feature is under construction." to ws-message 
+           perform display-info
+           move "MAIN-MENU" to ws-program-state.
+       read-next-input.
+        read input-file
+            at end
+                set input-ended to true
+            not at end
+                move function trim(input-record) to ws-last-input
+        end-read.
 
 
-*>    A - updated to get rid of "invalid option" line at end
       read-user-choice.
-           accept ws-user-choice
-           move function trim(ws-user-choice) to ws-user-choice.
-
+        perform read-next-input
+        if not input-ended
+            move ws-last-input to ws-user-choice
+            move function trim(ws-user-choice) to ws-user-choice
+        end-if.
 
 
        username-lookup.
@@ -370,32 +378,24 @@
                end-perform
                if not account-found
                    move "Username not found. Returning to menu." to ws-message
-                   perform display-message
+                   perform display-error
                    move "INITIAL-MENU" to ws-program-state
                end-if.
 
        password-lookup.
            move function trim(ws-user-choice) to ws-input-password
            if account-found
-*>               display "Debug - Login attempt with password: '" 
-*>                   ws-input-password "'"
-*>               display "Debug - Stored password for user: '" 
-*>                   ws-password(ws-i) "'"
-*>               display "Debug - Trimmed input: '" 
-*>                   function trim(ws-input-password) "'"
-*>               display "Debug - Trimmed stored: '" 
-*>                   function trim(ws-password(ws-i)) "'"
                if ws-input-password = function trim(ws-password(ws-i))
                    move "You have successfully logged in." to ws-message 
-                   perform display-message
+                   perform display-success
                    move spaces to ws-message
                    string "Welcome, " function trim(ws-input-username) "!" delimited by size
                        into ws-message
-                   perform display-message
+                   perform display-info
                    move "MAIN-MENU" to ws-program-state
                else
                    move "Incorrect password. Returning to menu." to ws-message
-                   perform display-message
+                   perform display-error
                    move "INITIAL-MENU" to ws-program-state
                end-if
            end-if.
@@ -405,7 +405,7 @@
            move 'N' to ws-account-found
            if ws-input-username = spaces
                move "Username cannot be empty. Returning to menu." to ws-message
-               perform display-message
+               perform display-error
                move "INITIAL-MENU" to ws-program-state
            else
                perform varying ws-i from 1 by 1
@@ -417,7 +417,7 @@
                end-perform
                if account-found
                    move "Username already exists. Returning to menu." to ws-message
-                   perform display-message
+                   perform display-error
                    move "INITIAL-MENU" to ws-program-state
                    move "Y" to ws-input-eof
                end-if
@@ -438,36 +438,102 @@
            if function length(function trim(ws-input-password)) < 8 or
               function length(function trim(ws-input-password)) > 12
                move "Password must be between 8 and 12 characters." to ws-message 
-               perform display-message
+               perform display-error
                move "INITIAL-MENU" to ws-program-state
            else if ws-input-password = function upper-case(ws-input-password)
                move "Password must contain a lowercase letter." to ws-message 
-               perform display-message
+               perform display-error
                move "INITIAL-MENU" to ws-program-state
            else if ws-input-password = function lower-case(ws-input-password)
                move "Password must contain an uppercase letter." to ws-message 
-               perform display-message
+               perform display-error
                move "INITIAL-MENU" to ws-program-state
            else if ws-number-count = zero
                move "Password must contain a number." to ws-message 
-               perform display-message
+               perform display-error
                move "INITIAL-MENU" to ws-program-state
            else if ws-specialchar-count = zero
                move "Password must contain a special character." to ws-message 
-               perform display-message
+               perform display-error
                move "INITIAL-MENU" to ws-program-state
            else
                add 1 to ws-current-account-count
                move ws-input-username to ws-username(ws-current-account-count)
                move ws-input-password to ws-password(ws-current-account-count)
                move "Account created successfully!" to ws-message 
-               perform display-message
+               perform display-success
                move "MAIN-MENU" to ws-program-state
            end-if.
 
-       display-message.
-           display ws-message
+       display-title.
+           display ws-blank-line
+           perform write-blank-line
+           move ws-message to ws-temp-message
+           move spaces to ws-message
+           string "=== " function trim(ws-temp-message) " ===" delimited by size into ws-message
+           display function trim(ws-message)
+           perform write-message
+           display ws-blank-line
+           perform write-blank-line.
+
+       display-option.
+           move ws-message to ws-temp-message
+           move spaces to ws-message
+           string "  " function trim(ws-temp-message) delimited by size into ws-message
+           display function trim(ws-message)
+           perform write-message.
+
+       display-special-option.
+           move ws-message to ws-temp-message
+           move spaces to ws-message
+           string "  " function trim(ws-temp-message) delimited by size into ws-message
+           display function trim(ws-message)
+           perform write-message.
+
+       display-prompt.
+           display function trim(ws-message) " " with no advancing
+           perform write-message.
+
+       display-info.
+           display ws-blank-line
+           perform write-blank-line
+           display function trim(ws-message)
+           perform write-message
+           display ws-blank-line
+           perform write-blank-line.
+
+       display-error.
+           display ws-blank-line
+           perform write-blank-line
+           move ws-message to ws-temp-message
+           move spaces to ws-message
+           string "ERROR: " function trim(ws-temp-message) delimited by size into ws-message
+           display function trim(ws-message)
+           perform write-message
+           display ws-blank-line
+           perform write-blank-line.
+        
+       display-success.
+           display ws-blank-line
+           perform write-blank-line
+           move ws-message to ws-temp-message
+           move spaces to ws-message
+           string "SUCCESS: " function trim(ws-temp-message) delimited by size into ws-message
+           display function trim(ws-message)
+           perform write-message
+           display ws-blank-line
+           perform write-blank-line.
+
+       write-message.
            move ws-message to output-record
+           write output-record.
+
+       write-blank-line.
+           move ws-blank-line to output-record
+           write output-record.
+
+       write-separator.
+           move ws-line-separator to output-record
            write output-record.
 
 *>    A - profile menu routines
@@ -475,14 +541,63 @@
            perform check-profile-exists
            if profile-found
                move "Editing your existing profile..." to ws-message
-               perform display-message
+               perform display-info
                perform edit-profile
            else
                move "Creating new profile..." to ws-message
-               perform display-message
+               perform display-info
                perform create-profile
            end-if
            move "MAIN-MENU" to ws-program-state.
+
+       view-profile.
+           perform check-profile-exists
+           if profile-found
+               move "Your Profile" to ws-message
+               perform display-title
+               
+               if ws-profile-about not = spaces
+                   move "About Me:" to ws-message
+                   perform display-info
+                   move ws-profile-about to ws-message
+                   perform display-info
+               end-if
+               
+               move "Experience:" to ws-message
+               perform display-info
+               perform varying ws-i from 1 by 1 until ws-i > 3
+                   if ws-exp-title(ws-i) not = spaces
+                       move ws-exp-title(ws-i) to ws-message
+                       perform display-option
+                       move ws-exp-company(ws-i) to ws-message
+                       perform display-option
+                       move ws-exp-dates(ws-i) to ws-message
+                       perform display-option
+                       move ws-exp-desc(ws-i) to ws-message
+                       perform display-option
+                       move " " to ws-message
+                       perform display-info
+                   end-if
+               end-perform
+               
+               move "Education:" to ws-message
+               perform display-info
+               perform varying ws-i from 1 by 1 until ws-i > 3
+                   if ws-edu-degree(ws-i) not = spaces
+                       move ws-edu-degree(ws-i) to ws-message
+                       perform display-option
+                       move ws-edu-school(ws-i) to ws-message
+                       perform display-option
+                       move ws-edu-years(ws-i) to ws-message
+                       perform display-option
+                       move " " to ws-message
+                       perform display-info
+                   end-if
+               end-perform
+           else
+               move "No profile found. Please create a profile first." to ws-message
+               perform display-error
+           end-if.
 
              check-profile-exists.
            move 'N' to ws-profile-found
@@ -498,7 +613,7 @@
                  exit paragraph
               when other
                  move "Profile file error" to ws-message
-                 perform display-message
+                 perform display-error
                  close profiles-file
                  exit paragraph
            end-evaluate
@@ -557,6 +672,17 @@
 
         *> write new profile record
         open extend profiles-file
+        if ws-profiles-status = "35"
+            open output profiles-file
+            close profiles-file
+            open extend profiles-file
+        end-if
+        if ws-profiles-status not = "00"
+            move "profile open failed" to ws-message
+            perform display-error
+            exit paragraph
+        end-if
+
         move ws-input-username to profile-username
         move ws-profile-about  to profile-about
 
@@ -577,187 +703,140 @@
         close profiles-file
 
         move "Profile created successfully!" to ws-message
-        perform display-message.
+        perform display-success.
 
 
+       edit-profile.
+        *> prompt for changes
+        perform collect-profile-input.
 
-*>    A - collect user edits/new data
-           collect-profile-input.
-           *> about me (blank = keep existing)
-           move "enter your about me (blank to keep current):" to ws-message
-           perform display-message
-           perform read-user-choice
-           if ws-user-choice not = spaces
-               move ws-user-choice to ws-profile-about
-           end-if
+        *> now, atomically update the profiles file
+        move 'N' to ws-profile-updated
+        open input profiles-file
+        open output temp-profiles-file
 
-           *> experience entries (up to 3)
-           perform varying ws-i from 1 by 1 until ws-i > 3
-               display "experience " ws-i ": current title: " ws-exp-title(ws-i)
-               move "new title (blank to skip):" to ws-message
-               perform display-message
-               perform read-user-choice
-               if ws-user-choice = spaces
-                   continue
-                   *> keep existing title; if first title is blank and we are creating, user is done
-               else
-                   move ws-user-choice to ws-exp-title(ws-i)
+        move 'N' to ws-profiles-eof
+        perform until profiles-file-ended
+            read profiles-file next record
+                at end
+                    set profiles-file-ended to true
+                not at end
+                    if profile-username = ws-input-username
+                        *> this is the user to update; write our new record
+                        move ws-input-username to temp-profile-username
+                        move ws-profile-about  to temp-profile-about
 
-                   move "company/organization:" to ws-message
-                   perform display-message
-                   perform read-user-choice
-                   if ws-user-choice not = spaces
-                       move ws-user-choice to ws-exp-company(ws-i)
-                   end-if
+                        perform varying ws-i from 1 by 1 until ws-i > 3
+                            move ws-exp-title  (ws-i) to temp-exp-title  (ws-i)
+                            move ws-exp-company(ws-i) to temp-exp-company(ws-i)
+                            move ws-exp-dates  (ws-i) to temp-exp-dates  (ws-i)
+                            move ws-exp-desc   (ws-i) to temp-exp-desc   (ws-i)
+                        end-perform
 
-                   move "dates (e.g., summer 2024):" to ws-message
-                   perform display-message
-                   perform read-user-choice
-                   if ws-user-choice not = spaces
-                       move ws-user-choice to ws-exp-dates(ws-i)
-                   end-if
+                        perform varying ws-i from 1 by 1 until ws-i > 3
+                            move ws-edu-degree (ws-i) to temp-edu-degree (ws-i)
+                            move ws-edu-school (ws-i) to temp-edu-school (ws-i)
+                            move ws-edu-years  (ws-i) to temp-edu-years  (ws-i)
+                        end-perform
 
-                   move "description (blank to keep/skip):" to ws-message
-                   perform display-message
-                   perform read-user-choice
-                   if ws-user-choice not = spaces
-                       move ws-user-choice to ws-exp-desc(ws-i)
-                   end-if
-               end-if
-           end-perform
+                        write temp-profile-record
+                        move 'Y' to ws-profile-updated
+                    else
+                        *> copy other users' records verbatim
+                        write temp-profile-record from profile-record
+                    end-if
+            end-read
+        end-perform
 
-           *> education entries (up to 3)
-           perform varying ws-i from 1 by 1 until ws-i > 3
-               display "education " ws-i ": current degree: " ws-edu-degree(ws-i)
-               move "new degree (blank to skip):" to ws-message
-               perform display-message
-               perform read-user-choice
-               if ws-user-choice = spaces
-                   continue
-                   *> keep existing degree
-               else
-                   move ws-user-choice to ws-edu-degree(ws-i)
+        close profiles-file
+        close temp-profiles-file
 
-                   move "university/college:" to ws-message
-                   perform display-message
-                   perform read-user-choice
-                   if ws-user-choice not = spaces
-                       move ws-user-choice to ws-edu-school(ws-i)
-                   end-if
+        *> now, delete original and rename temp file
+        if ws-profile-updated = 'Y'
+            move "InCollege-Profiles.txt" to ws-message
+            call "CBL_DELETE_FILE" using ws-message
+            
+            move "InCollege-Profiles.tmp" to ws-message
+            move "InCollege-Profiles.txt" to ws-user-choice
+            call "CBL_RENAME_FILE" using ws-message, ws-user-choice
 
-                   move "years attended (e.g., 2023-2025):" to ws-message
-                   perform display-message
-                   perform read-user-choice
-                   if ws-user-choice not = spaces
-                       move ws-user-choice to ws-edu-years(ws-i)
-                   end-if
-               end-if
-           end-perform.
+            move "Profile updated successfully!" to ws-message
+            perform display-success
+        else
+            move "Could not find profile to update." to ws-message
+            perform display-error
+        end-if.
 
 
-           edit-profile.
-           move 'N' to ws-profile-updated
-           move 'N' to ws-profiles-eof     *> reset EOF so the read loop runs
+       collect-profile-input.
+        move "About me (optional, press Enter to skip): " to ws-message
+        perform display-prompt
+        perform read-next-input
+        if not input-ended
+            move ws-last-input to ws-profile-about
+        end-if
 
-           *> open source file (old)
-           open input profiles-file
-           evaluate ws-profiles-status
-              when "35"
-                 close profiles-file
-                 perform create-profile
-                 exit paragraph
-              when not = "00"
-                 move "Profile file error" to ws-message
-                 perform display-message
-                 close profiles-file
-                 exit paragraph
-           end-evaluate
+        perform varying ws-i from 1 by 1 until ws-i > 3
+            move "Experience " to ws-message
+            string "Experience " ws-i " Title (or Enter to skip): " delimited by size
+                into ws-message
+            perform display-prompt
+            perform read-next-input
+            if input-ended
+                exit perform
+            end-if
+            move ws-last-input to ws-exp-title(ws-i)
+            if ws-exp-title(ws-i) = spaces
+                exit perform
+            end-if
 
-           *> open temp (new)
-           open output temp-profiles-file
+            move "Company: " to ws-message
+            perform display-prompt
+            perform read-next-input
+            if input-ended exit perform end-if
+            move ws-last-input to ws-exp-company(ws-i)
 
-           perform until profiles-file-ended
-               read profiles-file next record
-                   at end set profiles-file-ended to true
-                   not at end
-                       if profile-username = ws-input-username
-                           *> allow user to edit existing values in memory
-                           perform collect-profile-input
+            move "Dates (e.g., 2020-2024): " to ws-message
+            perform display-prompt
+            perform read-next-input
+            if input-ended exit perform end-if
+            move ws-last-input to ws-exp-dates(ws-i)
 
-                           move ws-input-username to temp-profile-username
-                           move ws-profile-about  to temp-profile-about
+            move "Description: " to ws-message
+            perform display-prompt
+            perform read-next-input
+            if input-ended exit perform end-if
+            move ws-last-input to ws-exp-desc(ws-i)
+        end-perform
 
-                           perform varying ws-i from 1 by 1 until ws-i > 3
-                               move ws-exp-title   (ws-i) to temp-exp-title   (ws-i)
-                               move ws-exp-company (ws-i) to temp-exp-company (ws-i)
-                               move ws-exp-dates   (ws-i) to temp-exp-dates   (ws-i)
-                               move ws-exp-desc    (ws-i) to temp-exp-desc    (ws-i)
-                           end-perform
+        perform varying ws-i from 1 by 1 until ws-i > 3
+            move "Education " to ws-message
+            string "Education " ws-i " Degree (or Enter to skip): " delimited by size
+                into ws-message
+            perform display-prompt
+            perform read-next-input
+            if input-ended
+                exit perform
+            end-if
+            move ws-last-input to ws-edu-degree(ws-i)
+            if ws-edu-degree(ws-i) = spaces
+                exit perform
+            end-if
 
-                           perform varying ws-i from 1 by 1 until ws-i > 3
-                               move ws-edu-degree  (ws-i) to temp-edu-degree  (ws-i)
-                               move ws-edu-school  (ws-i) to temp-edu-school  (ws-i)
-                               move ws-edu-years   (ws-i) to temp-edu-years   (ws-i)
-                           end-perform
+            move "School: " to ws-message
+            perform display-prompt
+            perform read-next-input
+            if input-ended exit perform end-if
+            move ws-last-input to ws-edu-school(ws-i)
 
-                           write temp-profile-record
-                           set profile-updated to true
-                       else
-                           move profile-username to temp-profile-username
-                           move profile-about    to temp-profile-about
+            move "Years (e.g., 2016-2020): " to ws-message
+            perform display-prompt
+            perform read-next-input
+            if input-ended exit perform end-if
+            move ws-last-input to ws-edu-years(ws-i)
+        end-perform.
 
-                           perform varying ws-i from 1 by 1 until ws-i > 3
-                               move exp-title   (ws-i) to temp-exp-title   (ws-i)
-                               move exp-company (ws-i) to temp-exp-company (ws-i)
-                               move exp-dates   (ws-i) to temp-exp-dates   (ws-i)
-                               move exp-desc    (ws-i) to temp-exp-desc    (ws-i)
-                           end-perform
 
-                           perform varying ws-i from 1 by 1 until ws-i > 3
-                               move edu-degree  (ws-i) to temp-edu-degree  (ws-i)
-                               move edu-school  (ws-i) to temp-edu-school  (ws-i)
-                               move edu-years   (ws-i) to temp-edu-years   (ws-i)
-                           end-perform
-
-                           write temp-profile-record
-                       end-if
-               end-read
-           end-perform
-
-           close profiles-file
-           close temp-profiles-file
-
-           *> if user had no record, append as new
-           if not profile-updated
-               open extend temp-profiles-file
-               move ws-input-username to temp-profile-username
-               move ws-profile-about  to temp-profile-about
-
-               perform varying ws-i from 1 by 1 until ws-i > 3
-                   move ws-exp-title   (ws-i) to temp-exp-title   (ws-i)
-                   move ws-exp-company (ws-i) to temp-exp-company (ws-i)
-                   move ws-exp-dates   (ws-i) to temp-exp-dates   (ws-i)
-                   move ws-exp-desc    (ws-i) to temp-exp-desc    (ws-i)
-               end-perform
-
-               perform varying ws-i from 1 by 1 until ws-i > 3
-                   move ws-edu-degree  (ws-i) to temp-edu-degree  (ws-i)
-                   move ws-edu-school  (ws-i) to temp-edu-school  (ws-i)
-                   move ws-edu-years   (ws-i) to temp-edu-years   (ws-i)
-               end-perform
-
-               write temp-profile-record
-               close temp-profiles-file
-           end-if
-
-           *> swap temp -> live
-           call "CBL_DELETE_FILE" using by reference "InCollege-Profiles.txt"
-           call "CBL_RENAME_FILE" using
-                by reference "InCollege-Profiles.tmp"
-                by reference "InCollege-Profiles.txt"
-
-           move "Profile updated successfully!" to ws-message
-           perform display-message.
 
        cleanup-files.
            open output accounts-file
@@ -767,6 +846,8 @@
                move ws-password(ws-i) to password
                write account-record
            end-perform
-           close input-file, output-file, accounts-file, profiles-file.
+           close input-file, output-file, accounts-file.
            
-       end program InCollege.
+           end program InCollege.
+
+       
