@@ -349,6 +349,7 @@
            move "This feature is under construction." to ws-message 
            perform display-info
            move "MAIN-MENU" to ws-program-state.
+      
        read-next-input.
         read input-file
             at end
@@ -364,7 +365,6 @@
             move ws-last-input to ws-user-choice
             move function trim(ws-user-choice) to ws-user-choice
         end-if.
-
 
        username-lookup.
            move function trim(ws-user-choice) to ws-input-username
