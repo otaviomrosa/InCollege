@@ -27,7 +27,7 @@
        file section.
 *>    Define the record structure for each of the three files
        fd input-file.
-       01  input-record      pic x(80).
+       01  input-record      pic x(256).
        fd  output-file.
        01  output-record     pic x(80).
        fd  accounts-file.
@@ -73,7 +73,10 @@
 *>    - FILE STATUS AND EOF FLAGS - 
        01  ws-userdata-status  pic x(2).
        01  ws-input-eof        pic a(1) value 'N'.
-           88  input-ended         value 'Y'.
+       88  input-ended         value 'Y'.
+
+       01  ws-last-input     pic x(256) value spaces.
+
 *>    - PROGRAM FLOW AND INPUT -
        01  ws-program-state    pic x(20) value 'INITIAL-MENU'.
 *>    Initial menu is the first thing the user sees, prompting them to choose between logging in or creating an account 
@@ -346,10 +349,22 @@
            move "This feature is under construction." to ws-message 
            perform display-info
            move "MAIN-MENU" to ws-program-state.
+      
+       read-next-input.
+        read input-file
+            at end
+                set input-ended to true
+            not at end
+                move function trim(input-record) to ws-last-input
+        end-read.
+
 
       read-user-choice.
-           accept ws-user-choice
-           move function trim(ws-user-choice) to ws-user-choice.
+        perform read-next-input
+        if not input-ended
+            move ws-last-input to ws-user-choice
+            move function trim(ws-user-choice) to ws-user-choice
+        end-if.
 
        username-lookup.
            move function trim(ws-user-choice) to ws-input-username
@@ -725,7 +740,7 @@
                         end-perform
 
                         write temp-profile-record
-                        set ws-profile-updated to 'Y'
+                        move 'Y' to ws-profile-updated
                     else
                         *> copy other users' records verbatim
                         write temp-profile-record from profile-record
@@ -754,32 +769,73 @@
 
 
        collect-profile-input.
-        display "About me (optional, press Enter to skip): " with no advancing
-        accept ws-profile-about
+        move "About me (optional, press Enter to skip): " to ws-message
+        perform display-prompt
+        perform read-next-input
+        if not input-ended
+            move ws-last-input to ws-profile-about
+        end-if
 
         perform varying ws-i from 1 by 1 until ws-i > 3
-            display "Experience " ws-i " Title (or Enter to skip): " with no advancing
-            accept ws-exp-title(ws-i)
-            if ws-exp-title(ws-i) = spaces exit perform end-if
+            move "Experience " to ws-message
+            string "Experience " ws-i " Title (or Enter to skip): " delimited by size
+                into ws-message
+            perform display-prompt
+            perform read-next-input
+            if input-ended
+                exit perform
+            end-if
+            move ws-last-input to ws-exp-title(ws-i)
+            if ws-exp-title(ws-i) = spaces
+                exit perform
+            end-if
 
-            display "Company: " with no advancing
-            accept ws-exp-company(ws-i)
-            display "Dates (e.g., 2020-2024): " with no advancing
-            accept ws-exp-dates(ws-i)
-            display "Description: " with no advancing
-            accept ws-exp-desc(ws-i)
+            move "Company: " to ws-message
+            perform display-prompt
+            perform read-next-input
+            if input-ended exit perform end-if
+            move ws-last-input to ws-exp-company(ws-i)
+
+            move "Dates (e.g., 2020-2024): " to ws-message
+            perform display-prompt
+            perform read-next-input
+            if input-ended exit perform end-if
+            move ws-last-input to ws-exp-dates(ws-i)
+
+            move "Description: " to ws-message
+            perform display-prompt
+            perform read-next-input
+            if input-ended exit perform end-if
+            move ws-last-input to ws-exp-desc(ws-i)
         end-perform
 
         perform varying ws-i from 1 by 1 until ws-i > 3
-            display "Education " ws-i " Degree (or Enter to skip): " with no advancing
-            accept ws-edu-degree(ws-i)
-            if ws-edu-degree(ws-i) = spaces exit perform end-if
+            move "Education " to ws-message
+            string "Education " ws-i " Degree (or Enter to skip): " delimited by size
+                into ws-message
+            perform display-prompt
+            perform read-next-input
+            if input-ended
+                exit perform
+            end-if
+            move ws-last-input to ws-edu-degree(ws-i)
+            if ws-edu-degree(ws-i) = spaces
+                exit perform
+            end-if
 
-            display "School: " with no advancing
-            accept ws-edu-school(ws-i)
-            display "Years (e.g., 2016-2020): " with no advancing
-            accept ws-edu-years(ws-i)
+            move "School: " to ws-message
+            perform display-prompt
+            perform read-next-input
+            if input-ended exit perform end-if
+            move ws-last-input to ws-edu-school(ws-i)
+
+            move "Years (e.g., 2016-2020): " to ws-message
+            perform display-prompt
+            perform read-next-input
+            if input-ended exit perform end-if
+            move ws-last-input to ws-edu-years(ws-i)
         end-perform.
+
 
 
        cleanup-files.
@@ -792,4 +848,6 @@
            end-perform
            close input-file, output-file, accounts-file.
            
-       end program InCollege.
+           end program InCollege.
+
+       
