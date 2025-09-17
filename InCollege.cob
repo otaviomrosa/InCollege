@@ -6,7 +6,7 @@
        file-control.
 *>    Define three files: input-file, output-file, and accounts-file and assign them to text files
 *>    The accounts-file will be used to store user account information
-           select input-file assign to 'InCollege-Input.txt'
+           select input-file assign to KEYBOARD
                organization is line sequential.
            select output-file assign to 'InCollege-Output.txt'
                organization is line sequential.
@@ -35,35 +35,63 @@
 *>    Each account record consists of a username and password
            05  username        pic x(20).
            05  password        pic x(12).
-*>    A - profile file structure added here 
+*>    A - profile file structure added here - added missing fields
        fd  profiles-file.
-        01  profile-record.
-            05  profile-username     pic x(20).
-            05  profile-about        pic x(200).  *> optional "about me"
-            05  profile-exp occurs 3.
-                10  exp-title        pic x(30).
-                10  exp-company      pic x(40).
-                10  exp-dates        pic x(30).
-                10  exp-desc         pic x(120).
-            05  profile-edu occurs 3.
-                10  edu-degree       pic x(30).
-                10  edu-school       pic x(40).
-                10  edu-years        pic x(20).
+         01  profile-record.
+             05  profile-username     pic x(20).
+
+             *> required scalars
+             05  profile-first-name   pic x(20).
+             05  profile-last-name    pic x(20).
+             05  profile-school       pic x(50).
+             05  profile-major        pic x(40).
+             05  profile-grad-year    pic 9(4).
+
+             *> optional "about me"
+             05  profile-about        pic x(200).
+
+             *> experience (up to 3)
+             05  profile-exp occurs 3.
+                 10  exp-title        pic x(30).
+                 10  exp-company      pic x(40).
+                 10  exp-dates        pic x(30).
+                 10  exp-desc         pic x(120).
+
+             *> education (up to 3)
+             05  profile-edu occurs 3.
+                 10  edu-degree       pic x(30).
+                 10  edu-school       pic x(40).
+                 10  edu-years        pic x(20).
+
 
 *>    A - temp files for profile editing
        fd  temp-profiles-file.
-        01  temp-profile-record.
-            05  temp-profile-username     pic x(20).
-            05  temp-profile-about        pic x(200).
-            05  temp-profile-exp occurs 3.
-                10  temp-exp-title        pic x(30).
-                10  temp-exp-company      pic x(40).
-                10  temp-exp-dates        pic x(30).
-                10  temp-exp-desc         pic x(120).
-            05  temp-profile-edu occurs 3.
-                10  temp-edu-degree       pic x(30).
-                10  temp-edu-school       pic x(40).
-                10  temp-edu-years        pic x(20).
+         01  temp-profile-record.
+             05  temp-profile-username     pic x(20).
+
+             *> required scalars
+             05  temp-profile-first-name   pic x(20).
+             05  temp-profile-last-name    pic x(20).
+             05  temp-profile-school       pic x(50).
+             05  temp-profile-major        pic x(40).
+             05  temp-profile-grad-year    pic 9(4).
+
+             *> optional "about me"
+             05  temp-profile-about        pic x(200).
+
+             *> experience (up to 3)
+             05  temp-profile-exp occurs 3.
+                 10  temp-exp-title        pic x(30).
+                 10  temp-exp-company      pic x(40).
+                 10  temp-exp-dates        pic x(30).
+                 10  temp-exp-desc         pic x(120).
+
+             *> education (up to 3)
+             05  temp-profile-edu occurs 3.
+                 10  temp-edu-degree       pic x(30).
+                 10  temp-edu-school       pic x(40).
+                 10  temp-edu-years        pic x(20).
+
 
 
        working-storage section.
@@ -100,6 +128,8 @@
        01  ws-max-accounts             pic 9 value 5.
        01  ws-account-found            pic a(1) value 'N'.
            88  account-found            value 'Y'.
+       01  ws-validation-passed       pic a(1) value 'N'.
+           88  validation-passed       value 'Y'.
        01  ws-i                        pic 99 value 1.
 
        01  ws-validation-counters.
@@ -115,24 +145,43 @@
        01  ws-profile-found          pic a(1) value 'N'.
            88 profile-found          value 'Y'.
        01  ws-profile-data.
-        05  ws-profile-about        pic x(200).
 
-        *> experiences (up to 3 entries)
-        05  ws-profile-exp occurs 3.
-            10  ws-exp-title        pic x(30).
-            10  ws-exp-company      pic x(40).
-            10  ws-exp-dates        pic x(30).
-            10  ws-exp-desc         pic x(120).
+          *> required scalars
+          05  ws-profile-first-name   pic x(20).
+          05  ws-profile-last-name    pic x(20).
+          05  ws-profile-school       pic x(50).
+          05  ws-profile-major        pic x(40).
+          05  ws-profile-grad-year    pic 9(4).
 
-        *> education (up to 3 entries)
-        05  ws-profile-edu occurs 3.
-            10  ws-edu-degree       pic x(30).
-            10  ws-edu-school       pic x(40).
-            10  ws-edu-years        pic x(20).
+          *> optional
+          05  ws-profile-about        pic x(200).
+
+          *> experiences (up to 3 entries)
+          05  ws-profile-exp occurs 3.
+              10  ws-exp-title        pic x(30).
+              10  ws-exp-company      pic x(40).
+              10  ws-exp-dates        pic x(30).
+              10  ws-exp-desc         pic x(120).
+
+          *> education (up to 3 entries)
+          05  ws-profile-edu occurs 3.
+              10  ws-edu-degree       pic x(30).
+              10  ws-edu-school       pic x(40).
+              10  ws-edu-years        pic x(20).
 
 
        01  ws-profile-updated    pic a(1) value 'N'.
            88 profile-updated    value 'Y'.
+
+      *>    - PROFILE YEAR HELPERS -
+       01  ws-grad-year-text      pic x(4).
+
+       01  ws-year-valid-flag     pic a(1) value 'N'.
+           88 year-valid          value 'Y'.
+
+       01  ws-year-len            pic 99    value 0.
+       01  ws-year-num            pic 9(4) value 0.
+
 
 *>    - TEMPORARY INPUT FOR LOGIN/REGISTRATION -
        01  ws-input-username   pic x(99).
@@ -194,7 +243,7 @@
                    perform display-prompt
                    perform read-user-choice
                    perform validate-username
-                   if not account-found and not input-ended
+                   if validation-passed and not account-found and not input-ended
                        move "Enter a password:" to ws-message
                        perform display-prompt
                        move "(8-12 chars, 1 uppercase, 1 lower, 1 special)" to ws-message
@@ -348,8 +397,7 @@
        display-under-construction.
            move "This feature is under construction." to ws-message 
            perform display-info
-           move "MAIN-MENU" to ws-program-state.
-      
+           move "SKILL-MENU" to ws-program-state.
        read-next-input.
         read input-file
             at end
@@ -365,6 +413,7 @@
             move ws-last-input to ws-user-choice
             move function trim(ws-user-choice) to ws-user-choice
         end-if.
+
 
        username-lookup.
            move function trim(ws-user-choice) to ws-input-username
@@ -403,8 +452,13 @@
        validate-username.
            move ws-user-choice to ws-input-username
            move 'N' to ws-account-found
+           move 'N' to ws-validation-passed
            if ws-input-username = spaces
                move "Username cannot be empty. Returning to menu." to ws-message
+               perform display-error
+               move "INITIAL-MENU" to ws-program-state
+           else if function length(function trim(ws-input-username)) > 20
+               move "Username cannot be longer than 20 characters. Returning to menu." to ws-message
                perform display-error
                move "INITIAL-MENU" to ws-program-state
            else
@@ -420,6 +474,8 @@
                    perform display-error
                    move "INITIAL-MENU" to ws-program-state
                    move "Y" to ws-input-eof
+               else
+                   set validation-passed to true
                end-if
            end-if.
 
@@ -555,6 +611,44 @@
            if profile-found
                move "Your Profile" to ws-message
                perform display-title
+
+               *> show required scalars first (guarded so old profiles do not print blanks)
+                if ws-profile-first-name not = spaces
+                    move "First Name:" to ws-message
+                    perform display-info
+                    move ws-profile-first-name to ws-message
+                    perform display-info
+                end-if
+
+                if ws-profile-last-name not = spaces
+                    move "Last Name:" to ws-message
+                    perform display-info
+                    move ws-profile-last-name to ws-message
+                    perform display-info
+                end-if
+
+                if ws-profile-school not = spaces
+                    move "University/College:" to ws-message
+                    perform display-info
+                    move ws-profile-school to ws-message
+                    perform display-info
+                end-if
+
+                if ws-profile-major not = spaces
+                    move "Major:" to ws-message
+                    perform display-info
+                    move ws-profile-major to ws-message
+                    perform display-info
+                end-if
+
+                if ws-profile-grad-year not = 0
+                    move ws-profile-grad-year to ws-grad-year-text
+                    move "Graduation Year:" to ws-message
+                    perform display-info
+                    move ws-grad-year-text to ws-message
+                    perform display-info
+                end-if
+
                
                if ws-profile-about not = spaces
                    move "About Me:" to ws-message
@@ -563,7 +657,7 @@
                    perform display-info
                end-if
                
-               move "Experience:" to ws-message
+               move "Experience(s):" to ws-message
                perform display-info
                perform varying ws-i from 1 by 1 until ws-i > 3
                    if ws-exp-title(ws-i) not = spaces
@@ -580,7 +674,7 @@
                    end-if
                end-perform
                
-               move "Education:" to ws-message
+               move "Education(s):" to ws-message
                perform display-info
                perform varying ws-i from 1 by 1 until ws-i > 3
                    if ws-edu-degree(ws-i) not = spaces
@@ -599,7 +693,7 @@
                perform display-error
            end-if.
 
-             check-profile-exists.
+           check-profile-exists.
            move 'N' to ws-profile-found
            move 'N' to ws-profiles-eof
 
@@ -626,6 +720,14 @@
                     not at end
                         if profile-username = ws-input-username
                             set profile-found to true
+                            
+                            *> moving required scalers
+                            move profile-first-name to ws-profile-first-name
+                            move profile-last-name  to ws-profile-last-name
+                            move profile-school     to ws-profile-school
+                            move profile-major      to ws-profile-major
+                            move profile-grad-year  to ws-profile-grad-year
+
 
                             *> copy scalar
                             move profile-about to ws-profile-about
@@ -684,6 +786,12 @@
         end-if
 
         move ws-input-username to profile-username
+        move ws-profile-first-name to profile-first-name
+        move ws-profile-last-name  to profile-last-name
+        move ws-profile-school     to profile-school
+        move ws-profile-major      to profile-major
+        move ws-profile-grad-year  to profile-grad-year
+
         move ws-profile-about  to profile-about
 
         perform varying ws-i from 1 by 1 until ws-i > 3
@@ -724,6 +832,12 @@
                     if profile-username = ws-input-username
                         *> this is the user to update; write our new record
                         move ws-input-username to temp-profile-username
+                        move ws-profile-first-name to temp-profile-first-name
+                        move ws-profile-last-name  to temp-profile-last-name
+                        move ws-profile-school     to temp-profile-school
+                        move ws-profile-major      to temp-profile-major
+                        move ws-profile-grad-year  to temp-profile-grad-year
+
                         move ws-profile-about  to temp-profile-about
 
                         perform varying ws-i from 1 by 1 until ws-i > 3
@@ -769,73 +883,255 @@
 
 
        collect-profile-input.
-        move "About me (optional, press Enter to skip): " to ws-message
-        perform display-prompt
-        perform read-next-input
-        if not input-ended
-            move ws-last-input to ws-profile-about
+       *> ensure a clean slate if we are creating a new profile
+        if not profile-found
+            initialize ws-profile-data
+        end-if
+       *> first name (required)
+        if profile-found
+            move "first name (press enter to keep current): " to ws-message
+            perform display-prompt
+            perform read-next-input
+            if not input-ended and function trim(ws-last-input) not = spaces
+                move function trim(ws-last-input) to ws-profile-first-name
+            end-if
+        else
+            perform until ws-profile-first-name not = spaces
+                move "first name: " to ws-message
+                perform display-prompt
+                perform read-next-input
+                if input-ended exit paragraph end-if
+                move function trim(ws-last-input) to ws-profile-first-name
+                if ws-profile-first-name = spaces
+                    move "first name is required." to ws-message
+                    perform display-error
+                end-if
+            end-perform
         end-if
 
-        perform varying ws-i from 1 by 1 until ws-i > 3
-            move "Experience " to ws-message
-            string "Experience " ws-i " Title (or Enter to skip): " delimited by size
-                into ws-message
+        *> last name (required)
+        if profile-found
+            move "last name (press enter to keep current): " to ws-message
+            perform display-prompt
+            perform read-next-input
+            if not input-ended and function trim(ws-last-input) not = spaces
+                move function trim(ws-last-input) to ws-profile-last-name
+            end-if
+        else
+            perform until ws-profile-last-name not = spaces
+                move "last name: " to ws-message
+                perform display-prompt
+                perform read-next-input
+                if input-ended exit paragraph end-if
+                move function trim(ws-last-input) to ws-profile-last-name
+                if ws-profile-last-name = spaces
+                    move "last name is required." to ws-message
+                    perform display-error
+                end-if
+            end-perform
+        end-if
+
+
+
+        *> university/college attended (required)
+        if profile-found
+            move "university/college (press enter to keep current): " to ws-message
+            perform display-prompt
+            perform read-next-input
+            if not input-ended and function trim(ws-last-input) not = spaces
+                move function trim(ws-last-input) to ws-profile-school
+            end-if
+        else
+            perform until ws-profile-school not = spaces
+                move "university/college attended: " to ws-message
+                perform display-prompt
+                perform read-next-input
+                if input-ended exit paragraph end-if
+                move function trim(ws-last-input) to ws-profile-school
+                if ws-profile-school = spaces
+                    move "university/college is required." to ws-message
+                    perform display-error
+                end-if
+            end-perform
+        end-if
+
+
+
+        *> major (required)
+        if profile-found
+            move "major (press enter to keep current): " to ws-message
+            perform display-prompt
+            perform read-next-input
+            if not input-ended and function trim(ws-last-input) not = spaces
+                move function trim(ws-last-input) to ws-profile-major
+            end-if
+        else
+            perform until ws-profile-major not = spaces
+                move "major: " to ws-message
+                perform display-prompt
+                perform read-next-input
+                if input-ended exit paragraph end-if
+                move function trim(ws-last-input) to ws-profile-major
+                if ws-profile-major = spaces
+                    move "major is required." to ws-message
+                    perform display-error
+                end-if
+            end-perform
+        end-if
+
+
+
+    
+        *> graduation year (required, 4 digits)
+        move 'N' to ws-year-valid-flag
+        perform until year-valid
+            if profile-found
+                move "graduation year (yyyy, press enter to keep current): " to ws-message
+            else
+                move "graduation year (yyyy): " to ws-message
+            end-if
             perform display-prompt
             perform read-next-input
             if input-ended
-                exit perform
-            end-if
-            move ws-last-input to ws-exp-title(ws-i)
-            if ws-exp-title(ws-i) = spaces
-                exit perform
+                exit paragraph
             end-if
 
-            move "Company: " to ws-message
-            perform display-prompt
-            perform read-next-input
-            if input-ended exit perform end-if
-            move ws-last-input to ws-exp-company(ws-i)
+            *> length of the TRIMMED expression (not the 80-char buffer!)
+            compute ws-year-len = function length(function trim(ws-last-input))
 
-            move "Dates (e.g., 2020-2024): " to ws-message
-            perform display-prompt
-            perform read-next-input
-            if input-ended exit perform end-if
-            move ws-last-input to ws-exp-dates(ws-i)
+            *> edit mode: Enter keeps current
+            if profile-found and ws-year-len = 0
+                set year-valid to true
+            else
+                if ws-year-len = 4
+                    *> put exactly 4 chars into a 4-char scratch
+                    move function trim(ws-last-input) to ws-grad-year-text
 
-            move "Description: " to ws-message
-            perform display-prompt
-            perform read-next-input
-            if input-ended exit perform end-if
-            move ws-last-input to ws-exp-desc(ws-i)
+                    *> verify all 4 are digits (operate on first 4 only)
+                    move spaces to ws-temp-message
+                    move ws-grad-year-text to ws-temp-message(1:4)
+                    inspect ws-temp-message(1:4)
+                        converting '0123456789' to '0000000000'
+
+                    if ws-temp-message(1:4) = "0000"
+                        move ws-grad-year-text to ws-year-num
+                        if ws-year-num >= 1900 and ws-year-num <= 2100
+                            move ws-year-num to ws-profile-grad-year
+                            set year-valid to true
+                        else
+                            move "please enter a 4-digit year between 1900 and 2100." to ws-message
+                            perform display-error
+                        end-if
+                    else
+                        move "please use digits only (yyyy)." to ws-message
+                        perform display-error
+                    end-if
+                else
+                    move "please enter a valid 4-digit year (yyyy)." to ws-message
+                    perform display-error
+                end-if
+            end-if
         end-perform
 
-        perform varying ws-i from 1 by 1 until ws-i > 3
-            move "Education " to ws-message
-            string "Education " ws-i " Degree (or Enter to skip): " delimited by size
+
+*>    About me 
+        move "About me (optional, press Enter to keep current/skip): " to ws-message
+            perform display-prompt
+            perform read-next-input
+            if not input-ended
+                move function trim(ws-last-input) to ws-temp-message
+                if ws-temp-message not = spaces
+                    move ws-temp-message to ws-profile-about
+                end-if
+            end-if
+
+
+*>    Experiences
+       perform varying ws-i from 1 by 1 until ws-i > 3
+            *> prompt for title, but do NOT erase on Enter
+            string "Experience " ws-i " Title (or Enter to keep/skip): " delimited by size
                 into ws-message
             perform display-prompt
             perform read-next-input
             if input-ended
                 exit perform
             end-if
-            move ws-last-input to ws-edu-degree(ws-i)
-            if ws-edu-degree(ws-i) = spaces
-                exit perform
+            move function trim(ws-last-input) to ws-temp-message
+
+            *> if user typed something, update; if blank, keep prior value (do not erase)
+            if ws-temp-message not = spaces
+                move ws-temp-message to ws-exp-title(ws-i)
             end-if
 
-            move "School: " to ws-message
-            perform display-prompt
-            perform read-next-input
-            if input-ended exit perform end-if
-            move ws-last-input to ws-edu-school(ws-i)
+            *> only proceed to company/dates/desc if this slot exists
+            if ws-exp-title(ws-i) not = spaces
+                move "Company (Enter to keep/skip): " to ws-message
+                perform display-prompt
+                perform read-next-input
+                if input-ended exit perform end-if
+                move function trim(ws-last-input) to ws-temp-message
+                if ws-temp-message not = spaces
+                    move ws-temp-message to ws-exp-company(ws-i)
+                end-if
 
-            move "Years (e.g., 2016-2020): " to ws-message
+                move "Dates (e.g., 2020-2024) (Enter to keep/skip): " to ws-message
+                perform display-prompt
+                perform read-next-input
+                if input-ended exit perform end-if
+                move function trim(ws-last-input) to ws-temp-message
+                if ws-temp-message not = spaces
+                    move ws-temp-message to ws-exp-dates(ws-i)
+                end-if
+
+                move "Description (Enter to keep/skip): " to ws-message
+                perform display-prompt
+                perform read-next-input
+                if input-ended exit perform end-if
+                move function trim(ws-last-input) to ws-temp-message
+                if ws-temp-message not = spaces
+                    move ws-temp-message to ws-exp-desc(ws-i)
+                end-if
+            end-if
+        end-perform
+
+
+*>    Educations
+        perform varying ws-i from 1 by 1 until ws-i > 3
+            string "Education " ws-i " Degree (or Enter to keep/skip): " delimited by size
+                into ws-message
             perform display-prompt
             perform read-next-input
-            if input-ended exit perform end-if
-            move ws-last-input to ws-edu-years(ws-i)
+            if input-ended
+                exit perform
+            end-if
+            move function trim(ws-last-input) to ws-temp-message
+
+            *> update degree only if user typed something
+            if ws-temp-message not = spaces
+                move ws-temp-message to ws-edu-degree(ws-i)
+            end-if
+
+            *> proceed only if this slot exists
+            if ws-edu-degree(ws-i) not = spaces
+                move "School (Enter to keep/skip): " to ws-message
+                perform display-prompt
+                perform read-next-input
+                if input-ended exit perform end-if
+                move function trim(ws-last-input) to ws-temp-message
+                if ws-temp-message not = spaces
+                    move ws-temp-message to ws-edu-school(ws-i)
+                end-if
+
+                move "Years (e.g., 2016-2020) (Enter to keep/skip): " to ws-message
+                perform display-prompt
+                perform read-next-input
+                if input-ended exit perform end-if
+                move function trim(ws-last-input) to ws-temp-message
+                if ws-temp-message not = spaces
+                    move ws-temp-message to ws-edu-years(ws-i)
+                end-if
+            end-if
         end-perform.
-
 
 
        cleanup-files.
