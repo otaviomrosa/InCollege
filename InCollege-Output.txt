@@ -1,106 +1,12 @@
 
+Accounts file not found. Creating a new one.
+
+
 === Welcome to InCollege! ===
 
   1. Log In
   2. Create an Account
 --------------------------------------------------------------------------------
   3. Exit Program
---------------------------------------------------------------------------------
-Enter your choice:
-Please enter your username:
-Please enter your password:
-
-SUCCESS: You have successfully logged in.
-
-
-Welcome, RockyTheBull!
-
-
-=== Main Menu ===
-
-  1. Search for a job
-  2. Find someone you know
-  3. Learn a new skill
---------------------------------------------------------------------------------
-  4. Create/Edit My Profile
-  5. View My Profile
-  6. Log Out
-  7. Exit program
---------------------------------------------------------------------------------
-Enter your choice:
-
-Creating new profile...
-
-first name:
-last name:
-university/college attended:
-major:
-graduation year (yyyy):
-About me (optional, press Enter to keep current/skip):
-Experience 01 Title (or Enter to keep/skip): nt/skip):
-Company (Enter to keep/skip):
-Dates (e.g., 2020-2024) (Enter to keep/skip):
-Description (Enter to keep/skip):
-Experience 02 Title (or Enter to keep/skip):
-Company (Enter to keep/skip):
-Dates (e.g., 2020-2024) (Enter to keep/skip):
-Description (Enter to keep/skip):
-Experience 03 Title (or Enter to keep/skip):
-Education 01 Degree (or Enter to keep/skip):
-Education 02 Degree (or Enter to keep/skip):
-Education 03 Degree (or Enter to keep/skip):
-
-SUCCESS: Profile created successfully!
-
-
-=== Main Menu ===
-
-  1. Search for a job
-  2. Find someone you know
-  3. Learn a new skill
---------------------------------------------------------------------------------
-  4. Create/Edit My Profile
-  5. View My Profile
-  6. Log Out
-  7. Exit program
---------------------------------------------------------------------------------
-Enter your choice:
-
-Editing your existing profile...
-
-first name (press enter to keep current):
-last name (press enter to keep current):
-university/college (press enter to keep current):
-major (press enter to keep current):
-graduation year (yyyy, press enter to keep current):
-About me (optional, press Enter to keep current/skip):
-Experience 01 Title (or Enter to keep/skip): nt/skip):
-Company (Enter to keep/skip):
-Dates (e.g., 2020-2024) (Enter to keep/skip):
-Description (Enter to keep/skip):
-Experience 02 Title (or Enter to keep/skip):
-Company (Enter to keep/skip):
-Dates (e.g., 2020-2024) (Enter to keep/skip):
-Description (Enter to keep/skip):
-Experience 03 Title (or Enter to keep/skip):
-Education 01 Degree (or Enter to keep/skip):
-Education 02 Degree (or Enter to keep/skip):
-Education 03 Degree (or Enter to keep/skip):
-School (Enter to keep/skip):
-Years (e.g., 2016-2020) (Enter to keep/skip):
-
-SUCCESS: Profile updated successfully!
-
-
-=== Main Menu ===
-
-  1. Search for a job
-  2. Find someone you know
-  3. Learn a new skill
---------------------------------------------------------------------------------
-  4. Create/Edit My Profile
-  5. View My Profile
-  6. Log Out
-  7. Exit program
 --------------------------------------------------------------------------------
 Enter your choice:
