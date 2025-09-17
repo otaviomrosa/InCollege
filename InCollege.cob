@@ -329,6 +329,7 @@
                   move "MAIN-MENU" to ws-program-state
               else
                   perform display-under-construction
+                  move "SKILL-MENU" to ws-program-state
               end-if
 *>    A - profile menu logic
           else if at-profile-menu
