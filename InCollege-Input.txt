@@ -1,9 +1,15 @@
-Log In
+2
 RockyTheBull
 GoBulls1@
-Create/Edit My Profile
-Jane Doe
+1
+RockyTheBull
+GoBulls1@
+4
+
 student researcher
 University of South Florida
+summer 2025
 COBOL, C, Python; RA experience
-Exit Program
+
+
+7
