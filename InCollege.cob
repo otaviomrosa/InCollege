@@ -286,7 +286,11 @@
            else if at-learn-skill-menu
                perform display-skills
                perform read-user-choice
-               perform display-under-construction
+               if ws-user-choice = '6'
+                   move "MAIN-MENU" to ws-program-state
+               else
+                   perform display-under-construction
+               end-if
 *>    A - profile menu logic
            else if at-profile-menu
                perform handle-profile-menu
@@ -397,7 +401,11 @@
        display-under-construction.
            move "This feature is under construction." to ws-message 
            perform display-info
-           move "SKILL-MENU" to ws-program-state.
+           if at-learn-skill-menu
+               move "SKILL-MENU" to ws-program-state
+           else
+               move "MAIN-MENU" to ws-program-state.
+
        read-next-input.
         read input-file
             at end
@@ -889,7 +897,7 @@
         end-if
        *> first name (required)
         if profile-found
-            move "first name (press enter to keep current): " to ws-message
+            move "First name (press enter to keep current): " to ws-message
             perform display-prompt
             perform read-next-input
             if not input-ended and function trim(ws-last-input) not = spaces
@@ -897,13 +905,13 @@
             end-if
         else
             perform until ws-profile-first-name not = spaces
-                move "first name: " to ws-message
+                move "First name: " to ws-message
                 perform display-prompt
                 perform read-next-input
                 if input-ended exit paragraph end-if
                 move function trim(ws-last-input) to ws-profile-first-name
                 if ws-profile-first-name = spaces
-                    move "first name is required." to ws-message
+                    move "First name is required." to ws-message
                     perform display-error
                 end-if
             end-perform
@@ -911,7 +919,7 @@
 
         *> last name (required)
         if profile-found
-            move "last name (press enter to keep current): " to ws-message
+            move "Last name (press enter to keep current): " to ws-message
             perform display-prompt
             perform read-next-input
             if not input-ended and function trim(ws-last-input) not = spaces
@@ -919,13 +927,13 @@
             end-if
         else
             perform until ws-profile-last-name not = spaces
-                move "last name: " to ws-message
+                move "Last name: " to ws-message
                 perform display-prompt
                 perform read-next-input
                 if input-ended exit paragraph end-if
                 move function trim(ws-last-input) to ws-profile-last-name
                 if ws-profile-last-name = spaces
-                    move "last name is required." to ws-message
+                    move "Last name is required." to ws-message
                     perform display-error
                 end-if
             end-perform
@@ -935,7 +943,7 @@
 
         *> university/college attended (required)
         if profile-found
-            move "university/college (press enter to keep current): " to ws-message
+            move "University/college (press enter to keep current): " to ws-message
             perform display-prompt
             perform read-next-input
             if not input-ended and function trim(ws-last-input) not = spaces
@@ -943,13 +951,13 @@
             end-if
         else
             perform until ws-profile-school not = spaces
-                move "university/college attended: " to ws-message
+                move "University/college attended: " to ws-message
                 perform display-prompt
                 perform read-next-input
                 if input-ended exit paragraph end-if
                 move function trim(ws-last-input) to ws-profile-school
                 if ws-profile-school = spaces
-                    move "university/college is required." to ws-message
+                    move "University/college is required." to ws-message
                     perform display-error
                 end-if
             end-perform
@@ -959,7 +967,7 @@
 
         *> major (required)
         if profile-found
-            move "major (press enter to keep current): " to ws-message
+            move "Major (press enter to keep current): " to ws-message
             perform display-prompt
             perform read-next-input
             if not input-ended and function trim(ws-last-input) not = spaces
@@ -967,13 +975,13 @@
             end-if
         else
             perform until ws-profile-major not = spaces
-                move "major: " to ws-message
+                move "Major: " to ws-message
                 perform display-prompt
                 perform read-next-input
                 if input-ended exit paragraph end-if
                 move function trim(ws-last-input) to ws-profile-major
                 if ws-profile-major = spaces
-                    move "major is required." to ws-message
+                    move "Major is required." to ws-message
                     perform display-error
                 end-if
             end-perform
@@ -986,9 +994,9 @@
         move 'N' to ws-year-valid-flag
         perform until year-valid
             if profile-found
-                move "graduation year (yyyy, press enter to keep current): " to ws-message
+                move "Graduation year (yyyy, press enter to keep current): " to ws-message
             else
-                move "graduation year (yyyy): " to ws-message
+                move "Graduation year (yyyy): " to ws-message
             end-if
             perform display-prompt
             perform read-next-input
@@ -1019,15 +1027,15 @@
                             move ws-year-num to ws-profile-grad-year
                             set year-valid to true
                         else
-                            move "please enter a 4-digit year between 1900 and 2100." to ws-message
+                            move "Please enter a 4-digit year between 1900 and 2100." to ws-message
                             perform display-error
                         end-if
                     else
-                        move "please use digits only (yyyy)." to ws-message
+                        move "Please use digits only (yyyy)." to ws-message
                         perform display-error
                     end-if
                 else
-                    move "please enter a valid 4-digit year (yyyy)." to ws-message
+                    move "Please enter a valid 4-digit year (yyyy)." to ws-message
                     perform display-error
                 end-if
             end-if
