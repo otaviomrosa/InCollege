@@ -1,0 +1,87 @@
+1
+alice
+wrongpass
+1
+alice
+Aa1!aaaa
+3
+1
+6
+4
+Alice
+Smith
+USF
+Psychology
+2026
+I love painting
+RA
+USF
+2025-2026
+Residential Assistant
+TA
+USF
+2025-2026
+Teaching Assistant
+
+Psychology
+USF
+2022-2026
+
+
+5
+6
+2
+1
+bob
+Abcdef1!
+4
+Bob
+Johnson
+USF
+Computer Science
+20
+2027
+Love programming
+Intern
+Google
+2026
+Summer Intern
+
+Tutor
+USF
+2024-2025
+CS Tutor
+
+Computer Science
+USF
+2023-2027
+
+5
+6
+1
+bob
+Abcdef1!
+5
+4
+
+
+
+
+
+
+Software Intern
+
+
+
+
+
+
+
+
+
+
+
+
+
+6
+3
