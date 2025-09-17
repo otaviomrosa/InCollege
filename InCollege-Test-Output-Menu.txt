@@ -1,0 +1,193 @@
+
+Accounts file not found. Creating a new one.
+
+
+=== Welcome to InCollege! ===
+
+  1. Log In
+  2. Create an Account
+--------------------------------------------------------------------------------
+  3. Exit Program
+--------------------------------------------------------------------------------
+Enter your choice:
+Please create a username:
+Enter a password:
+
+(8-12 chars, 1 uppercase, 1 lower, 1 special)
+
+
+SUCCESS: Account created successfully!
+
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. Log Out
+  7. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+This feature is under construction.
+
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. Log Out
+  7. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+This feature is under construction.
+
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. Log Out
+  7. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Learn a New Skill ===
+
+  1. Time Management
+  2. Professional Communication and Networking
+  3. Coding
+  4. Financial Literacy
+  5. Physical Wellbeing
+--------------------------------------------------------------------------------
+  6. Go Back
+--------------------------------------------------------------------------------
+Enter your choice:
+
+This feature is under construction.
+
+
+=== Learn a New Skill ===
+
+  1. Time Management
+  2. Professional Communication and Networking
+  3. Coding
+  4. Financial Literacy
+  5. Physical Wellbeing
+--------------------------------------------------------------------------------
+  6. Go Back
+--------------------------------------------------------------------------------
+Enter your choice:
+
+This feature is under construction.
+
+
+=== Learn a New Skill ===
+
+  1. Time Management
+  2. Professional Communication and Networking
+  3. Coding
+  4. Financial Literacy
+  5. Physical Wellbeing
+--------------------------------------------------------------------------------
+  6. Go Back
+--------------------------------------------------------------------------------
+Enter your choice:
+
+This feature is under construction.
+
+
+=== Learn a New Skill ===
+
+  1. Time Management
+  2. Professional Communication and Networking
+  3. Coding
+  4. Financial Literacy
+  5. Physical Wellbeing
+--------------------------------------------------------------------------------
+  6. Go Back
+--------------------------------------------------------------------------------
+Enter your choice:
+
+This feature is under construction.
+
+
+=== Learn a New Skill ===
+
+  1. Time Management
+  2. Professional Communication and Networking
+  3. Coding
+  4. Financial Literacy
+  5. Physical Wellbeing
+--------------------------------------------------------------------------------
+  6. Go Back
+--------------------------------------------------------------------------------
+Enter your choice:
+
+This feature is under construction.
+
+
+=== Learn a New Skill ===
+
+  1. Time Management
+  2. Professional Communication and Networking
+  3. Coding
+  4. Financial Literacy
+  5. Physical Wellbeing
+--------------------------------------------------------------------------------
+  6. Go Back
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. Log Out
+  7. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+ERROR: Invalid option. Please try again
+
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. Log Out
+  7. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+SUCCESS: Successfully Logged Out!
+
+
+=== Welcome to InCollege! ===
+
+  1. Log In
+  2. Create an Account
+--------------------------------------------------------------------------------
+  3. Exit Program
+--------------------------------------------------------------------------------
+Enter your choice:
