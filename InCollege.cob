@@ -62,6 +62,31 @@
                  10  edu-degree       pic x(30).
                  10  edu-school       pic x(40).
                  10  edu-years        pic x(20).
+         01  profile-record.
+             05  profile-username     pic x(20).
+
+             *> required scalars
+             05  profile-first-name   pic x(20).
+             05  profile-last-name    pic x(20).
+             05  profile-school       pic x(50).
+             05  profile-major        pic x(40).
+             05  profile-grad-year    pic 9(4).
+
+             *> optional "about me"
+             05  profile-about        pic x(200).
+
+             *> experience (up to 3)
+             05  profile-exp occurs 3.
+                 10  exp-title        pic x(30).
+                 10  exp-company      pic x(40).
+                 10  exp-dates        pic x(30).
+                 10  exp-desc         pic x(120).
+
+             *> education (up to 3)
+             05  profile-edu occurs 3.
+                 10  edu-degree       pic x(30).
+                 10  edu-school       pic x(40).
+                 10  edu-years        pic x(20).
 
 
 *>    A - temp files for profile editing
@@ -91,6 +116,7 @@
                  10  temp-edu-degree       pic x(30).
                  10  temp-edu-school       pic x(40).
                  10  temp-edu-years        pic x(20).
+
 
 
 
@@ -1053,11 +1079,9 @@
                 end-if
             end-if
 
-
-*>    Experiences
-       perform varying ws-i from 1 by 1 until ws-i > 3
-            *> prompt for title, but do NOT erase on Enter
-            string "Experience " ws-i " Title (or Enter to keep/skip): " delimited by size
+        perform varying ws-i from 1 by 1 until ws-i > 3
+            move "Experience " to ws-message
+            string "Experience " ws-i " Title (or Enter to skip): " delimited by size
                 into ws-message
             perform display-prompt
             perform read-next-input
