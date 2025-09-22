@@ -6,7 +6,7 @@
       file-control.
 *>    Define three files: input-file, output-file, and accounts-file and assign them to text files
 *>    The accounts-file will be used to store user account information
-          select input-file assign to 'InCollege-Input.txt'
+          select input-file assign to KEYBOARD
               organization is line sequential.
           select output-file assign to 'InCollege-Output.txt'
               organization is line sequential.
@@ -238,6 +238,12 @@
       01  ws-temp-message     pic x(80).
       01  ws-blank-line       pic x(80) value spaces.
       01  ws-line-separator   pic x(80) value all "-".
+
+*>    formatting
+       01  ws-label                  pic x(30) value spaces.
+        01  ws-value                  pic x(200) value spaces.
+        01  ws-colon-space            pic x(2) value ": ".
+
 
 
       procedure division.
@@ -647,6 +653,24 @@
           display ws-blank-line
           perform write-blank-line.
 
+       display-line.
+          *> Prints a single line with no extra blank lines
+          move function trim(ws-message) to ws-message
+          display function trim(ws-message)
+          perform write-message
+          exit paragraph.
+
+      *> Join "Label: Value" into one line and print it (no extra blank lines)
+      display-labeled-line.
+          move spaces to ws-message
+          string
+              function trim(ws-label)       delimited by size
+              ": "                          delimited by size
+              function trim(ws-value)       delimited by size
+            into ws-message
+          end-string
+          perform display-line
+          exit paragraph.
 
       display-error.
           display ws-blank-line
@@ -702,98 +726,121 @@
 
 
       view-profile.
-          perform check-profile-exists
-          if profile-found
-              move "Your Profile" to ws-message
-              perform display-title
+            perform check-profile-exists
+            if ws-profile-found = 'Y'
+                perform render-profile
+            else
+                move "No profile found. Please create a profile first." to ws-message
+                perform display-info
+            end-if
+            move "MAIN-MENU" to ws-program-state.
 
+      *> ===================== Profile Rendering (no reset) =====================
+    render-profile.
+        move "=== Your Profile ===" to ws-message
+        perform display-info
 
-              *> show required scalars first (guarded so old profiles do not print blanks)
-               if ws-profile-first-name not = spaces
-                   move "First Name:" to ws-message
-                   perform display-info
-                   move ws-profile-first-name to ws-message
-                   perform display-info
-               end-if
+        *> First Name
+        if ws-profile-first-name not = spaces
+            move "First Name" to ws-label
+            move ws-profile-first-name to ws-value
+            perform display-labeled-line
+        end-if
 
+        *> Last Name
+        if ws-profile-last-name not = spaces
+            move "Last Name" to ws-label
+            move ws-profile-last-name to ws-value
+            perform display-labeled-line
+        end-if
 
-               if ws-profile-last-name not = spaces
-                   move "Last Name:" to ws-message
-                   perform display-info
-                   move ws-profile-last-name to ws-message
-                   perform display-info
-               end-if
+        *> University/College
+        if ws-profile-school not = spaces
+            move "University/College" to ws-label
+            move ws-profile-school to ws-value
+            perform display-labeled-line
+        end-if
 
+        *> Major
+        if ws-profile-major not = spaces
+            move "Major" to ws-label
+            move ws-profile-major to ws-value
+            perform display-labeled-line
+        end-if
 
-               if ws-profile-school not = spaces
-                   move "University/College:" to ws-message
-                   perform display-info
-                   move ws-profile-school to ws-message
-                   perform display-info
-               end-if
+        *> Graduation Year
+        if ws-profile-grad-year not = spaces and ws-profile-grad-year not = zeros
+            move "Graduation Year" to ws-label
+            move ws-profile-grad-year to ws-value
+            perform display-labeled-line
+        end-if
 
+        *> About Me
+        if ws-profile-about not = spaces
+            move "About Me" to ws-label
+            move ws-profile-about to ws-value
+            perform display-labeled-line
+        end-if
 
-               if ws-profile-major not = spaces
-                   move "Major:" to ws-message
-                   perform display-info
-                   move ws-profile-major to ws-message
-                   perform display-info
-               end-if
+        *> spacer before lists
+        move spaces to ws-message
+        perform display-info
 
+        *> Experience(s)
+        move "Experience(s):" to ws-message
+        perform display-info
+        perform varying ws-i from 1 by 1 until ws-i > 3
+            if ws-exp-title(ws-i) not = spaces
+                *> Job Title
+                move "Job Title" to ws-label
+                move ws-exp-title(ws-i) to ws-value
+                perform display-labeled-line
+                *> Company
+                move "Company" to ws-label
+                move ws-exp-company(ws-i) to ws-value
+                perform display-labeled-line
+                *> Dates Worked
+                move "Dates Worked" to ws-label
+                move ws-exp-dates(ws-i) to ws-value
+                perform display-labeled-line
+                *> Description
+                if ws-exp-desc(ws-i) not = spaces
+                    move "Description" to ws-label
+                    move ws-exp-desc(ws-i) to ws-value
+                    perform display-labeled-line
+                end-if
+                *> blank line between entries
+                move spaces to ws-message
+                perform display-info
+            end-if
+        end-perform
 
-               if ws-profile-grad-year not = 0
-                   move ws-profile-grad-year to ws-grad-year-text
-                   move "Graduation Year:" to ws-message
-                   perform display-info
-                   move ws-grad-year-text to ws-message
-                   perform display-info
-               end-if
+        *> Education(s)
+        move "Education(s):" to ws-message
+        perform display-info
+        perform varying ws-i from 1 by 1 until ws-i > 3
+            if ws-edu-degree(ws-i) not = spaces
+                *> Degree
+                move "Degree" to ws-label
+                move ws-edu-degree(ws-i) to ws-value
+                perform display-labeled-line
+                *> School
+                move "School" to ws-label
+                move ws-edu-school(ws-i) to ws-value
+                perform display-labeled-line
+                *> Years
+                if ws-edu-years(ws-i) not = spaces
+                    move "Years" to ws-label
+                    move ws-edu-years(ws-i) to ws-value
+                    perform display-labeled-line
+                end-if
+                *> blank line between entries
+                move spaces to ws-message
+                perform display-info
+            end-if
+        end-perform
 
-
-             
-              if ws-profile-about not = spaces
-                  move "About Me:" to ws-message
-                  perform display-info
-                  move ws-profile-about to ws-message
-                  perform display-info
-              end-if
-             
-              move "Experience(s):" to ws-message
-              perform display-info
-              perform varying ws-i from 1 by 1 until ws-i > 3
-                  if ws-exp-title(ws-i) not = spaces
-                      move ws-exp-title(ws-i) to ws-message
-                      perform display-option
-                      move ws-exp-company(ws-i) to ws-message
-                      perform display-option
-                      move ws-exp-dates(ws-i) to ws-message
-                      perform display-option
-                      move ws-exp-desc(ws-i) to ws-message
-                      perform display-option
-                      move " " to ws-message
-                      perform display-info
-                  end-if
-              end-perform
-             
-              move "Education(s):" to ws-message
-              perform display-info
-              perform varying ws-i from 1 by 1 until ws-i > 3
-                  if ws-edu-degree(ws-i) not = spaces
-                      move ws-edu-degree(ws-i) to ws-message
-                      perform display-option
-                      move ws-edu-school(ws-i) to ws-message
-                      perform display-option
-                      move ws-edu-years(ws-i) to ws-message
-                      perform display-option
-                      move " " to ws-message
-                      perform display-info
-                  end-if
-              end-perform
-          else
-              move "No profile found. Please create a profile first." to ws-message
-              perform display-error
-          end-if.
-
+        exit paragraph.
 
           check-profile-exists.
           move 'N' to ws-profile-found
@@ -861,10 +908,6 @@
                end-read
            end-perform
            close profiles-file.
-
-
-
-
 
 
           create-profile.
@@ -1075,9 +1118,13 @@
                at end
                    set profiles-file-ended to true
                not at end
-                   if function trim(profile-first-name) = ws-search-first
-                      and function trim(profile-last-name)  = ws-search-last
-                       set name-match-found to true
+                   if function upper-case(function trim(profile-first-name))
+                       = function upper-case(function trim(ws-search-first))
+                      and
+                      function upper-case(function trim(profile-last-name))
+                          = function upper-case(function trim(ws-search-last))
+                set name-match-found to true
+
    
                        *> copy found profile into WS to reuse your display logic
                        move profile-first-name to ws-profile-first-name
@@ -1106,89 +1153,17 @@
        end-perform
        close profiles-file
    
-       *> Render result
-       if name-match-found
-           move "User Profile" to ws-message
-           perform display-title
-   
-           if ws-profile-first-name not = spaces
-               move "First Name:" to ws-message
-               perform display-info
-               move ws-profile-first-name to ws-message
-               perform display-info
-           end-if
-           if ws-profile-last-name not = spaces
-               move "Last Name:" to ws-message
-               perform display-info
-               move ws-profile-last-name to ws-message
-               perform display-info
-           end-if
-           if ws-profile-school not = spaces
-               move "University/College:" to ws-message
-               perform display-info
-               move ws-profile-school to ws-message
-               perform display-info
-           end-if
-           if ws-profile-major not = spaces
-               move "Major:" to ws-message
-               perform display-info
-               move ws-profile-major to ws-message
-               perform display-info
-           end-if
-           if ws-profile-grad-year not = 0
-               move ws-profile-grad-year to ws-grad-year-text
-               move "Graduation Year:" to ws-message
-               perform display-info
-               move ws-grad-year-text to ws-message
-               perform display-info
-           end-if
-           if ws-profile-about not = spaces
-               move "About Me:" to ws-message
-               perform display-info
-               move ws-profile-about to ws-message
-               perform display-info
-           end-if
-   
-           move "Experience(s):" to ws-message
-           perform display-info
-           perform varying ws-i from 1 by 1 until ws-i > 3
-               if ws-exp-title(ws-i) not = spaces
-                   move ws-exp-title(ws-i) to ws-message
-                   perform display-option
-                   move ws-exp-company(ws-i) to ws-message
-                   perform display-option
-                   move ws-exp-dates(ws-i) to ws-message
-                   perform display-option
-                   move ws-exp-desc(ws-i) to ws-message
-                   perform display-option
-                   move " " to ws-message
-                   perform display-info
-               end-if
-           end-perform
-   
-           move "Education(s):" to ws-message
-           perform display-info
-           perform varying ws-i from 1 by 1 until ws-i > 3
-               if ws-edu-degree(ws-i) not = spaces
-                   move ws-edu-degree(ws-i) to ws-message
-                   perform display-option
-                   move ws-edu-school(ws-i) to ws-message
-                   perform display-option
-                   move ws-edu-years(ws-i) to ws-message
-                   perform display-option
-                   move " " to ws-message
-                   perform display-info
-               end-if
-           end-perform
-       else
-           move "No one by that name could be found." to ws-message
-           perform display-info
-       end-if
-   
-       move "MAIN-MENU" to ws-program-state.
-              
+        *> Render result
+        if name-match-found
+            move "User Profile" to ws-message
+            perform display-title
+            perform render-profile
+        else
+            move "No user profile exists for the name you have entered." to ws-message
+            perform display-info
+        end-if
 
-
+        move "MAIN-MENU" to ws-program-state.        
 
 
       collect-profile-input.
