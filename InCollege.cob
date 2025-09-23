@@ -1,3 +1,6 @@
+ *>    compile code - cobc -x -free -Wall -o incollege InCollege.cob  
+ *>    run - ./incollege   
+      
       identification division.
       program-id. InCollege.
 *>    We are separating divisons with a blank line for readability
@@ -6,7 +9,7 @@
       file-control.
 *>    Define three files: input-file, output-file, and accounts-file and assign them to text files
 *>    The accounts-file will be used to store user account information
-          select input-file assign to KEYBOARD
+          select input-file assign to 'InCollege-Input.txt'
               organization is line sequential.
           select output-file assign to 'InCollege-Output.txt'
               organization is line sequential.
@@ -123,6 +126,10 @@
 
 
       01  ws-last-input     pic x(256) value spaces.
+      01  ws-profile-header        pic x(30) value spaces.
+      01  ws-prev-degree            pic x(30).
+
+
 
 
 *>    - PROGRAM FLOW AND INPUT -
@@ -728,6 +735,7 @@
       view-profile.
             perform check-profile-exists
             if ws-profile-found = 'Y'
+                move "Your Profile" to ws-profile-header
                 perform render-profile
             else
                 move "No profile found. Please create a profile first." to ws-message
@@ -736,9 +744,12 @@
             move "MAIN-MENU" to ws-program-state.
 
       *> ===================== Profile Rendering (no reset) =====================
-    render-profile.
-        move "=== Your Profile ===" to ws-message
-        perform display-info
+       render-profile.
+        *> Print header only if caller provided one
+        if ws-profile-header not = spaces
+            move function trim(ws-profile-header) to ws-message
+            perform display-title
+        end-if
 
         *> First Name
         if ws-profile-first-name not = spaces
@@ -839,7 +850,8 @@
                 perform display-info
             end-if
         end-perform
-
+       
+       move spaces to ws-profile-header
         exit paragraph.
 
           check-profile-exists.
@@ -1100,7 +1112,7 @@
            when "00"
                continue
            when "35"
-               move "No profiles exist yet." to ws-message
+               move "No profile exists for that name" to ws-message
                perform display-info
                close profiles-file
                move "MAIN-MENU" to ws-program-state
@@ -1155,9 +1167,9 @@
    
         *> Render result
         if name-match-found
-            move "User Profile" to ws-message
-            perform display-title
+            move "User Profile" to ws-profile-header
             perform render-profile
+
         else
             move "No user profile exists for the name you have entered." to ws-message
             perform display-info
@@ -1383,7 +1395,6 @@
                move function trim(ws-last-input) to ws-temp-message
                if ws-temp-message not = spaces
                    move ws-temp-message to ws-exp-dates(ws-i)
-               end-if
 
 
                move "Description (Enter to keep/skip): " to ws-message
@@ -1401,7 +1412,10 @@
 
 
 *>    Educations
+       *>    Educations (degree adds a NEW row => School and Years are REQUIRED)
        perform varying ws-i from 1 by 1 until ws-i > 3
+
+           *> Ask for Degree (this is the “switch” that decides if a row exists)
            string "Education " ws-i " Degree (or Enter to keep/skip): " delimited by size
                into ws-message
            perform display-prompt
@@ -1409,35 +1423,82 @@
            if input-ended
                exit perform
            end-if
+
+           *> Remember whether this slot was empty BEFORE any change
+           move ws-edu-degree(ws-i) to ws-prev-degree
+
            move function trim(ws-last-input) to ws-temp-message
 
-
-           *> update degree only if user typed something
+           *> If the user typed a new Degree, set it
            if ws-temp-message not = spaces
                move ws-temp-message to ws-edu-degree(ws-i)
            end-if
 
-
-           *> proceed only if this slot exists
+           *> If the slot now has a Degree, we either:
+           *>   - REQUIRE School/Years (if this was a NEW row), or
+           *>   - allow keep/skip (if editing an existing row)
            if ws-edu-degree(ws-i) not = spaces
-               move "School (Enter to keep/skip): " to ws-message
-               perform display-prompt
-               perform read-next-input
-               if input-ended exit perform end-if
-               move function trim(ws-last-input) to ws-temp-message
-               if ws-temp-message not = spaces
-                   move ws-temp-message to ws-edu-school(ws-i)
+
+               if ws-prev-degree = spaces
+                   *> ------- NEW ROW: REQUIRE SCHOOL -------
+                   perform until ws-edu-school(ws-i) not = spaces
+                       move "School (required): " to ws-message
+                       perform display-prompt
+                       perform read-next-input
+                       if input-ended
+                           exit perform
+                       end-if
+                       move function trim(ws-last-input) to ws-temp-message
+                       if ws-temp-message = spaces
+                           move "School is required when adding an education." to ws-message
+                           perform display-error
+                       else
+                           move ws-temp-message to ws-edu-school(ws-i)
+                       end-if
+                   end-perform
+
+                   *> ------- NEW ROW: REQUIRE YEARS -------
+                   perform until ws-edu-years(ws-i) not = spaces
+                       move "Years (e.g., 2016-2020) (required): " to ws-message
+                       perform display-prompt
+                       perform read-next-input
+                       if input-ended
+                           exit perform
+                       end-if
+                       move function trim(ws-last-input) to ws-temp-message
+                       if ws-temp-message = spaces
+                           move "Years are required when adding an education." to ws-message
+                           perform display-error
+                       else
+                           move ws-temp-message to ws-edu-years(ws-i)
+                       end-if
+                   end-perform
+
+               else
+                   *> ------- EXISTING ROW: KEEP/SKIP ALLOWED -------
+                   move "School (Enter to keep/skip): " to ws-message
+                   perform display-prompt
+                   perform read-next-input
+                   if input-ended
+                       exit perform
+                   end-if
+                   move function trim(ws-last-input) to ws-temp-message
+                   if ws-temp-message not = spaces
+                       move ws-temp-message to ws-edu-school(ws-i)
+                   end-if
+
+                   move "Years (e.g., 2016-2020) (Enter to keep/skip): " to ws-message
+                   perform display-prompt
+                   perform read-next-input
+                   if input-ended
+                       exit perform
+                   end-if
+                   move function trim(ws-last-input) to ws-temp-message
+                   if ws-temp-message not = spaces
+                       move ws-temp-message to ws-edu-years(ws-i)
+                   end-if
                end-if
 
-
-               move "Years (e.g., 2016-2020) (Enter to keep/skip): " to ws-message
-               perform display-prompt
-               perform read-next-input
-               if input-ended exit perform end-if
-               move function trim(ws-last-input) to ws-temp-message
-               if ws-temp-message not = spaces
-                   move ws-temp-message to ws-edu-years(ws-i)
-               end-if
            end-if
        end-perform.
 
