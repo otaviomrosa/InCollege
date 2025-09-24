@@ -1,0 +1,269 @@
+
+=== Welcome to InCollege! ===
+
+  1. Log In
+  2. Create an Account
+--------------------------------------------------------------------------------
+  3. Exit Program
+--------------------------------------------------------------------------------
+Enter your choice:
+Please create a username:
+Enter a password:
+
+(8-12 chars, 1 uppercase, 1 lower, 1 special)
+
+
+SUCCESS: Account created successfully!
+
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. Log Out
+  7. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+Creating new profile...
+
+First name:
+Last name:
+University/college attended:
+Major:
+Graduation year (yyyy):
+About me (max 200 chars, Enter to keep/skip):
+Experience 01 Title (or Enter to keep/skip):
+Company (required):
+Dates (e.g., 2020-2024) (required):
+Description (Enter to keep/skip):
+Experience 02 Title (or Enter to keep/skip):
+Experience 03 Title (or Enter to keep/skip):
+Education 01 Degree (or Enter to keep/skip):
+School (required):
+Years (e.g., 2016-2020) (required):
+Education 02 Degree (or Enter to keep/skip):
+School (required):
+Years (e.g., 2016-2020) (required):
+Education 03 Degree (or Enter to keep/skip):
+
+SUCCESS: Profile created successfully!
+
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. Log Out
+  7. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Your Profile ===
+
+First Name: Rocky
+Last Name: TheBull
+University/College: University of South Florida
+Major: Mascot Science
+Graduation Year: 2025
+About Me: Love Being the USF mascot! I enjoy cheering for the Bulls and engaging
+
+
+
+
+Experience(s):
+
+Job Title: Mascot Performer
+Company: University of South Florida
+Dates Worked: 2022-Present
+Description: Performing at sports events, engaging with fans, and promoting scho
+
+
+
+
+Education(s):
+
+Degree: Bachelor of Science in Mascot
+School: University of South Florida
+Years: 2021-2025
+
+
+
+Degree: High School Diploma
+School: Tampa High
+Years: 2017-2021
+
+
+
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. Log Out
+  7. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+SUCCESS: Successfully Logged Out!
+
+
+=== Welcome to InCollege! ===
+
+  1. Log In
+  2. Create an Account
+--------------------------------------------------------------------------------
+  3. Exit Program
+--------------------------------------------------------------------------------
+Enter your choice:
+Please create a username:
+Enter a password:
+
+(8-12 chars, 1 uppercase, 1 lower, 1 special)
+
+
+SUCCESS: Account created successfully!
+
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. Log Out
+  7. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Find someone you know ===
+
+Enter FIRST name (or 0 to go back):
+Enter LAST name:
+
+=== User Profile ===
+
+First Name: Rocky
+Last Name: TheBull
+University/College: University of South Florida
+Major: Mascot Science
+Graduation Year: 2025
+About Me: Love Being the USF mascot! I enjoy cheering for the Bulls and engaging
+
+
+
+
+Experience(s):
+
+Job Title: Mascot Performer
+Company: University of South Florida
+Dates Worked: 2022-Present
+Description: Performing at sports events, engaging with fans, and promoting scho
+
+
+
+
+Education(s):
+
+Degree: Bachelor of Science in Mascot
+School: University of South Florida
+Years: 2021-2025
+
+
+
+Degree: High School Diploma
+School: Tampa High
+Years: 2017-2021
+
+
+
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. Log Out
+  7. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Find someone you know ===
+
+Enter FIRST name (or 0 to go back):
+Enter LAST name:
+
+ERROR: Please enter both first and last name.
+
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. Log Out
+  7. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Find someone you know ===
+
+Enter FIRST name (or 0 to go back):
+Enter LAST name:
+
+ERROR: Please enter both first and last name.
+
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. Log Out
+  7. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Find someone you know ===
+
+Enter FIRST name (or 0 to go back):
+Enter LAST name:
+
+No user profile exists for the name you have entered.
+
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. Log Out
+  7. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
