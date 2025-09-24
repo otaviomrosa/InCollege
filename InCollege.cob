@@ -9,7 +9,7 @@
       file-control.
 *>    Define three files: input-file, output-file, and accounts-file and assign them to text files
 *>    The accounts-file will be used to store user account information
-          select input-file assign to 'InCollege-Input.txt'
+          select input-file assign to KEYBOARD
               organization is line sequential.
           select output-file assign to 'InCollege-Output.txt'
               organization is line sequential.
@@ -110,10 +110,6 @@
 
 
 
-
-
-
-
       working-storage section.
 *>    Ensure all variables here start with "ws" to indicate they are in working-storage section.
 *>    For example, ws-username, ws-password, etc
@@ -169,6 +165,8 @@
       01  ws-validation-passed       pic a(1) value 'N'.
           88  validation-passed       value 'Y'.
       01  ws-i                        pic 99 value 1.
+      01  ws-prev-title            pic x(30).
+
 
 
       *> Find someone 
@@ -803,7 +801,7 @@
         move spaces to ws-message
         perform display-info
 
-        *> Experience(s)
+        *> -------- Experience(s) --------
         move "Experience(s):" to ws-message
         perform display-info
         perform varying ws-i from 1 by 1 until ws-i > 3
@@ -813,24 +811,30 @@
                 move ws-exp-title(ws-i) to ws-value
                 perform display-labeled-line
                 *> Company
-                move "Company" to ws-label
-                move ws-exp-company(ws-i) to ws-value
-                perform display-labeled-line
+                if ws-exp-company(ws-i) not = spaces
+                    move "Company" to ws-label
+                    move ws-exp-company(ws-i) to ws-value
+                    perform display-labeled-line
+                end-if
                 *> Dates Worked
-                move "Dates Worked" to ws-label
-                move ws-exp-dates(ws-i) to ws-value
-                perform display-labeled-line
-                *> Description
+                if ws-exp-dates(ws-i) not = spaces
+                    move "Dates Worked" to ws-label
+                    move ws-exp-dates(ws-i) to ws-value
+                    perform display-labeled-line
+                end-if
+                *> Description (optional)
                 if ws-exp-desc(ws-i) not = spaces
                     move "Description" to ws-label
                     move ws-exp-desc(ws-i) to ws-value
                     perform display-labeled-line
                 end-if
+
                 *> blank line between entries
                 move spaces to ws-message
                 perform display-info
             end-if
         end-perform
+
 
         *> Education(s)
         move "Education(s):" to ws-message
@@ -1350,8 +1354,6 @@
        end-perform
 
 
-
-
 *>    About me
        move "About me (max 200 chars, Enter to keep/skip): " to ws-message
        perform display-prompt
@@ -1371,91 +1373,160 @@
            end-if
        end-if
 
+*>     Experiences
+       *> ----- EXPERIENCE (Title adds a NEW row => Company and Dates REQUIRED) -----
+        perform varying ws-i from 1 by 1 until ws-i > 3
 
-       perform varying ws-i from 1 by 1 until ws-i > 3
-           move "Experience " to ws-message
-           string "Experience " ws-i " Title (or Enter to skip): " delimited by size
-               into ws-message
-           perform display-prompt
-           perform read-next-input
-           if input-ended exit perform end-if
-           compute ws-input-len = function length(function trim(ws-last-input))
-           if ws-input-len > 0
-               if ws-input-len > MAX-EXP-TITLE
-                   move "Title too long; trimming to 30 chars." to ws-message
-                   perform display-info
-                   move spaces to ws-exp-title(ws-i)
-                   move ws-last-input(1:MAX-EXP-TITLE) to ws-exp-title(ws-i)
-               else
-                   move spaces to ws-exp-title(ws-i)
-                   move ws-last-input(1:ws-input-len) to ws-exp-title(ws-i)
-               end-if
-           end-if
+            *> Remember whether this slot had a Title BEFORE any change
+            move ws-exp-title(ws-i) to ws-prev-title
+
+            string "Experience " ws-i " Title (or Enter to keep/skip): "
+              delimited by size into ws-message
+            perform display-prompt
+            perform read-next-input
+            if input-ended
+                exit perform
+            end-if
+
+            move function trim(ws-last-input) to ws-temp-message
+            compute ws-input-len = function length(function trim(ws-temp-message))
 
 
-           *> if user typed something, update; if blank, keep prior value (do not erase)
-           if ws-temp-message not = spaces
-               move ws-temp-message to ws-exp-title(ws-i)
-           end-if
+            *> If user typed a new Title, set it
+            if ws-input-len > 0
+                if ws-input-len > MAX-EXP-TITLE
+                    move "Title too long; trimming to 30 chars." to ws-message
+                    perform display-info
+                    move spaces to ws-exp-title(ws-i)
+                    move ws-temp-message(1:MAX-EXP-TITLE) to ws-exp-title(ws-i)
+                else
+                    move spaces to ws-exp-title(ws-i)
+                    move ws-temp-message(1:ws-input-len) to ws-exp-title(ws-i)
+                end-if
+            end-if
 
+            *> If the slot now has a Title:
+            if ws-exp-title(ws-i) not = spaces
 
-           *> only proceed to company/dates/desc if this slot exists
-           if ws-exp-title(ws-i) not = spaces
-               move "Company (Enter to keep/skip): " to ws-message
-               perform display-prompt
-               perform read-next-input
-               if input-ended exit perform end-if
-               compute ws-input-len = function length(function trim(ws-last-input))
-               if ws-input-len > 0
-                   if ws-input-len > MAX-EXP-COMP
-                       move "Company too long; trimming to 40 chars." to ws-message
-                       perform display-info
-                       move spaces to ws-exp-company(ws-i)
-                       move ws-last-input(1:MAX-EXP-COMP) to ws-exp-company(ws-i)
-                   else
-                       move spaces to ws-exp-company(ws-i)
-                       move ws-last-input(1:ws-input-len) to ws-exp-company(ws-i)
-                   end-if
-               end-if
+                if ws-prev-title = spaces
+                    *> ------- NEW ROW: REQUIRE COMPANY -------
+                    perform until ws-exp-company(ws-i) not = spaces
+                        move "Company (required): " to ws-message
+                        perform display-prompt
+                        perform read-next-input
+                        if input-ended
+                            exit perform
+                        end-if
+                        move function trim(ws-last-input) to ws-temp-message
+                        compute ws-input-len = function length(function trim(ws-temp-message))
+                        if ws-input-len = 0
+                            move "Company is required when adding an experience." to ws-message
+                            perform display-error
+                        else
+                            if ws-input-len > MAX-EXP-COMP
+                                move "Company too long; trimming to 40 chars." to ws-message
+                                perform display-info
+                                move spaces to ws-exp-company(ws-i)
+                                move ws-temp-message(1:MAX-EXP-COMP) to ws-exp-company(ws-i)
+                            else
+                                move spaces to ws-exp-company(ws-i)
+                                move ws-temp-message(1:ws-input-len) to ws-exp-company(ws-i)
+                            end-if
+                        end-if
+                    end-perform
 
-               move "Dates (e.g., 2020-2024) (Enter to keep/skip): " to ws-message
-               perform display-prompt
-               perform read-next-input
-               if input-ended exit perform end-if
-               compute ws-input-len = function length(function trim(ws-last-input))
-               if ws-input-len > 0
-                   if ws-input-len > MAX-EXP-DATES
-                       move "Dates too long; trimming to 30 chars." to ws-message
-                       perform display-info
-                       move spaces to ws-exp-dates(ws-i)
-                       move ws-last-input(1:MAX-EXP-DATES) to ws-exp-dates(ws-i)
-                   else
-                       move spaces to ws-exp-dates(ws-i)
-                       move ws-last-input(1:ws-input-len) to ws-exp-dates(ws-i)
-                   end-if
-               end-if
+                    *> ------- NEW ROW: REQUIRE DATES -------
+                    perform until ws-exp-dates(ws-i) not = spaces
+                        move "Dates (e.g., 2020-2024) (required): " to ws-message
+                        perform display-prompt
+                        perform read-next-input
+                        if input-ended
+                            exit perform
+                        end-if
+                        move function trim(ws-last-input) to ws-temp-message
+                        compute ws-input-len = function length(function trim(ws-temp-message))
+                        if ws-input-len = 0
+                            move "Dates are required when adding an experience." to ws-message
+                            perform display-error
+                        else
+                            if ws-input-len > MAX-EXP-DATES
+                                move "Dates too long; trimming to 30 chars." to ws-message
+                                perform display-info
+                                move spaces to ws-exp-dates(ws-i)
+                                move ws-temp-message(1:MAX-EXP-DATES) to ws-exp-dates(ws-i)
+                            else
+                                move spaces to ws-exp-dates(ws-i)
+                                move ws-temp-message(1:ws-input-len) to ws-exp-dates(ws-i)
+                            end-if
+                        end-if
+                    end-perform
 
+                else
+                    *> ------- EXISTING ROW: KEEP/SKIP ALLOWED -------
+                    move "Company (Enter to keep/skip): " to ws-message
+                    perform display-prompt
+                    perform read-next-input
+                    if input-ended
+                        exit perform
+                    end-if
+                    move function trim(ws-last-input) to ws-temp-message
+                    compute ws-input-len = function length(function trim(ws-temp-message))
+                    if ws-input-len > 0
+                        if ws-input-len > MAX-EXP-COMP
+                            move "Company too long; trimming to 40 chars." to ws-message
+                            perform display-info
+                            move spaces to ws-exp-company(ws-i)
+                            move ws-temp-message(1:MAX-EXP-COMP) to ws-exp-company(ws-i)
+                        else
+                            move spaces to ws-exp-company(ws-i)
+                            move ws-temp-message(1:ws-input-len) to ws-exp-company(ws-i)
+                        end-if
+                    end-if
 
-               move "Description (Enter to keep/skip): " to ws-message
-               perform display-prompt
-               perform read-next-input
-               if input-ended exit perform end-if
-               compute ws-input-len = function length(function trim(ws-last-input))
-               if ws-input-len > 0
-                   if ws-input-len > MAX-EXP-DESC
-                       move "Description too long; trimming to 120 chars." to ws-message
-                       perform display-info
-                       move spaces to ws-exp-desc(ws-i)
-                       move ws-last-input(1:MAX-EXP-DESC) to ws-exp-desc(ws-i)
-                   else
-                       move spaces to ws-exp-desc(ws-i)
-                       move ws-last-input(1:ws-input-len) to ws-exp-desc(ws-i)
-                   end-if
-               end-if
-       end-perform
+                    move "Dates (e.g., 2020-2024) (Enter to keep/skip): " to ws-message
+                    perform display-prompt
+                    perform read-next-input
+                    if input-ended
+                        exit perform
+                    end-if
+                    move function trim(ws-last-input) to ws-temp-message
+                    compute ws-input-len = function length(function trim(ws-temp-message))
+                    if ws-input-len > 0
+                        if ws-input-len > MAX-EXP-DATES
+                            move "Dates too long; trimming to 30 chars." to ws-message
+                            perform display-info
+                            move spaces to ws-exp-dates(ws-i)
+                            move ws-temp-message(1:MAX-EXP-DATES) to ws-exp-dates(ws-i)
+                        else
+                            move spaces to ws-exp-dates(ws-i)
+                            move ws-temp-message(1:ws-input-len) to ws-exp-dates(ws-i)
+                        end-if
+                    end-if
+                end-if
 
+                *> Description optional in both cases
+                move "Description (Enter to keep/skip): " to ws-message
+                perform display-prompt
+                perform read-next-input
+                if not input-ended
+                    move function trim(ws-last-input) to ws-temp-message
+                    compute ws-input-len = function length(function trim(ws-temp-message))
+                    if ws-input-len > 0
+                        if ws-input-len > MAX-EXP-DESC
+                            move "Description too long; trimming to 120 chars." to ws-message
+                            perform display-info
+                            move spaces to ws-exp-desc(ws-i)
+                            move ws-temp-message(1:MAX-EXP-DESC) to ws-exp-desc(ws-i)
+                        else
+                            move spaces to ws-exp-desc(ws-i)
+                            move ws-temp-message(1:ws-input-len) to ws-exp-desc(ws-i)
+                        end-if
+                    end-if
+                end-if
 
+            end-if
 
+        end-perform
 
 *>    Educations
        *>    Educations (degree adds a NEW row => School and Years are REQUIRED)
