@@ -129,7 +129,13 @@
       01  ws-profile-header        pic x(30) value spaces.
       01  ws-prev-degree            pic x(30).
 
-
+      01 MAX-ABOUT       pic 9(3) value 200.
+      01 MAX-EXP-TITLE   pic 9(3) value 30.
+      01 MAX-EXP-COMP    pic 9(3) value 40.
+      01 MAX-EXP-DATES   pic 9(3) value 30.
+      01 MAX-EXP-DESC    pic 9(3) value 120.
+       
+      01 ws-input-len    pic 9(4) value 0.
 
 
 *>    - PROGRAM FLOW AND INPUT -
@@ -1347,15 +1353,23 @@
 
 
 *>    About me
-       move "About me (optional, press Enter to keep current/skip): " to ws-message
-           perform display-prompt
-           perform read-next-input
-           if not input-ended
-               move function trim(ws-last-input) to ws-temp-message
-               if ws-temp-message not = spaces
-                   move ws-temp-message to ws-profile-about
+       move "About me (max 200 chars, Enter to keep/skip): " to ws-message
+       perform display-prompt
+       perform read-next-input
+       if not input-ended
+           compute ws-input-len = function length(function trim(ws-last-input))
+           if ws-input-len > 0
+               if ws-input-len > MAX-ABOUT
+                   move "About text too long; trimming to 200 chars." to ws-message
+                   perform display-info
+                   move spaces to ws-profile-about
+                   move ws-last-input(1:MAX-ABOUT) to ws-profile-about
+               else
+                   move spaces to ws-profile-about
+                   move ws-last-input(1:ws-input-len) to ws-profile-about
                end-if
            end-if
+       end-if
 
 
        perform varying ws-i from 1 by 1 until ws-i > 3
@@ -1364,10 +1378,19 @@
                into ws-message
            perform display-prompt
            perform read-next-input
-           if input-ended
-               exit perform
+           if input-ended exit perform end-if
+           compute ws-input-len = function length(function trim(ws-last-input))
+           if ws-input-len > 0
+               if ws-input-len > MAX-EXP-TITLE
+                   move "Title too long; trimming to 30 chars." to ws-message
+                   perform display-info
+                   move spaces to ws-exp-title(ws-i)
+                   move ws-last-input(1:MAX-EXP-TITLE) to ws-exp-title(ws-i)
+               else
+                   move spaces to ws-exp-title(ws-i)
+                   move ws-last-input(1:ws-input-len) to ws-exp-title(ws-i)
+               end-if
            end-if
-           move function trim(ws-last-input) to ws-temp-message
 
 
            *> if user typed something, update; if blank, keep prior value (do not erase)
@@ -1382,30 +1405,53 @@
                perform display-prompt
                perform read-next-input
                if input-ended exit perform end-if
-               move function trim(ws-last-input) to ws-temp-message
-               if ws-temp-message not = spaces
-                   move ws-temp-message to ws-exp-company(ws-i)
+               compute ws-input-len = function length(function trim(ws-last-input))
+               if ws-input-len > 0
+                   if ws-input-len > MAX-EXP-COMP
+                       move "Company too long; trimming to 40 chars." to ws-message
+                       perform display-info
+                       move spaces to ws-exp-company(ws-i)
+                       move ws-last-input(1:MAX-EXP-COMP) to ws-exp-company(ws-i)
+                   else
+                       move spaces to ws-exp-company(ws-i)
+                       move ws-last-input(1:ws-input-len) to ws-exp-company(ws-i)
+                   end-if
                end-if
-
 
                move "Dates (e.g., 2020-2024) (Enter to keep/skip): " to ws-message
                perform display-prompt
                perform read-next-input
                if input-ended exit perform end-if
-               move function trim(ws-last-input) to ws-temp-message
-               if ws-temp-message not = spaces
-                   move ws-temp-message to ws-exp-dates(ws-i)
+               compute ws-input-len = function length(function trim(ws-last-input))
+               if ws-input-len > 0
+                   if ws-input-len > MAX-EXP-DATES
+                       move "Dates too long; trimming to 30 chars." to ws-message
+                       perform display-info
+                       move spaces to ws-exp-dates(ws-i)
+                       move ws-last-input(1:MAX-EXP-DATES) to ws-exp-dates(ws-i)
+                   else
+                       move spaces to ws-exp-dates(ws-i)
+                       move ws-last-input(1:ws-input-len) to ws-exp-dates(ws-i)
+                   end-if
+               end-if
 
 
                move "Description (Enter to keep/skip): " to ws-message
                perform display-prompt
                perform read-next-input
                if input-ended exit perform end-if
-               move function trim(ws-last-input) to ws-temp-message
-               if ws-temp-message not = spaces
-                   move ws-temp-message to ws-exp-desc(ws-i)
+               compute ws-input-len = function length(function trim(ws-last-input))
+               if ws-input-len > 0
+                   if ws-input-len > MAX-EXP-DESC
+                       move "Description too long; trimming to 120 chars." to ws-message
+                       perform display-info
+                       move spaces to ws-exp-desc(ws-i)
+                       move ws-last-input(1:MAX-EXP-DESC) to ws-exp-desc(ws-i)
+                   else
+                       move spaces to ws-exp-desc(ws-i)
+                       move ws-last-input(1:ws-input-len) to ws-exp-desc(ws-i)
+                   end-if
                end-if
-           end-if
        end-perform
 
 
