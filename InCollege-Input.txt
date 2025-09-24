@@ -1,87 +1,69 @@
 1
-alice
-wrongpass
-1
-alice
-Aa1!aaaa
-3
-1
-6
+dave
+AbcDef1!Gh$Q
 4
+Dave
+Martinez
+University of Miami
+Computer Engineering
+2025
+I am passionate about software development and artificial intelligence. I enjoy working on challenging projects that make a real impact on people's lives.
+Software Engineering Intern
+Microsoft
+Summer 2024
+Developed web applications using React and Node.js, collaborated with senior developers on enterprise software solutions.
+Research Assistant
+UM AI Lab
+2023-2024
+Conducted research on machine learning algorithms for natural language processing, published findings in undergraduate research journal.
+Teaching Assistant
+University of Miami CS Dept
+Fall 2023
+Assisted students in introductory programming courses, held office hours and graded assignments for Python and Java courses.
+Bachelor of Science in Computer Engineering
+University of Miami
+2021-2025
+High School Diploma
+Miami Senior High
+2017-2021
+
+5
+2
 Alice
 Smith
-USF
-Psychology
-2026
-I love painting
-RA
-USF
-2025-2026
-Residential Assistant
-TA
-USF
-2025-2026
-Teaching Assistant
-
-Psychology
-USF
-2022-2026
-
-
-5
-6
-2
 1
-bob
-Abcdef1!
-4
-Bob
-Johnson
-USF
-Computer Science
-20
-2027
-Love programming
-Intern
-Google
-2026
-Summer Intern
-
-Tutor
-USF
-2024-2025
-CS Tutor
-
-Computer Science
-USF
-2023-2027
-
-5
-6
+3
 1
-bob
-Abcdef1!
-5
-4
-
-
-
-
-
-
-Software Intern
-
-
-
-
-
-
-
-
-
-
-
-
-
 6
 3
+2
+6
+3
+3
+6
+3
+4
+6
+3
+5
+6
+4
+Dave
+Rodriguez
+University of Florida
+Electrical Engineering
+2024
+Updated my profile with new information. Changed my major and university details.
+Senior Software Developer
+Amazon
+2024-Present
+Working on cloud infrastructure and scalable systems architecture.
+
+
+Masters in Electrical Engineering
+University of Florida
+2025-2027
+
+5
+6
+7
