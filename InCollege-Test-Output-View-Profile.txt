@@ -1,0 +1,126 @@
+
+=== Welcome to InCollege! ===
+
+  1. Log In
+  2. Create an Account
+--------------------------------------------------------------------------------
+  3. Exit Program
+--------------------------------------------------------------------------------
+Enter your choice:
+Please enter your username:
+Please enter your password:
+
+SUCCESS: You have successfully logged in.
+
+
+Welcome, dave!
+
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. Log Out
+  7. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Find someone you know ===
+
+Enter FIRST name (or 0 to go back):
+Enter LAST name:
+
+No user profile exists for the name you have entered.
+
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. Log Out
+  7. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Find someone you know ===
+
+Enter FIRST name (or 0 to go back):
+Enter LAST name:
+
+=== User Profile ===
+
+First Name: Alice
+Last Name: Smith
+University/College: USF
+Major: Psychology
+Graduation Year: 2026
+About Me: I love painting
+
+
+
+
+Experience(s):
+
+Job Title: 0000
+Company: USF
+Dates Worked: 2025-2026
+Description: Residential Assistant
+
+
+
+Job Title: 0000
+Company: USF
+Dates Worked: 2025-2026
+Description: Teaching Assistant
+
+
+
+Job Title: 0000
+Company: Psychology
+Dates Worked: USF
+Description: 2022-2026
+
+
+
+
+Education(s):
+
+Degree: Psychology
+School: USF
+Years: 5
+
+
+
+Degree: 6
+School: 2
+Years: 1
+
+
+
+Degree: bob
+School: Abcdef1!
+Years: 4
+
+
+
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. Log Out
+  7. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
