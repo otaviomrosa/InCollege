@@ -25,6 +25,15 @@
               organization is line sequential
               file status is ws-profiles-status.
 
+   *> Pending requests (sender -> recipient)
+          select pending-requests-file assign to 'InCollege-PendingRequests.txt'
+                organization is line sequential
+                file status is ws-requests-status.
+*>    Established connections (userA <-> userB).  Used only for validation.
+          select connections-file assign to 'InCollege-Connections.txt'
+                organization is line sequential
+                file status is ws-connections-status.
+
 
 
 
@@ -107,6 +116,16 @@
                 10  temp-edu-school       pic x(40).
                 10  temp-edu-years        pic x(20).
 
+      fd  pending-requests-file.
+           01  request-record.
+               05  req-sender      pic x(20).
+               05  req-recipient   pic x(20).
+           
+      fd  connections-file.
+           01  connection-record.
+               05  conn-user-a     pic x(20).
+               05  conn-user-b     pic x(20).
+
 
 
 
@@ -150,7 +169,7 @@
       01  ws-user-choice      pic x(40).
 
       *> Debug mode switch: Y = interactive (ACCEPT), N = file (READ)
-      01  ws-debug-mode    pic a(1) value 'N'.
+      01  ws-debug-mode    pic a(1) value 'Y'.
           88 debug-mode    value 'Y'.
           
 *>    - ACCOUNT DATA - We keep a copy of the accounts file locally at runtime for faster access instead of reading the file everytime (simply for good practice)
@@ -256,6 +275,25 @@
         01  ws-colon-space            pic x(2) value ": ".
 
 
+       01  ws-requests-status     pic x(2).
+       01  ws-connections-status  pic x(2).
+       
+       01  ws-requests-eof        pic a(1) value 'N'.
+          88 requests-file-ended  value 'Y'.
+       01  ws-conns-eof           pic a(1) value 'N'.
+          88 conns-file-ended     value 'Y'.
+       
+       01  ws-pending-found       pic a(1) value 'N'.
+          88 pending-found        value 'Y'.
+       01  ws-pending-other-way   pic a(1) value 'N'.
+          88 pending-other-way    value 'Y'.
+       01  ws-connected-flag      pic a(1) value 'N'.
+          88 users-already-connected value 'Y'.
+       
+       01  ws-found-username      pic x(20) value spaces.  *> username from matched profile
+       01  ws-list-count          pic 9(4)  value 0.
+        
+
 
       procedure division.
 *>    Open all files that wil be used
@@ -339,9 +377,12 @@
                     move "Successfully Logged Out!" to ws-message
                     perform display-success                     
                     move "INITIAL-MENU" to ws-program-state
-               else if ws-user-choice = '7'
+               else if ws-user-choice = '8'
                     perform cleanup-files
                     stop run 
+               else if ws-user-choice = '7'
+                    perform view-my-pending-requests
+                    move "MAIN-MENU" to ws-program-state
                else   
                     move "Invalid option. Please try again" to ws-message
                     perform display-error
@@ -444,10 +485,13 @@
           perform display-special-option
           move "6. Log Out" to ws-message
           perform display-special-option
-          move "7. Exit program" to ws-message
+          move "7. View My Pending Connection Requests" to ws-message
           perform display-special-option
           display ws-line-separator
           perform write-separator
+          move "8. Exit program" to ws-message
+          perform display-special-option
+
           move "Enter your choice: " to ws-message
           perform display-prompt.
 
@@ -481,7 +525,8 @@
           if at-learn-skill-menu
               move "SKILL-MENU" to ws-program-state
           else
-              move "MAIN-MENU" to ws-program-state.
+              move "MAIN-MENU" to ws-program-state
+          end-if.
 
 
       read-next-input.
@@ -704,6 +749,215 @@
           perform write-message
           display ws-blank-line
           perform write-blank-line.
+
+      *> ========= Validation helpers =========
+       *> ========= Validation helpers =========
+check-already-connected.
+    *> Uses ws-input-username and ws-found-username from WORKING-STORAGE
+    move 'N' to ws-connected-flag
+    move 'N' to ws-conns-eof
+    open input connections-file
+    evaluate ws-connections-status
+        when "00" continue
+        when "35"
+            close connections-file
+            exit paragraph
+        when other
+            move "Connections file error." to ws-message
+            perform display-error
+            close connections-file
+            exit paragraph
+    end-evaluate
+
+    perform until conns-file-ended
+        read connections-file next record
+            at end set conns-file-ended to true
+            not at end
+                if (function trim(conn-user-a) = function trim(ws-input-username) and
+                    function trim(conn-user-b) = function trim(ws-found-username))
+                 or (function trim(conn-user-b) = function trim(ws-input-username) and
+                     function trim(conn-user-a) = function trim(ws-found-username))
+                    set users-already-connected to true
+                    set conns-file-ended to true
+                end-if
+        end-read
+    end-perform
+    close connections-file
+    exit paragraph.
+
+       check-pending-between.
+           *> Uses ws-input-username and ws-found-username from WORKING-STORAGE
+           move 'N' to ws-pending-found
+           move 'N' to ws-pending-other-way
+           move 'N' to ws-requests-eof
+           open input pending-requests-file
+           evaluate ws-requests-status
+               when "00" continue
+               when "35"
+                   close pending-requests-file
+                   exit paragraph
+               when other
+                   move "Pending-requests file error." to ws-message
+                   perform display-error
+                   close pending-requests-file
+                   exit paragraph
+           end-evaluate
+       
+           perform until requests-file-ended
+               read pending-requests-file next record
+                   at end set requests-file-ended to true
+                   not at end
+                       if function trim(req-sender) = function trim(ws-input-username) and
+                          function trim(req-recipient) = function trim(ws-found-username)
+                           set pending-found to true
+                       end-if
+                       if function trim(req-sender) = function trim(ws-found-username) and
+                          function trim(req-recipient) = function trim(ws-input-username)
+                           set pending-other-way to true
+                       end-if
+               end-read
+           end-perform
+           close pending-requests-file
+           exit paragraph.
+                                           
+           move 'N' to ws-pending-found
+           move 'N' to ws-pending-other-way
+           move 'N' to ws-requests-eof
+           open input pending-requests-file
+           evaluate ws-requests-status
+               when "00" continue
+               when "35"
+                   close pending-requests-file
+                   exit paragraph
+               when other
+                   move "Pending-requests file error." to ws-message
+                   perform display-error
+                   close pending-requests-file
+                   exit paragraph
+           end-evaluate
+       
+           perform until requests-file-ended
+               read pending-requests-file next record
+                   at end set requests-file-ended to true
+                   not at end
+                       if function trim(req-sender) = function trim(ws-input-username) and
+                          function trim(req-recipient) = function trim(ws-found-username)
+                           set pending-found to true
+                       end-if
+                       if function trim(req-sender) = function trim(ws-found-username) and
+                          function trim(req-recipient) = function trim(ws-input-username)
+                           set pending-other-way to true
+                       end-if
+               end-read
+           end-perform
+           close pending-requests-file
+           exit paragraph.
+       
+       *> ========= Action: Send Request =========
+       send-connection-request.
+           if function upper-case(function trim(ws-input-username))
+              = function upper-case(function trim(ws-found-username))
+               move "You cannot connect with yourself." to ws-message
+               perform display-info
+               exit paragraph
+           end-if
+       
+           perform check-already-connected
+           if users-already-connected
+               move "You are already connected with this user." to ws-message
+               perform display-info
+               exit paragraph
+           end-if
+       
+           perform check-pending-between
+           if pending-found
+               move "You have already sent this user a connection request." to ws-message
+               perform display-info
+               exit paragraph
+           end-if
+           if pending-other-way
+               move "This user has already sent you a connection request." to ws-message
+               perform display-info
+               exit paragraph
+           end-if
+       
+           open extend pending-requests-file
+           if ws-requests-status = "35"
+               open output pending-requests-file
+               close pending-requests-file
+               open extend pending-requests-file
+           end-if
+           if ws-requests-status not = "00"
+               move "Could not open pending-requests file." to ws-message
+               perform display-error
+               exit paragraph
+           end-if
+       
+           move function trim(ws-input-username) to req-sender
+           move function trim(ws-found-username) to req-recipient
+           write request-record
+           close pending-requests-file
+       
+           move "Connection request sent to " to ws-message
+           string ws-message function trim(ws-profile-first-name) " "
+                  function trim(ws-profile-last-name)
+             delimited by size
+             into ws-message
+           end-string
+           perform display-line
+           exit paragraph.
+       
+       *> ========= View My Pending Requests =========
+       view-my-pending-requests.
+           move 0 to ws-list-count
+       
+           move "--- Pending Connection Requests ---" to ws-message
+           perform display-line
+       
+           move 'N' to ws-requests-eof
+           open input pending-requests-file
+           evaluate ws-requests-status
+               when "00" continue
+               when "35"
+                   move "You have no pending connection requests at this time." to ws-message
+                   perform display-line
+                   move "-----------------------------------" to ws-message
+                   perform display-line
+                   close pending-requests-file
+                   exit paragraph
+               when other
+                   move "Pending-requests file error." to ws-message
+                   perform display-error
+                   close pending-requests-file
+                   exit paragraph
+           end-evaluate
+       
+           perform until requests-file-ended
+               read pending-requests-file next record
+                   at end set requests-file-ended to true
+                   not at end
+                       if function trim(req-recipient) = function trim(ws-input-username)
+                           add 1 to ws-list-count
+                           move " - " to ws-message
+                           string ws-message
+                                  function trim(req-sender)
+                             delimited by size
+                             into ws-message
+                           end-string
+                           perform display-line
+                       end-if
+               end-read
+           end-perform
+           close pending-requests-file
+       
+           if ws-list-count = 0
+               move "You have no pending connection requests at this time." to ws-message
+               perform display-line
+           end-if
+       
+           move "-----------------------------------" to ws-message
+           perform display-line
+           exit paragraph.
 
 
       write-message.
@@ -1081,6 +1335,7 @@
       handle-find-someone.
        move "Find someone you know" to ws-message
        perform display-title
+       move spaces to ws-found-username
    
        *> FIRST NAME
        move "Enter FIRST name (or 0 to go back): " to ws-message
@@ -1155,6 +1410,7 @@
                        move profile-major      to ws-profile-major
                        move profile-grad-year  to ws-profile-grad-year
                        move profile-about      to ws-profile-about
+                       move profile-username to ws-found-username
    
                        perform varying ws-i from 1 by 1 until ws-i > 3
                            move exp-title   (ws-i) to ws-exp-title   (ws-i)
@@ -1179,7 +1435,24 @@
         if name-match-found
             move "User Profile" to ws-profile-header
             perform render-profile
-
+            
+            if name-match-found
+            *> *> profile already copied into WS; also capture username for requests
+            *> move profile-username to ws-found-username
+        
+            move "1. Send Connection Request" to ws-message
+            perform display-option
+            move "2. Back to Main Menu" to ws-message
+            perform display-option
+            move "Enter your choice: " to ws-message
+            perform display-prompt
+            perform read-user-choice
+        
+            if ws-user-choice = '1'
+                perform send-connection-request
+              end-if
+            end-if
+        
         else
             move "No user profile exists for the name you have entered." to ws-message
             perform display-info
