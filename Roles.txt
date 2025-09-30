@@ -1,6 +1,0 @@
---Week3--
-Scrum Master: Mukhammadaliyev, Dilyor
-Developer #1: Murati, Daniel
-Developer #2: Megha, Anisha Hossain
-Tester #1: Moraes Rosa, Otavio
-Tester #2: Mudaliar, Vidhi
