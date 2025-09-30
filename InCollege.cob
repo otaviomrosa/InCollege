@@ -9,7 +9,7 @@
       file-control.
 *>    Define three files: input-file, output-file, and accounts-file and assign them to text files
 *>    The accounts-file will be used to store user account information
-          select input-file assign to 'InCollege-Input.txt'
+          select input-file assign to KEYBOARD
               organization is line sequential.
           select output-file assign to 'InCollege-Output.txt'
               organization is line sequential.
@@ -169,7 +169,7 @@
       01  ws-user-choice      pic x(40).
 
       *> Debug mode switch: Y = interactive (ACCEPT), N = file (READ)
-      01  ws-debug-mode    pic a(1) value 'Y'.
+      01  ws-debug-mode    pic a(1) value 'N'.
           88 debug-mode    value 'Y'.
           
 *>    - ACCOUNT DATA - We keep a copy of the accounts file locally at runtime for faster access instead of reading the file everytime (simply for good practice)
@@ -185,6 +185,11 @@
           88  validation-passed       value 'Y'.
       01  ws-i                        pic 99 value 1.
       01  ws-prev-title            pic x(30).
+
+      *> ===== Session state =====
+        01  ws-current-username        PIC X(20) VALUE SPACES.
+        01  ws-current-username-upper  PIC X(20) VALUE SPACES.  *> helper for case-insensitive compares
+
 
 
 
@@ -375,7 +380,8 @@
                     perform view-profile
                else if ws-user-choice = '6'
                     move "Successfully Logged Out!" to ws-message
-                    perform display-success                     
+                    perform display-success
+                    move spaces to ws-current-username              
                     move "INITIAL-MENU" to ws-program-state
                else if ws-user-choice = '8'
                     perform cleanup-files
@@ -548,7 +554,7 @@
     
 
 
-     read-user-choice.
+         read-user-choice.
        perform read-next-input
        if not input-ended
            move ws-last-input to ws-user-choice
@@ -585,6 +591,10 @@
                   string "Welcome, " function trim(ws-input-username) "!" delimited by size
                       into ws-message
                   perform display-info
+
+                  *> Canonical current user for the whole session:
+                  move function trim(ws-input-username) to ws-current-username
+
                   move "MAIN-MENU" to ws-program-state
               else
                   move "Incorrect password. Returning to menu." to ws-message
@@ -664,6 +674,10 @@
               move ws-input-password to ws-password(ws-current-account-count)
               move "Account created successfully!" to ws-message
               perform display-success
+
+              *> If creation means you’re signed in, remember who that is:
+              move function trim(ws-input-username) to ws-current-username
+
               move "MAIN-MENU" to ws-program-state
           end-if.
 
@@ -751,39 +765,39 @@
           perform write-blank-line.
 
       *> ========= Validation helpers =========
-       *> ========= Validation helpers =========
-check-already-connected.
-    *> Uses ws-input-username and ws-found-username from WORKING-STORAGE
-    move 'N' to ws-connected-flag
-    move 'N' to ws-conns-eof
-    open input connections-file
-    evaluate ws-connections-status
-        when "00" continue
-        when "35"
-            close connections-file
-            exit paragraph
-        when other
-            move "Connections file error." to ws-message
-            perform display-error
-            close connections-file
-            exit paragraph
-    end-evaluate
 
-    perform until conns-file-ended
-        read connections-file next record
-            at end set conns-file-ended to true
-            not at end
-                if (function trim(conn-user-a) = function trim(ws-input-username) and
-                    function trim(conn-user-b) = function trim(ws-found-username))
-                 or (function trim(conn-user-b) = function trim(ws-input-username) and
-                     function trim(conn-user-a) = function trim(ws-found-username))
-                    set users-already-connected to true
-                    set conns-file-ended to true
-                end-if
-        end-read
-    end-perform
-    close connections-file
-    exit paragraph.
+        check-already-connected.
+            *> Uses ws-input-username and ws-found-username from WORKING-STORAGE
+            move 'N' to ws-connected-flag
+            move 'N' to ws-conns-eof
+            open input connections-file
+            evaluate ws-connections-status
+                when "00" continue
+                when "35"
+                    close connections-file
+                    exit paragraph
+                when other
+                    move "Connections file error." to ws-message
+                    perform display-error
+                    close connections-file
+                    exit paragraph
+            end-evaluate
+
+            perform until conns-file-ended
+                read connections-file next record
+                    at end set conns-file-ended to true
+                    not at end
+                        if (function trim(conn-user-a) = function trim(ws-input-username) and
+                            function trim(conn-user-b) = function trim(ws-found-username))
+                         or (function trim(conn-user-b) = function trim(ws-input-username) and
+                             function trim(conn-user-a) = function trim(ws-found-username))
+                            set users-already-connected to true
+                            set conns-file-ended to true
+                        end-if
+                end-read
+            end-perform
+            close connections-file
+            exit paragraph.
 
        check-pending-between.
            *> Uses ws-input-username and ws-found-username from WORKING-STORAGE
@@ -898,62 +912,71 @@ check-already-connected.
            write request-record
            close pending-requests-file
        
-           move "Connection request sent to " to ws-message
-           string ws-message function trim(ws-profile-first-name) " "
-                  function trim(ws-profile-last-name)
-             delimited by size
-             into ws-message
-           end-string
-           perform display-line
+           move "Successfully sent Connection Request" to ws-message
+           perform display-success
            exit paragraph.
        
        *> ========= View My Pending Requests =========
-       view-my-pending-requests.
-           move 0 to ws-list-count
-       
-           move "--- Pending Connection Requests ---" to ws-message
-           perform display-line
-       
-           move 'N' to ws-requests-eof
-           open input pending-requests-file
-           evaluate ws-requests-status
-               when "00" continue
-               when "35"
-                   move "You have no pending connection requests at this time." to ws-message
-                   perform display-line
-                   move "-----------------------------------" to ws-message
-                   perform display-line
-                   close pending-requests-file
-                   exit paragraph
-               when other
-                   move "Pending-requests file error." to ws-message
-                   perform display-error
-                   close pending-requests-file
-                   exit paragraph
-           end-evaluate
-       
-           perform until requests-file-ended
-               read pending-requests-file next record
-                   at end set requests-file-ended to true
-                   not at end
-                       if function trim(req-recipient) = function trim(ws-input-username)
-                           add 1 to ws-list-count
-                           move " - " to ws-message
-                           string ws-message
-                                  function trim(req-sender)
-                             delimited by size
-                             into ws-message
-                           end-string
-                           perform display-line
-                       end-if
-               end-read
-           end-perform
-           close pending-requests-file
-       
-           if ws-list-count = 0
-               move "You have no pending connection requests at this time." to ws-message
-               perform display-line
-           end-if
+        view-my-pending-requests.
+        move 0 to ws-list-count
+
+
+
+        move "--- Pending Connection Requests ---" to ws-message
+        perform display-line
+
+        move 'N' to ws-requests-eof
+        open input pending-requests-file
+        evaluate ws-requests-status
+            when "00"
+                continue
+            when "35"
+                move "You have no pending connection requests at this time." to ws-message
+                perform display-line
+                move "-----------------------------------" to ws-message
+                perform display-line
+                close pending-requests-file
+                exit paragraph
+            when other
+                move "Pending-requests file error." to ws-message
+                perform display-error
+                close pending-requests-file
+                exit paragraph
+        end-evaluate
+
+        *> Normalize the current username once (upper + trim) for comparisons
+        move function upper-case(function trim(ws-current-username)) to ws-temp-message
+
+
+        perform until requests-file-ended
+            read pending-requests-file next record
+                at end
+                    set requests-file-ended to true
+                not at end
+                    *> Compare recipient (normalized) to current user (normalized)
+                    if function upper-case(function trim(req-recipient)) =
+                       function trim(ws-temp-message)
+                        add 1 to ws-list-count
+                        move spaces to ws-message
+                        string
+                            " - "                      delimited by size
+                            function trim(req-sender)  delimited by size
+                          into ws-message
+                        end-string
+                        perform display-line
+
+                    end-if
+            end-read
+        end-perform
+
+        close pending-requests-file
+
+        if ws-list-count = 0
+            move "You have no pending connection requests at this time." to ws-message
+            perform display-line
+        end-if.
+
+
        
            move "-----------------------------------" to ws-message
            perform display-line
@@ -1909,4 +1932,3 @@ check-already-connected.
 
 
      
-

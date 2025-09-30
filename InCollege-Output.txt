@@ -29,9 +29,64 @@ Welcome, alice!
 --------------------------------------------------------------------------------
   8. Exit program
 Enter your choice:
---- Pending Connection Requests ---
-You have no pending connection requests at this time.
------------------------------------
+
+=== Find someone you know ===
+
+Enter FIRST name (or 0 to go back):
+Enter LAST name:
+
+=== User Profile ===
+
+First Name: Bob
+Last Name: Johnson
+University/College: USF
+Major: Business
+Graduation Year: 2025
+About Me: Business Man rawr
+
+
+
+
+Experience(s):
+
+Job Title: sales associate
+Company: Insurance
+Dates Worked: 2025-Current
+Description: Sell insurance I guess
+
+
+
+
+Education(s):
+
+  1. Send Connection Request
+  2. Back to Main Menu
+Enter your choice:
+
+This user has already sent you a connection request.
+
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. Log Out
+  7. View My Pending Connection Requests
+--------------------------------------------------------------------------------
+  8. Exit program
+Enter your choice:
+
+=== Find someone you know ===
+
+Enter FIRST name (or 0 to go back):
+Enter LAST name:
+
+No user profile exists for the name you have entered.
+
 
 === Main Menu ===
 
