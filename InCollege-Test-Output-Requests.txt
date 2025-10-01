@@ -1,0 +1,1365 @@
+
+=== Welcome to InCollege! ===
+
+  1. Log In
+  2. Create an Account
+--------------------------------------------------------------------------------
+  3. Exit Program
+--------------------------------------------------------------------------------
+Enter your choice:
+Please enter your username:
+Please enter your password:
+
+SUCCESS: You have successfully logged in.
+
+
+Welcome, alice!
+
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. Log Out
+  7. View My Pending Connection Requests
+--------------------------------------------------------------------------------
+  8. Exit program
+Enter your choice:
+
+=== Find someone you know ===
+
+Enter FIRST name (or 0 to go back):
+Enter LAST name:
+
+=== User Profile ===
+
+First Name: Bob
+Last Name: Johnson
+University/College: USF
+Major: Business
+Graduation Year: 2025
+About Me: Business Man rawr
+
+
+
+
+Experience(s):
+
+Job Title: sales associate
+Company: Insurance
+Dates Worked: 2025-Current
+Description: Sell insurance I guess
+
+
+
+
+Education(s):
+
+  1. Send Connection Request
+  2. Back to Main Menu
+Enter your choice:
+
+This user has already sent you a connection request.
+
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. Log Out
+  7. View My Pending Connection Requests
+--------------------------------------------------------------------------------
+  8. Exit program
+Enter your choice:
+
+=== Find someone you know ===
+
+Enter FIRST name (or 0 to go back):
+Enter LAST name:
+
+=== User Profile ===
+
+First Name: Carol
+Last Name: Williams
+University/College: MIT
+Major: Engineering
+Graduation Year: 2024
+About Me: Love solving problems
+
+
+
+
+Experience(s):
+
+Job Title: Research Assistant
+Company: MIT Lab
+Dates Worked: 2023-2024
+Description: Worked on AI projects
+
+
+
+
+Education(s):
+
+Degree: BS Engineering
+School: MIT
+Years: 2020-2024
+
+
+
+  1. Send Connection Request
+  2. Back to Main Menu
+Enter your choice:
+
+You have already sent this user a connection request.
+
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. Log Out
+  7. View My Pending Connection Requests
+--------------------------------------------------------------------------------
+  8. Exit program
+Enter your choice:
+
+=== Find someone you know ===
+
+Enter FIRST name (or 0 to go back):
+Enter LAST name:
+
+=== User Profile ===
+
+First Name: Dave
+Last Name: Brown
+University/College: Stanford
+Major: Computer Science
+Graduation Year: 2023
+About Me: Passionate about tech
+
+
+
+
+Experience(s):
+
+Job Title: Software Developer
+Company: Meta
+Dates Worked: 2023-Current
+Description: Full stack development
+
+
+
+
+Education(s):
+
+Degree: MS Computer Science
+School: Stanford
+Years: 2021-2023
+
+
+
+  1. Send Connection Request
+  2. Back to Main Menu
+Enter your choice:
+
+You have already sent this user a connection request.
+
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. Log Out
+  7. View My Pending Connection Requests
+--------------------------------------------------------------------------------
+  8. Exit program
+Enter your choice:
+
+=== Pending Connection Requests ===
+
+- bob
+- eve
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. Log Out
+  7. View My Pending Connection Requests
+--------------------------------------------------------------------------------
+  8. Exit program
+Enter your choice:
+
+SUCCESS: Successfully Logged Out!
+
+
+=== Welcome to InCollege! ===
+
+  1. Log In
+  2. Create an Account
+--------------------------------------------------------------------------------
+  3. Exit Program
+--------------------------------------------------------------------------------
+Enter your choice:
+Please enter your username:
+Please enter your password:
+
+SUCCESS: You have successfully logged in.
+
+
+Welcome, bob!
+
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. Log Out
+  7. View My Pending Connection Requests
+--------------------------------------------------------------------------------
+  8. Exit program
+Enter your choice:
+
+=== Pending Connection Requests ===
+
+- carol
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. Log Out
+  7. View My Pending Connection Requests
+--------------------------------------------------------------------------------
+  8. Exit program
+Enter your choice:
+
+SUCCESS: Successfully Logged Out!
+
+
+=== Welcome to InCollege! ===
+
+  1. Log In
+  2. Create an Account
+--------------------------------------------------------------------------------
+  3. Exit Program
+--------------------------------------------------------------------------------
+Enter your choice:
+Please enter your username:
+Please enter your password:
+
+SUCCESS: You have successfully logged in.
+
+
+Welcome, carol!
+
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. Log Out
+  7. View My Pending Connection Requests
+--------------------------------------------------------------------------------
+  8. Exit program
+Enter your choice:
+
+=== Pending Connection Requests ===
+
+- alice
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. Log Out
+  7. View My Pending Connection Requests
+--------------------------------------------------------------------------------
+  8. Exit program
+Enter your choice:
+
+SUCCESS: Successfully Logged Out!
+
+
+=== Welcome to InCollege! ===
+
+  1. Log In
+  2. Create an Account
+--------------------------------------------------------------------------------
+  3. Exit Program
+--------------------------------------------------------------------------------
+Enter your choice:
+Please enter your username:
+Please enter your password:
+
+SUCCESS: You have successfully logged in.
+
+
+Welcome, dave!
+
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. Log Out
+  7. View My Pending Connection Requests
+--------------------------------------------------------------------------------
+  8. Exit program
+Enter your choice:
+
+=== Pending Connection Requests ===
+
+- alice
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. Log Out
+  7. View My Pending Connection Requests
+--------------------------------------------------------------------------------
+  8. Exit program
+Enter your choice:
+
+SUCCESS: Successfully Logged Out!
+
+
+=== Welcome to InCollege! ===
+
+  1. Log In
+  2. Create an Account
+--------------------------------------------------------------------------------
+  3. Exit Program
+--------------------------------------------------------------------------------
+Enter your choice:
+Please enter your username:
+Please enter your password:
+
+SUCCESS: You have successfully logged in.
+
+
+Welcome, alice!
+
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. Log Out
+  7. View My Pending Connection Requests
+--------------------------------------------------------------------------------
+  8. Exit program
+Enter your choice:
+
+=== Find someone you know ===
+
+Enter FIRST name (or 0 to go back):
+Enter LAST name:
+
+=== User Profile ===
+
+First Name: Alice
+Last Name: Smith
+University/College: USF
+Major: Comp Sci
+Graduation Year: 2026
+About Me: Love cooking
+
+
+
+
+Experience(s):
+
+Job Title: Software Engineer
+Company: Google
+Dates Worked: 2024
+Description: Developed app
+
+
+
+
+Education(s):
+
+Degree: USF
+School: USF
+Years: 2021-2026
+
+
+
+  1. Send Connection Request
+  2. Back to Main Menu
+Enter your choice:
+
+You cannot connect with yourself.
+
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. Log Out
+  7. View My Pending Connection Requests
+--------------------------------------------------------------------------------
+  8. Exit program
+Enter your choice:
+
+SUCCESS: Successfully Logged Out!
+
+
+=== Welcome to InCollege! ===
+
+  1. Log In
+  2. Create an Account
+--------------------------------------------------------------------------------
+  3. Exit Program
+--------------------------------------------------------------------------------
+Enter your choice:
+Please enter your username:
+Please enter your password:
+
+SUCCESS: You have successfully logged in.
+
+
+Welcome, alice!
+
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. Log Out
+  7. View My Pending Connection Requests
+--------------------------------------------------------------------------------
+  8. Exit program
+Enter your choice:
+
+=== Find someone you know ===
+
+Enter FIRST name (or 0 to go back):
+Enter LAST name:
+
+=== User Profile ===
+
+First Name: Bob
+Last Name: Johnson
+University/College: USF
+Major: Business
+Graduation Year: 2025
+About Me: Business Man rawr
+
+
+
+
+Experience(s):
+
+Job Title: sales associate
+Company: Insurance
+Dates Worked: 2025-Current
+Description: Sell insurance I guess
+
+
+
+
+Education(s):
+
+  1. Send Connection Request
+  2. Back to Main Menu
+Enter your choice:
+
+This user has already sent you a connection request.
+
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. Log Out
+  7. View My Pending Connection Requests
+--------------------------------------------------------------------------------
+  8. Exit program
+Enter your choice:
+
+SUCCESS: Successfully Logged Out!
+
+
+=== Welcome to InCollege! ===
+
+  1. Log In
+  2. Create an Account
+--------------------------------------------------------------------------------
+  3. Exit Program
+--------------------------------------------------------------------------------
+Enter your choice:
+Please enter your username:
+Please enter your password:
+
+SUCCESS: You have successfully logged in.
+
+
+Welcome, alice!
+
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. Log Out
+  7. View My Pending Connection Requests
+--------------------------------------------------------------------------------
+  8. Exit program
+Enter your choice:
+
+=== Find someone you know ===
+
+Enter FIRST name (or 0 to go back):
+Enter LAST name:
+
+=== User Profile ===
+
+First Name: Bob
+Last Name: Johnson
+University/College: USF
+Major: Business
+Graduation Year: 2025
+About Me: Business Man rawr
+
+
+
+
+Experience(s):
+
+Job Title: sales associate
+Company: Insurance
+Dates Worked: 2025-Current
+Description: Sell insurance I guess
+
+
+
+
+Education(s):
+
+  1. Send Connection Request
+  2. Back to Main Menu
+Enter your choice:
+
+This user has already sent you a connection request.
+
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. Log Out
+  7. View My Pending Connection Requests
+--------------------------------------------------------------------------------
+  8. Exit program
+Enter your choice:
+
+=== Find someone you know ===
+
+Enter FIRST name (or 0 to go back):
+Enter LAST name:
+
+=== User Profile ===
+
+First Name: Carol
+Last Name: Williams
+University/College: MIT
+Major: Engineering
+Graduation Year: 2024
+About Me: Love solving problems
+
+
+
+
+Experience(s):
+
+Job Title: Research Assistant
+Company: MIT Lab
+Dates Worked: 2023-2024
+Description: Worked on AI projects
+
+
+
+
+Education(s):
+
+Degree: BS Engineering
+School: MIT
+Years: 2020-2024
+
+
+
+  1. Send Connection Request
+  2. Back to Main Menu
+Enter your choice:
+
+You have already sent this user a connection request.
+
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. Log Out
+  7. View My Pending Connection Requests
+--------------------------------------------------------------------------------
+  8. Exit program
+Enter your choice:
+
+=== Find someone you know ===
+
+Enter FIRST name (or 0 to go back):
+Enter LAST name:
+
+=== User Profile ===
+
+First Name: Dave
+Last Name: Brown
+University/College: Stanford
+Major: Computer Science
+Graduation Year: 2023
+About Me: Passionate about tech
+
+
+
+
+Experience(s):
+
+Job Title: Software Developer
+Company: Meta
+Dates Worked: 2023-Current
+Description: Full stack development
+
+
+
+
+Education(s):
+
+Degree: MS Computer Science
+School: Stanford
+Years: 2021-2023
+
+
+
+  1. Send Connection Request
+  2. Back to Main Menu
+Enter your choice:
+
+You have already sent this user a connection request.
+
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. Log Out
+  7. View My Pending Connection Requests
+--------------------------------------------------------------------------------
+  8. Exit program
+Enter your choice:
+
+SUCCESS: Successfully Logged Out!
+
+
+=== Welcome to InCollege! ===
+
+  1. Log In
+  2. Create an Account
+--------------------------------------------------------------------------------
+  3. Exit Program
+--------------------------------------------------------------------------------
+Enter your choice:
+Please enter your username:
+Please enter your password:
+
+SUCCESS: You have successfully logged in.
+
+
+Welcome, alice!
+
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. Log Out
+  7. View My Pending Connection Requests
+--------------------------------------------------------------------------------
+  8. Exit program
+Enter your choice:
+
+=== Find someone you know ===
+
+Enter FIRST name (or 0 to go back):
+Enter LAST name:
+
+=== User Profile ===
+
+First Name: Bob
+Last Name: Johnson
+University/College: USF
+Major: Business
+Graduation Year: 2025
+About Me: Business Man rawr
+
+
+
+
+Experience(s):
+
+Job Title: sales associate
+Company: Insurance
+Dates Worked: 2025-Current
+Description: Sell insurance I guess
+
+
+
+
+Education(s):
+
+  1. Send Connection Request
+  2. Back to Main Menu
+Enter your choice:
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. Log Out
+  7. View My Pending Connection Requests
+--------------------------------------------------------------------------------
+  8. Exit program
+Enter your choice:
+
+SUCCESS: Successfully Logged Out!
+
+
+=== Welcome to InCollege! ===
+
+  1. Log In
+  2. Create an Account
+--------------------------------------------------------------------------------
+  3. Exit Program
+--------------------------------------------------------------------------------
+Enter your choice:
+Please enter your username:
+Please enter your password:
+
+SUCCESS: You have successfully logged in.
+
+
+Welcome, alice!
+
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. Log Out
+  7. View My Pending Connection Requests
+--------------------------------------------------------------------------------
+  8. Exit program
+Enter your choice:
+
+=== Find someone you know ===
+
+Enter FIRST name (or 0 to go back):
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. Log Out
+  7. View My Pending Connection Requests
+--------------------------------------------------------------------------------
+  8. Exit program
+Enter your choice:
+
+SUCCESS: Successfully Logged Out!
+
+
+=== Welcome to InCollege! ===
+
+  1. Log In
+  2. Create an Account
+--------------------------------------------------------------------------------
+  3. Exit Program
+--------------------------------------------------------------------------------
+Enter your choice:
+Please enter your username:
+Please enter your password:
+
+SUCCESS: You have successfully logged in.
+
+
+Welcome, bob!
+
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. Log Out
+  7. View My Pending Connection Requests
+--------------------------------------------------------------------------------
+  8. Exit program
+Enter your choice:
+
+=== Pending Connection Requests ===
+
+- carol
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. Log Out
+  7. View My Pending Connection Requests
+--------------------------------------------------------------------------------
+  8. Exit program
+Enter your choice:
+
+SUCCESS: Successfully Logged Out!
+
+
+=== Welcome to InCollege! ===
+
+  1. Log In
+  2. Create an Account
+--------------------------------------------------------------------------------
+  3. Exit Program
+--------------------------------------------------------------------------------
+Enter your choice:
+Please enter your username:
+Please enter your password:
+
+SUCCESS: You have successfully logged in.
+
+
+Welcome, alice!
+
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. Log Out
+  7. View My Pending Connection Requests
+--------------------------------------------------------------------------------
+  8. Exit program
+Enter your choice:
+
+=== Find someone you know ===
+
+Enter FIRST name (or 0 to go back):
+Enter LAST name:
+
+No user profile exists for the name you have entered.
+
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. Log Out
+  7. View My Pending Connection Requests
+--------------------------------------------------------------------------------
+  8. Exit program
+Enter your choice:
+
+=== Find someone you know ===
+
+Enter FIRST name (or 0 to go back):
+Enter LAST name:
+
+=== User Profile ===
+
+First Name: Alice
+Last Name: Smith
+University/College: USF
+Major: Comp Sci
+Graduation Year: 2026
+About Me: Love cooking
+
+
+
+
+Experience(s):
+
+Job Title: Software Engineer
+Company: Google
+Dates Worked: 2024
+Description: Developed app
+
+
+
+
+Education(s):
+
+Degree: USF
+School: USF
+Years: 2021-2026
+
+
+
+  1. Send Connection Request
+  2. Back to Main Menu
+Enter your choice:
+
+You cannot connect with yourself.
+
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. Log Out
+  7. View My Pending Connection Requests
+--------------------------------------------------------------------------------
+  8. Exit program
+Enter your choice:
+
+=== Pending Connection Requests ===
+
+- bob
+- eve
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. Log Out
+  7. View My Pending Connection Requests
+--------------------------------------------------------------------------------
+  8. Exit program
+Enter your choice:
+
+SUCCESS: Successfully Logged Out!
+
+
+=== Welcome to InCollege! ===
+
+  1. Log In
+  2. Create an Account
+--------------------------------------------------------------------------------
+  3. Exit Program
+--------------------------------------------------------------------------------
+Enter your choice:
+Please enter your username:
+Please enter your password:
+
+SUCCESS: You have successfully logged in.
+
+
+Welcome, carol!
+
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. Log Out
+  7. View My Pending Connection Requests
+--------------------------------------------------------------------------------
+  8. Exit program
+Enter your choice:
+
+=== Find someone you know ===
+
+Enter FIRST name (or 0 to go back):
+Enter LAST name:
+
+=== User Profile ===
+
+First Name: Bob
+Last Name: Johnson
+University/College: USF
+Major: Business
+Graduation Year: 2025
+About Me: Business Man rawr
+
+
+
+
+Experience(s):
+
+Job Title: sales associate
+Company: Insurance
+Dates Worked: 2025-Current
+Description: Sell insurance I guess
+
+
+
+
+Education(s):
+
+  1. Send Connection Request
+  2. Back to Main Menu
+Enter your choice:
+
+You have already sent this user a connection request.
+
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. Log Out
+  7. View My Pending Connection Requests
+--------------------------------------------------------------------------------
+  8. Exit program
+Enter your choice:
+
+=== Pending Connection Requests ===
+
+- alice
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. Log Out
+  7. View My Pending Connection Requests
+--------------------------------------------------------------------------------
+  8. Exit program
+Enter your choice:
+
+SUCCESS: Successfully Logged Out!
+
+
+=== Welcome to InCollege! ===
+
+  1. Log In
+  2. Create an Account
+--------------------------------------------------------------------------------
+  3. Exit Program
+--------------------------------------------------------------------------------
+Enter your choice:
+Please enter your username:
+Please enter your password:
+
+SUCCESS: You have successfully logged in.
+
+
+Welcome, alice!
+
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. Log Out
+  7. View My Pending Connection Requests
+--------------------------------------------------------------------------------
+  8. Exit program
+Enter your choice:
+
+=== Pending Connection Requests ===
+
+- bob
+- eve
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. Log Out
+  7. View My Pending Connection Requests
+--------------------------------------------------------------------------------
+  8. Exit program
+Enter your choice:
+
+SUCCESS: Successfully Logged Out!
+
+
+=== Welcome to InCollege! ===
+
+  1. Log In
+  2. Create an Account
+--------------------------------------------------------------------------------
+  3. Exit Program
+--------------------------------------------------------------------------------
+Enter your choice:
+Please enter your username:
+Please enter your password:
+
+SUCCESS: You have successfully logged in.
+
+
+Welcome, bob!
+
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. Log Out
+  7. View My Pending Connection Requests
+--------------------------------------------------------------------------------
+  8. Exit program
+Enter your choice:
+
+=== Pending Connection Requests ===
+
+- carol
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. Log Out
+  7. View My Pending Connection Requests
+--------------------------------------------------------------------------------
+  8. Exit program
+Enter your choice:
+
+SUCCESS: Successfully Logged Out!
+
+
+=== Welcome to InCollege! ===
+
+  1. Log In
+  2. Create an Account
+--------------------------------------------------------------------------------
+  3. Exit Program
+--------------------------------------------------------------------------------
+Enter your choice:
+Please enter your username:
+Please enter your password:
+
+SUCCESS: You have successfully logged in.
+
+
+Welcome, carol!
+
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. Log Out
+  7. View My Pending Connection Requests
+--------------------------------------------------------------------------------
+  8. Exit program
+Enter your choice:
+
+=== Pending Connection Requests ===
+
+- alice
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. Log Out
+  7. View My Pending Connection Requests
+--------------------------------------------------------------------------------
+  8. Exit program
+Enter your choice:
+
+SUCCESS: Successfully Logged Out!
+
+
+=== Welcome to InCollege! ===
+
+  1. Log In
+  2. Create an Account
+--------------------------------------------------------------------------------
+  3. Exit Program
+--------------------------------------------------------------------------------
+Enter your choice:
+Please enter your username:
+Please enter your password:
+
+SUCCESS: You have successfully logged in.
+
+
+Welcome, dave!
+
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. Log Out
+  7. View My Pending Connection Requests
+--------------------------------------------------------------------------------
+  8. Exit program
+Enter your choice:
+
+=== Pending Connection Requests ===
+
+- alice
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. Log Out
+  7. View My Pending Connection Requests
+--------------------------------------------------------------------------------
+  8. Exit program
+Enter your choice:
