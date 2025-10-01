@@ -169,7 +169,7 @@
       01  ws-user-choice      pic x(40).
 
       *> Debug mode switch: Y = interactive (ACCEPT), N = file (READ)
-      01  ws-debug-mode    pic a(1) value 'Y'.
+      01  ws-debug-mode    pic a(1) value 'N'.
           88 debug-mode    value 'Y'.
           
 *>    - ACCOUNT DATA - We keep a copy of the accounts file locally at runtime for faster access instead of reading the file everytime (simply for good practice)
@@ -912,13 +912,8 @@
            write request-record
            close pending-requests-file
        
-           move "Connection request sent to " to ws-message
-           string ws-message function trim(ws-profile-first-name) " "
-                  function trim(ws-profile-last-name)
-             delimited by size
-             into ws-message
-           end-string
-           perform display-line
+           move "Successfully sent Connection Request" to ws-message
+           perform display-success
            exit paragraph.
        
        *> ========= View My Pending Requests =========
@@ -1937,4 +1932,3 @@
 
 
      
-
