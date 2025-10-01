@@ -1,0 +1,356 @@
+
+=== Welcome to InCollege! ===
+
+  1. Log In
+  2. Create an Account
+--------------------------------------------------------------------------------
+  3. Exit Program
+--------------------------------------------------------------------------------
+Enter your choice:
+Please enter your username:
+Please enter your password:
+
+ERROR: Incorrect password. Returning to menu.
+
+
+=== Welcome to InCollege! ===
+
+  1. Log In
+  2. Create an Account
+--------------------------------------------------------------------------------
+  3. Exit Program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+All permitted accounts have been created, please come back later.
+
+
+=== Welcome to InCollege! ===
+
+  1. Log In
+  2. Create an Account
+--------------------------------------------------------------------------------
+  3. Exit Program
+--------------------------------------------------------------------------------
+Enter your choice:
+Please enter your username:
+Please enter your password:
+
+SUCCESS: You have successfully logged in.
+
+
+Welcome, bob!
+
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. Log Out
+  7. View My Pending Connection Requests
+--------------------------------------------------------------------------------
+  8. Exit program
+Enter your choice:
+
+=== Find someone you know ===
+
+Enter FIRST name (or 0 to go back):
+Enter LAST name:
+
+=== User Profile ===
+
+First Name: Alice
+Last Name: Smith
+University/College: University of Miami
+Major: Computer Science
+Graduation Year: 2025
+About Me: Enthusiastic CS student focusing on systems and AI.
+
+
+
+
+Experience(s):
+
+Job Title: Software Intern
+Company: Microsoft
+Dates Worked: Summer 2024
+Description: Built features in a web application with teammates.
+
+
+
+Job Title: Research Assistant
+Company: UM AI Lab
+Dates Worked: 2023-2024
+Description: Worked on NLP models and experiments for publications.
+
+
+
+Job Title: 0000
+Company: B.Sc. Computer Science
+Dates Worked: University of Miami
+Description: 2021-2025
+
+
+
+
+Education(s):
+
+Degree: Psychology
+School: USF
+Years: 6
+
+
+
+Degree: 1
+School: bob
+Years: Abcdef1!
+
+
+
+Degree: 4
+School: Bob
+Years: Jones
+
+
+
+  1. Send Connection Request
+  2. Back to Main Menu
+Enter your choice:
+
+SUCCESS: Successfully sent Connection Request
+
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. Log Out
+  7. View My Pending Connection Requests
+--------------------------------------------------------------------------------
+  8. Exit program
+Enter your choice:
+
+=== Find someone you know ===
+
+Enter FIRST name (or 0 to go back):
+Enter LAST name:
+
+=== User Profile ===
+
+First Name: Alice
+Last Name: Smith
+University/College: University of Miami
+Major: Computer Science
+Graduation Year: 2025
+About Me: Enthusiastic CS student focusing on systems and AI.
+
+
+
+
+Experience(s):
+
+Job Title: Software Intern
+Company: Microsoft
+Dates Worked: Summer 2024
+Description: Built features in a web application with teammates.
+
+
+
+Job Title: Research Assistant
+Company: UM AI Lab
+Dates Worked: 2023-2024
+Description: Worked on NLP models and experiments for publications.
+
+
+
+Job Title: 0000
+Company: B.Sc. Computer Science
+Dates Worked: University of Miami
+Description: 2021-2025
+
+
+
+
+Education(s):
+
+Degree: Psychology
+School: USF
+Years: 6
+
+
+
+Degree: 1
+School: bob
+Years: Abcdef1!
+
+
+
+Degree: 4
+School: Bob
+Years: Jones
+
+
+
+  1. Send Connection Request
+  2. Back to Main Menu
+Enter your choice:
+
+You have already sent this user a connection request.
+
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. Log Out
+  7. View My Pending Connection Requests
+--------------------------------------------------------------------------------
+  8. Exit program
+Enter your choice:
+--- Pending Connection Requests ---
+You have no pending connection requests at this time.
+-----------------------------------
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. Log Out
+  7. View My Pending Connection Requests
+--------------------------------------------------------------------------------
+  8. Exit program
+Enter your choice:
+
+SUCCESS: Successfully Logged Out!
+
+
+=== Welcome to InCollege! ===
+
+  1. Log In
+  2. Create an Account
+--------------------------------------------------------------------------------
+  3. Exit Program
+--------------------------------------------------------------------------------
+Enter your choice:
+Please enter your username:
+Please enter your password:
+
+SUCCESS: You have successfully logged in.
+
+
+Welcome, alice!
+
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. Log Out
+  7. View My Pending Connection Requests
+--------------------------------------------------------------------------------
+  8. Exit program
+Enter your choice:
+
+=== Find someone you know ===
+
+Enter FIRST name (or 0 to go back):
+Enter LAST name:
+
+=== User Profile ===
+
+First Name: Bob
+Last Name: Johnson
+University/College: USF
+Major: Computer Science
+Graduation Year: 2027
+About Me: Love programming
+
+
+
+
+Experience(s):
+
+Job Title: 8. View My Pending Connection
+Company: Google
+Dates Worked: 2026
+Description: Summer Intern
+
+
+
+Job Title: 8. View My Pending Connection
+
+
+
+Job Title: 8. View My Pending Connection
+Company: USF
+Dates Worked: 2024-2025
+Description: CS Tutor
+
+
+
+
+Education(s):
+
+Degree: Computer Science
+School: 6
+Years: 3
+
+
+
+  1. Send Connection Request
+  2. Back to Main Menu
+Enter your choice:
+
+This user has already sent you a connection request.
+
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. Log Out
+  7. View My Pending Connection Requests
+--------------------------------------------------------------------------------
+  8. Exit program
+Enter your choice:
+--- Pending Connection Requests ---
+- bob
+-----------------------------------
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. Log Out
+  7. View My Pending Connection Requests
+--------------------------------------------------------------------------------
+  8. Exit program
+Enter your choice:
