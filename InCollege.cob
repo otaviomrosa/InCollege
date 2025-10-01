@@ -9,7 +9,7 @@
       file-control.
 *>    Define three files: input-file, output-file, and accounts-file and assign them to text files
 *>    The accounts-file will be used to store user account information
-          select input-file assign to 'InCollege-Intput.txt'
+          select input-file assign to 'InCollege-Input.txt'
               organization is line sequential.
           select output-file assign to 'InCollege-Output.txt'
               organization is line sequential.
@@ -921,9 +921,9 @@
         move 0 to ws-list-count
 
 
-
-        move "--- Pending Connection Requests ---" to ws-message
-        perform display-line
+        display ws-line-separator
+        move "Pending Connection Requests" to ws-message
+        perform display-title
 
         move 'N' to ws-requests-eof
         open input pending-requests-file
@@ -932,9 +932,7 @@
                 continue
             when "35"
                 move "You have no pending connection requests at this time." to ws-message
-                perform display-line
-                move "-----------------------------------" to ws-message
-                perform display-line
+                perform display-info
                 close pending-requests-file
                 exit paragraph
             when other
@@ -975,11 +973,6 @@
             move "You have no pending connection requests at this time." to ws-message
             perform display-line
         end-if.
-
-
-       
-           move "-----------------------------------" to ws-message
-           perform display-line
            exit paragraph.
 
 
