@@ -1,6 +1,6 @@
-2
+1
 alice
-AbcDef1!
+Aa1!aaaa
 4
 Alice
 Smith
@@ -22,11 +22,10 @@ University of Miami
 2021-2025
 
 
-
 6
-2
+1
 bob
-Qwerty1!
+Abcdef1!
 4
 Bob
 Jones
@@ -45,8 +44,6 @@ B.Sc. Electrical Engineering
 University of Florida
 2020-2024
 
-
-
 2
 Alice
 Smith
@@ -54,31 +51,12 @@ Smith
 6
 1
 alice
-AbcDef1!
+Aa1!aaaa
 7
 6
-2
+1
 dave
-AbcDef2!
-4
-Dave
-Rodriguez
-University of South Florida
-Computer Engineering
-2026
-Love programming and building real things.
-Teaching Assistant
-USF CS Dept
-2024-2025
-Helped students in programming courses and held office hours.
-
-
-
-B.Sc. Computer Engineering
-University of South Florida
-2022-2026
-
-
-
+AbcDef1!Gh$Q
+7
 6
 3
