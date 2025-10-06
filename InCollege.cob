@@ -169,7 +169,7 @@
       01  ws-user-choice      pic x(40).
 
       *> Debug mode switch: Y = interactive (ACCEPT), N = file (READ)
-      01  ws-debug-mode    pic a(1) value 'N'.
+      01  ws-debug-mode    pic a(1) value 'Y'.
           88 debug-mode    value 'Y'.
           
 *>    - ACCOUNT DATA - We keep a copy of the accounts file locally at runtime for faster access instead of reading the file everytime (simply for good practice)
@@ -383,11 +383,14 @@
                     perform display-success
                     move spaces to ws-current-username              
                     move "INITIAL-MENU" to ws-program-state
-               else if ws-user-choice = '8'
+               else if ws-user-choice = '9'
                     perform cleanup-files
                     stop run 
                else if ws-user-choice = '7'
                     perform view-my-pending-requests
+                    move "MAIN-MENU" to ws-program-state
+               else if ws-user-choice = '8'
+                    perform view-my-network
                     move "MAIN-MENU" to ws-program-state
                else   
                     move "Invalid option. Please try again" to ws-message
@@ -493,9 +496,11 @@
           perform display-special-option
           move "7. View My Pending Connection Requests" to ws-message
           perform display-special-option
+          move "8. View My Network" to ws-message
+          perform display-special-option
           display ws-line-separator
           perform write-separator
-          move "8. Exit program" to ws-message
+          move "9. Exit program" to ws-message
           perform display-special-option
 
           move "Enter your choice: " to ws-message
@@ -920,6 +925,7 @@
         view-my-pending-requests.
         move 0 to ws-list-count
 
+     
 
         display ws-line-separator
         move "Pending Connection Requests" to ws-message
@@ -974,6 +980,88 @@
             perform display-line
         end-if.
            exit paragraph.
+      
+      view-my-network.
+            move 0 to ws-list-count
+
+            display ws-line-separator
+            move "My Network" to ws-message    
+            perform display-title
+
+            move 'N' to ws-conns-eof
+            open input connections-file
+            evaluate ws-connections-status
+                when "00"
+                    continue
+                when "35"
+                    move "You have no connections at this time." to ws-message
+                    perform display-info
+                    close connections-file
+                    exit paragraph
+                when other
+                    move "Connections file error." to ws-message
+                    perform display-error
+                    close connections-file
+                    exit paragraph
+            end-evaluate
+
+            move function upper-case(function trim(ws-current-username)) to ws-temp-message
+
+            perform until conns-file-ended
+               read connections-file next record
+                   at end
+                       set conns-file-ended to true
+                   not at end
+                    if function upper-case(function trim(conn-user-a)) = function trim(ws-temp-message)
+                       move function trim(conn-user-b) to ws-input-username
+                       perform check-profile-exists
+                       add 1 to ws-list-count
+                       if ws-profile-found = 'Y'
+                           move spaces to ws-message
+                           string " - "
+                                   function trim(ws-profile-first-name)
+                                   " "
+                                   function trim(ws-profile-last-name)
+                                   " (" function trim(conn-user-b) ")"
+                               into ws-message
+                           end-string
+                       else
+                           move spaces to ws-message
+                           string " - " function trim(conn-user-b) into ws-message
+                           end-string
+                       end-if
+                       perform display-line
+                   else if function upper-case(function trim(conn-user-b)) = function trim(ws-temp-message)
+                       move function trim(conn-user-a) to ws-input-username
+                       perform check-profile-exists
+                       add 1 to ws-list-count
+                       if ws-profile-found = 'Y'
+                           move spaces to ws-message
+                           string " - "
+                                   function trim(ws-profile-first-name)
+                                   " "
+                                   function trim(ws-profile-last-name)
+                                   " (" function trim(conn-user-a) ")"
+                               into ws-message
+                           end-string
+                       else
+                           move spaces to ws-message
+                           string " - " function trim(conn-user-a) into ws-message
+                           end-string
+                       end-if
+                       perform display-line
+                   end-if
+           end-read
+       end-perform
+
+       close connections-file
+
+       if ws-list-count = 0
+           move "You have no connections yet." to ws-message
+           perform display-line
+       end-if.
+       exit paragraph.
+
 
 
       write-message.
@@ -1924,4 +2012,4 @@
           end program InCollege.
 
 
-     
+    
