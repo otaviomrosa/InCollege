@@ -1,69 +1,62 @@
 1
-dave
-AbcDef1!Gh$Q
+alice
+Aa1!aaaa
 4
-Dave
-Martinez
+Alice
+Smith
 University of Miami
-Computer Engineering
+Computer Science
 2025
-I am passionate about software development and artificial intelligence. I enjoy working on challenging projects that make a real impact on people's lives.
-Software Engineering Intern
+Enthusiastic CS student focusing on systems and AI.
+Software Intern
 Microsoft
 Summer 2024
-Developed web applications using React and Node.js, collaborated with senior developers on enterprise software solutions.
+Built features in a web application with teammates.
 Research Assistant
 UM AI Lab
 2023-2024
-Conducted research on machine learning algorithms for natural language processing, published findings in undergraduate research journal.
-Teaching Assistant
-University of Miami CS Dept
-Fall 2023
-Assisted students in introductory programming courses, held office hours and graded assignments for Python and Java courses.
-Bachelor of Science in Computer Engineering
+Worked on NLP models and experiments for publications.
+
+B.Sc. Computer Science
 University of Miami
 2021-2025
-High School Diploma
-Miami Senior High
-2017-2021
 
-5
+
+6
+1
+bob
+Abcdef1!
+4
+Bob
+Jones
+University of Florida
+Electrical Engineering
+2024
+Interested in embedded systems and robotics.
+Senior Software Developer
+Amazon
+2024-Present
+Cloud infrastructure and scalable systems work.
+
+
+
+B.Sc. Electrical Engineering
+University of Florida
+2020-2024
+
 2
 Alice
 Smith
 1
-3
+6
 1
-6
-3
-2
-6
-3
-3
-6
-3
-4
-6
-3
-5
-6
-4
-Dave
-Rodriguez
-University of Florida
-Electrical Engineering
-2024
-Updated my profile with new information. Changed my major and university details.
-Senior Software Developer
-Amazon
-2024-Present
-Working on cloud infrastructure and scalable systems architecture.
-
-
-Masters in Electrical Engineering
-University of Florida
-2025-2027
-
-5
-6
+alice
+Aa1!aaaa
 7
+6
+1
+dave
+AbcDef1!Gh$Q
+7
+6
+3
