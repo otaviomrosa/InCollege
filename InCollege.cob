@@ -9,7 +9,7 @@
       file-control.
 *>    Define three files: input-file, output-file, and accounts-file and assign them to text files
 *>    The accounts-file will be used to store user account information
-          select input-file assign to 'InCollege-Intput.txt'
+          select input-file assign to KEYBOARD
               organization is line sequential.
           select output-file assign to 'InCollege-Output.txt'
               organization is line sequential.
@@ -36,7 +36,7 @@
 *>    temp file for pending requests update (atomic remove)   
           select temp-pending-file assign to 'InCollege-PendingRequests.tmp'
             organization is line sequential
-            file status is ws-requests-status.
+            file status is ws-temp-status.
 
 
 
@@ -290,6 +290,7 @@
 
        01  ws-requests-status     pic x(2).
        01  ws-connections-status  pic x(2).
+       01  ws-temp-status         pic x(2).
        
        01  ws-requests-eof        pic a(1) value 'N'.
           88 requests-file-ended  value 'Y'.
@@ -305,6 +306,11 @@
        
        01  ws-found-username      pic x(20) value spaces.  *> username from matched profile
        01  ws-list-count          pic 9(4)  value 0.
+       01  ws-request-index       pic 9(4)  value 0.
+       01  ws-found-request       pic a(1) value 'N'.
+           88  found-request       value 'Y'.
+       01  ws-no-more-pending     pic a(1) value 'N'.
+           88  no-more-pending-requests value 'Y'.
 
        01  ws-action-choice     pic x(1) value spaces.
        01  ws-processed-any     pic a(1) value 'N'.
@@ -395,7 +401,6 @@
 *>         option 6 to view pending requests
                else if ws-user-choice = '6'
                    perform process-my-pending-requests
-                   move "MAIN-MENU" to ws-program-state
 
 *>         option 7 to view network
                else if ws-user-choice = '7'
@@ -967,79 +972,106 @@
 
 *> ==== Process My Pending Requests (Accept/Reject with updates) ====
        process-my-pending-requests.
-           move 0 to ws-list-count
            move "Pending Connection Requests" to ws-message
            perform display-title
 
-           move 'N' to ws-requests-eof
-           move 'N' to ws-processed-any
-           open input pending-requests-file
-           evaluate ws-requests-status
-               when "00" continue
-               when "35"
-                   move "You have no pending connection requests at this time." to ws-message
-                   perform display-info
-                   close pending-requests-file
-                   exit paragraph
-               when other
-                   move "Pending-requests file error." to ws-message
-                   perform display-error
-                   close pending-requests-file
-                   exit paragraph
-           end-evaluate
+           *> Process requests one by one until no more pending requests
+           perform until no-more-pending-requests
+               move spaces to ws-requests-status     *> ensure fresh status each iteration
+               move 'N' to ws-requests-eof
+               move 'N' to ws-found-request
+               open input pending-requests-file
+               evaluate ws-requests-status
+                   when "00" continue
+                   when "35"
+                       move "You have no pending connection requests at this time." to ws-message
+                       perform display-info
+                       close pending-requests-file
+                       move "MAIN-MENU" to ws-program-state
+                       exit paragraph
+                   when other
+                       move "Pending-requests file error." to ws-message
+                       perform display-error
+                       close pending-requests-file
+                       move "MAIN-MENU" to ws-program-state
+                       exit paragraph
+               end-evaluate
 
-           move function upper-case(function trim(ws-current-username)) to ws-temp-message
+               move 'N' to ws-requests-eof
+               move 'N' to ws-found-request
 
-           perform until requests-file-ended
-               read pending-requests-file next record
-                   at end
-                       set requests-file-ended to true
-                   not at end
-                       if function upper-case(function trim(req-recipient)) = function trim(ws-temp-message)
-                           add 1 to ws-list-count
-                           move req-sender to ws-current-sender
-
-                           move spaces to ws-message
-                           string "Request from: " delimited by size
-                                   function trim(ws-current-sender) delimited by size
-                           into ws-message
-                           end-string
-                           perform display-line
-
-                           move "  1. Accept" to ws-message
-                           perform display-option
-                           move "  2. Reject" to ws-message
-                           perform display-option
-                           move "Enter your choice: " to ws-message
-                           perform display-prompt
-                           perform read-user-choice
-                           move function trim(ws-user-choice) to ws-action-choice
-
-                           if ws-action-choice = '1'
-                               perform add-established-connection
-                               perform remove-single-pending-request
-                               move "Connection request accepted!" to ws-message
-                               perform display-success
-                               move 'Y' to ws-processed-any
-                           else if ws-action-choice = '2'
-                               perform remove-single-pending-request
-                               move "Connection request rejected." to ws-message
-                               perform display-success
-                               move 'Y' to ws-processed-any
-                           else
-                               move "Invalid choice, skipping this request." to ws-message
-                               perform display-error
+               perform until requests-file-ended or found-request
+                   read pending-requests-file next record
+                       at end
+                           set requests-file-ended to true
+                       not at end
+                           if function upper-case(function trim(req-recipient))
+                              = function upper-case(function trim(ws-current-username))
+                               move req-sender to ws-current-sender
+                               set found-request to true
                            end-if
-                       end-if
-               end-read
+                   end-read
+               end-perform
+
+               close pending-requests-file
+
+               if not found-request
+                   move "You have no more pending connection requests." to ws-message
+                   perform display-info
+                   set no-more-pending-requests to true
+               end-if
+
+               if found-request
+                   move spaces to ws-message
+                   string "Request from: " delimited by size
+                           function trim(ws-current-sender) delimited by size
+                   into ws-message
+                   end-string
+                   perform display-line
+
+                   move "  1. Accept" to ws-message
+                   perform display-option
+                   move "  2. Reject" to ws-message
+                   perform display-option
+                   move "Enter your choice: " to ws-message
+                   perform display-prompt
+                   perform read-user-choice
+                   move function trim(ws-user-choice) to ws-action-choice
+
+                   *> Accept
+                   if ws-action-choice = '1'
+                        *> Close before mutating
+                        close pending-requests-file
+
+                        perform add-established-connection
+
+                        *> Remove the processed row (this rewrites the file)
+                        perform remove-single-pending-request
+
+                        move "Connection request accepted!" to ws-message
+                        perform display-success
+
+                        *> Restart next outer iteration; do NOT reopen here
+                        continue
+                    end-if
+
+                   *> Reject
+                   if ws-action-choice = '2'
+                       close pending-requests-file
+                        perform remove-single-pending-request
+                        move "Connection request rejected." to ws-message
+                        perform display-success
+                        continue
+                   end-if
+
+                   if ws-action-choice not = '1' and ws-action-choice not = '2'
+                       move "Invalid choice, skipping this request." to ws-message
+                       perform display-error
+                   end-if
+               end-if
            end-perform
-
-           close pending-requests-file
-
-           if ws-list-count = 0 and not processed-any
-               move "You have no pending connection requests at this time." to ws-message
-               perform display-line
-           end-if.
+           
+           move "MAIN-MENU" to ws-program-state.
            exit paragraph.
 
        add-established-connection.
@@ -1062,8 +1094,34 @@
            exit paragraph.
 
        remove-single-pending-request.
+           *> Start clean status
+           move spaces to ws-requests-status
+           move spaces to ws-temp-status
+
            open input pending-requests-file
+
+           if ws-requests-status = "35"
+               *> Original file missing: ensure no stray temp exists and return
+               close pending-requests-file
+               exit paragraph
+           end-if
+
+           if ws-requests-status not = "00"
+               move "Error opening pending requests file for removal" to ws-message
+               perform display-error
+               close pending-requests-file
+               exit paragraph
+           end-if
+
            open output temp-pending-file
+
+           if ws-temp-status not = "00"
+               move "Error opening temp file for removal" to ws-message
+               perform display-error
+               close pending-requests-file
+               close temp-pending-file
+               exit paragraph
+           end-if
 
            move 'N' to ws-requests-eof
            perform until requests-file-ended
@@ -1071,8 +1129,10 @@
                    at end
                        set requests-file-ended to true
                    not at end
-                       if not ( function upper-case(function trim(req-sender))   = function upper-case(function trim(ws-current-sender))
-                           and function upper-case(function trim(req-recipient))= function upper-case(function trim(ws-current-username)) )
+                       if not (
+                           function upper-case(function trim(req-sender))    = function upper-case(function trim(ws-current-sender))
+                        and function upper-case(function trim(req-recipient)) = function upper-case(function trim(ws-current-username))
+                       )
                            move req-sender    to temp-req-sender
                            move req-recipient to temp-req-recipient
                            write temp-request-record
@@ -1083,12 +1143,17 @@
            close pending-requests-file
            close temp-pending-file
 
+           *> Replace original with temp atomically
            move "InCollege-PendingRequests.txt" to ws-message
            call "CBL_DELETE_FILE" using ws-message
 
            move "InCollege-PendingRequests.tmp" to ws-message
            move "InCollege-PendingRequests.txt" to ws-user-choice
            call "CBL_RENAME_FILE" using ws-message, ws-user-choice
+
+           *> Reset statuses so the caller's next OPEN gets fresh codes
+           move spaces to ws-requests-status
+           move spaces to ws-temp-status
 
            exit paragraph.
 
