@@ -1,1 +1,2 @@
-bob                 alice
+bob                 carol
+dave                carol

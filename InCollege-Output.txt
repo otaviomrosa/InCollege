@@ -13,7 +13,7 @@ Please enter your password:
 SUCCESS: You have successfully logged in.
 
 
-Welcome, alice!
+Welcome, carol!
 
 
 === Main Menu ===
@@ -24,46 +24,31 @@ Welcome, alice!
 --------------------------------------------------------------------------------
   4. Create/Edit My Profile
   5. View My Profile
-  6. Log Out
-  7. View My Pending Connection Requests
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Log Out
 --------------------------------------------------------------------------------
-  8. Exit program
+  9. Exit program
 Enter your choice:
 
-=== Find someone you know ===
+=== Pending Connection Requests ===
 
-Enter FIRST name (or 0 to go back):
-Enter LAST name:
-
-=== User Profile ===
-
-First Name: Bob
-Last Name: Johnson
-University/College: USF
-Major: Business
-Graduation Year: 2025
-About Me: Business Man rawr
-
-
-
-
-Experience(s):
-
-Job Title: sales associate
-Company: Insurance
-Dates Worked: 2025-Current
-Description: Sell insurance I guess
-
-
-
-
-Education(s):
-
-  1. Send Connection Request
-  2. Back to Main Menu
+Request from: bob
+  1. Accept
+  2. Reject
 Enter your choice:
 
-This user has already sent you a connection request.
+SUCCESS: Connection request accepted!
+
+Request from: dave
+  1. Accept
+  2. Reject
+Enter your choice:
+
+SUCCESS: Connection request accepted!
+
+
+You have no more pending connection requests.
 
 
 === Main Menu ===
@@ -74,19 +59,19 @@ This user has already sent you a connection request.
 --------------------------------------------------------------------------------
   4. Create/Edit My Profile
   5. View My Profile
-  6. Log Out
-  7. View My Pending Connection Requests
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Log Out
 --------------------------------------------------------------------------------
-  8. Exit program
+  9. Exit program
 Enter your choice:
 
-=== Find someone you know ===
+=== Your Network ===
 
-Enter FIRST name (or 0 to go back):
-Enter LAST name:
-
-No user profile exists for the name you have entered.
-
+Connected with: Bob Jones
+(University: University of Florida, Major: Electrical Engineering)
+Connected with: Dave Rodriguez
+(University: University of South Florida, Major: Computer Engineering)
 
 === Main Menu ===
 
@@ -96,8 +81,9 @@ No user profile exists for the name you have entered.
 --------------------------------------------------------------------------------
   4. Create/Edit My Profile
   5. View My Profile
-  6. Log Out
-  7. View My Pending Connection Requests
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Log Out
 --------------------------------------------------------------------------------
-  8. Exit program
+  9. Exit program
 Enter your choice:
