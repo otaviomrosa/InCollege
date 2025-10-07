@@ -9,7 +9,7 @@
       file-control.
 *>    Define three files: input-file, output-file, and accounts-file and assign them to text files
 *>    The accounts-file will be used to store user account information
-          select input-file assign to KEYBOARD
+          select input-file assign to 'InCollege-Intput.txt'
               organization is line sequential.
           select output-file assign to 'InCollege-Output.txt'
               organization is line sequential.
@@ -1151,30 +1151,28 @@
                when "00" continue
                when "35"
                    close profiles-file
-                   go to display-network-fallback
                when other
                    close profiles-file
-                   go to display-network-fallback
            end-evaluate
 
-           perform until profiles-file-ended
-               read profiles-file next record
-                   at end set profiles-file-ended to true
-                   not at end
-                       if function upper-case(function trim(profile-username))
-                           = function upper-case(function trim(ws-found-username))
-                           move profile-first-name to ws-profile-first-name
-                           move profile-last-name  to ws-profile-last-name
-                           move profile-school     to ws-profile-school
-                           move profile-major      to ws-profile-major
-                           set profiles-file-ended to true
-                       end-if
-               end-read
-           end-perform
-           close profiles-file
-           go to display-network-fallback.
+           if ws-profiles-status = "00"
+               perform until profiles-file-ended
+                   read profiles-file next record
+                       at end set profiles-file-ended to true
+                       not at end
+                           if function upper-case(function trim(profile-username))
+                               = function upper-case(function trim(ws-found-username))
+                               move profile-first-name to ws-profile-first-name
+                               move profile-last-name  to ws-profile-last-name
+                               move profile-school     to ws-profile-school
+                               move profile-major      to ws-profile-major
+                               set profiles-file-ended to true
+                           end-if
+                   end-read
+               end-perform
+               close profiles-file
+           end-if
 
-       display-network-fallback.
            if ws-profile-first-name not = spaces or ws-profile-last-name not = spaces
                move spaces to ws-message
                string
@@ -1207,8 +1205,7 @@
                into ws-message
                end-string
                perform display-line
-           end-if
-           exit paragraph.
+           end-if.
 
       write-message.
           move ws-message to output-record
