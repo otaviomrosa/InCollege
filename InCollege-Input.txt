@@ -1,62 +1,20 @@
 1
 alice
 Aa1!aaaa
-4
-Alice
-Smith
-University of Miami
-Computer Science
-2025
-Enthusiastic CS student focusing on systems and AI.
-Software Intern
-Microsoft
-Summer 2024
-Built features in a web application with teammates.
-Research Assistant
-UM AI Lab
-2023-2024
-Worked on NLP models and experiments for publications.
-
-B.Sc. Computer Science
-University of Miami
-2021-2025
-
-
+7
+1
+8
 6
 1
 bob
 Abcdef1!
-4
-Bob
-Jones
-University of Florida
-Electrical Engineering
-2024
-Interested in embedded systems and robotics.
-Senior Software Developer
-Amazon
-2024-Present
-Cloud infrastructure and scalable systems work.
-
-
-
-B.Sc. Electrical Engineering
-University of Florida
-2020-2024
-
+7
 2
-Alice
-Smith
-1
+8
 6
 1
 alice
 Aa1!aaaa
-7
-6
-1
-dave
-AbcDef1!Gh$Q
-7
+8
 6
 3

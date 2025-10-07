@@ -9,7 +9,7 @@
       file-control.
 *>    Define three files: input-file, output-file, and accounts-file and assign them to text files
 *>    The accounts-file will be used to store user account information
-          select input-file assign to 'InCollege-Input.txt'
+          select input-file assign to KEYBOARD
               organization is line sequential.
           select output-file assign to 'InCollege-Output.txt'
               organization is line sequential.
@@ -392,20 +392,20 @@
                     move "PROFILE-MENU" to ws-program-state
                else if ws-user-choice = '5'
                     perform view-profile
+*>         option 6 to view pending requests
                else if ws-user-choice = '6'
+                   perform process-my-pending-requests
+                   move "MAIN-MENU" to ws-program-state
+
+*>         option 7 to view network
+               else if ws-user-choice = '7'
+                   perform view-my-network
+                   move "MAIN-MENU" to ws-program-state
+               else if ws-user-choice = '8'
                     move "Successfully Logged Out!" to ws-message
                     perform display-success
                     move spaces to ws-current-username              
                     move "INITIAL-MENU" to ws-program-state
-*>         option 7 to view pending requests
-               else if ws-user-choice = '7'
-                   perform process-my-pending-requests
-                   move "MAIN-MENU" to ws-program-state
-
-*>         option 8 to view network
-               else if ws-user-choice = '8'
-                   perform view-my-network
-                   move "MAIN-MENU" to ws-program-state
                else if ws-user-choice = '9'
                    perform cleanup-files
                    stop run
@@ -509,11 +509,11 @@
           perform display-special-option
           move "5. View My Profile" to ws-message
           perform display-special-option
-          move "6. Log Out" to ws-message
+          move "6. View My Pending Connection Requests" to ws-message
           perform display-special-option
-          move "7. View My Pending Connection Requests" to ws-message
+          move "7. View My Network" to ws-message
           perform display-special-option
-          move "8. View My Network" to ws-message
+          move "8. Log Out" to ws-message
           perform display-special-option
           display ws-line-separator
           perform write-separator
@@ -1172,6 +1172,7 @@
                end-read
            end-perform
            close profiles-file
+           go to display-network-fallback.
 
        display-network-fallback.
            if ws-profile-first-name not = spaces or ws-profile-last-name not = spaces

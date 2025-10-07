@@ -1,5 +1,0 @@
-alice               Aa1!aaaa
-bob                 Abcdef1!
-carol               Abcdefg1!
-dave                AbcDef1!Gh$Q
-eve                 Aa1!aaaaa

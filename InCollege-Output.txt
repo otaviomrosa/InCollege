@@ -8,12 +8,37 @@
 --------------------------------------------------------------------------------
 Enter your choice:
 Please enter your username:
-Please enter your password:
 
-SUCCESS: You have successfully logged in.
+ERROR: Username not found. Returning to menu.
 
 
-Welcome, alice!
+=== Welcome to InCollege! ===
+
+  1. Log In
+  2. Create an Account
+--------------------------------------------------------------------------------
+  3. Exit Program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+ERROR: Invalid option. Please try again
+
+
+=== Welcome to InCollege! ===
+
+  1. Log In
+  2. Create an Account
+--------------------------------------------------------------------------------
+  3. Exit Program
+--------------------------------------------------------------------------------
+Enter your choice:
+Please create a username:
+Enter a password:
+
+(8-12 chars, 1 uppercase, 1 lower, 1 special)
+
+
+SUCCESS: Account created successfully!
 
 
 === Main Menu ===
@@ -24,10 +49,183 @@ Welcome, alice!
 --------------------------------------------------------------------------------
   4. Create/Edit My Profile
   5. View My Profile
-  6. Log Out
-  7. View My Pending Connection Requests
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Log Out
 --------------------------------------------------------------------------------
-  8. Exit program
+  9. Exit program
+Enter your choice:
+
+Creating new profile...
+
+First name:
+Last name:
+University/college attended:
+Major:
+Graduation year (yyyy):
+About me (max 200 chars, Enter to keep/skip):
+Experience 01 Title (or Enter to keep/skip):
+Experience 02 Title (or Enter to keep/skip):
+Experience 03 Title (or Enter to keep/skip):
+Education 01 Degree (or Enter to keep/skip):
+Education 02 Degree (or Enter to keep/skip):
+Education 03 Degree (or Enter to keep/skip):
+
+SUCCESS: Profile created successfully!
+
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Log Out
+--------------------------------------------------------------------------------
+  9. Exit program
+Enter your choice:
+
+=== Your Profile ===
+
+First Name: Rocky
+Last Name: TheBull
+University/College: USF
+Major: Mascot Scince
+Graduation Year: 2029
+
+
+
+
+Experience(s):
+
+
+Education(s):
+
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Log Out
+--------------------------------------------------------------------------------
+  9. Exit program
+Enter your choice:
+
+SUCCESS: Successfully Logged Out!
+
+
+=== Welcome to InCollege! ===
+
+  1. Log In
+  2. Create an Account
+--------------------------------------------------------------------------------
+  3. Exit Program
+--------------------------------------------------------------------------------
+Enter your choice:
+Please create a username:
+Enter a password:
+
+(8-12 chars, 1 uppercase, 1 lower, 1 special)
+
+
+SUCCESS: Account created successfully!
+
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Log Out
+--------------------------------------------------------------------------------
+  9. Exit program
+Enter your choice:
+
+Creating new profile...
+
+First name:
+Last name:
+University/college attended:
+Major:
+Graduation year (yyyy):
+
+ERROR: Please enter a 4-digit year between 1900 and 2100.
+
+Graduation year (yyyy):
+About me (max 200 chars, Enter to keep/skip):
+Experience 01 Title (or Enter to keep/skip):
+Experience 02 Title (or Enter to keep/skip):
+Experience 03 Title (or Enter to keep/skip):
+Education 01 Degree (or Enter to keep/skip):
+Education 02 Degree (or Enter to keep/skip):
+Education 03 Degree (or Enter to keep/skip):
+
+SUCCESS: Profile created successfully!
+
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Log Out
+--------------------------------------------------------------------------------
+  9. Exit program
+Enter your choice:
+
+SUCCESS: Successfully Logged Out!
+
+
+=== Welcome to InCollege! ===
+
+  1. Log In
+  2. Create an Account
+--------------------------------------------------------------------------------
+  3. Exit Program
+--------------------------------------------------------------------------------
+Enter your choice:
+Please enter your username:
+Please enter your password:
+
+SUCCESS: You have successfully logged in.
+
+
+Welcome, RockyTheBull!
+
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Log Out
+--------------------------------------------------------------------------------
+  9. Exit program
 Enter your choice:
 
 === Find someone you know ===
@@ -37,24 +235,16 @@ Enter LAST name:
 
 === User Profile ===
 
-First Name: Bob
-Last Name: Johnson
+First Name: Tall
+Last Name: Girl
 University/College: USF
-Major: Business
-Graduation Year: 2025
-About Me: Business Man rawr
+Major: Tallness
+Graduation Year: 2029
 
 
 
 
 Experience(s):
-
-Job Title: sales associate
-Company: Insurance
-Dates Worked: 2025-Current
-Description: Sell insurance I guess
-
-
 
 
 Education(s):
@@ -63,7 +253,7 @@ Education(s):
   2. Back to Main Menu
 Enter your choice:
 
-This user has already sent you a connection request.
+SUCCESS: Successfully sent Connection Request
 
 
 === Main Menu ===
@@ -74,18 +264,31 @@ This user has already sent you a connection request.
 --------------------------------------------------------------------------------
   4. Create/Edit My Profile
   5. View My Profile
-  6. Log Out
-  7. View My Pending Connection Requests
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Log Out
 --------------------------------------------------------------------------------
-  8. Exit program
+  9. Exit program
 Enter your choice:
 
-=== Find someone you know ===
+SUCCESS: Successfully Logged Out!
 
-Enter FIRST name (or 0 to go back):
-Enter LAST name:
 
-No user profile exists for the name you have entered.
+=== Welcome to InCollege! ===
+
+  1. Log In
+  2. Create an Account
+--------------------------------------------------------------------------------
+  3. Exit Program
+--------------------------------------------------------------------------------
+Enter your choice:
+Please enter your username:
+Please enter your password:
+
+SUCCESS: You have successfully logged in.
+
+
+Welcome, TallGirl!
 
 
 === Main Menu ===
@@ -96,8 +299,93 @@ No user profile exists for the name you have entered.
 --------------------------------------------------------------------------------
   4. Create/Edit My Profile
   5. View My Profile
-  6. Log Out
-  7. View My Pending Connection Requests
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Log Out
 --------------------------------------------------------------------------------
-  8. Exit program
+  9. Exit program
 Enter your choice:
+
+=== Pending Connection Requests ===
+
+Request from: RockyTheBull
+  1. Accept
+  2. Reject
+Enter your choice:
+
+SUCCESS: Connection request accepted!
+
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Log Out
+--------------------------------------------------------------------------------
+  9. Exit program
+Enter your choice:
+
+=== Your Network ===
+
+Connected with: Rocky TheBull
+(University: USF, Major: Mascot Scince)
+(University: USF, Major: Mascot Scince)
+
+--------------------------------------------------------------------------------
+
+Editing your existing profile...
+
+First name (press enter to keep current):
+Last name (press enter to keep current):
+University/college (press enter to keep current):
+Major (press enter to keep current):
+Graduation year (yyyy, press enter to keep current):
+About me (max 200 chars, Enter to keep/skip):
+Experience 01 Title (or Enter to keep/skip):
+Experience 02 Title (or Enter to keep/skip):
+Experience 03 Title (or Enter to keep/skip):
+Education 01 Degree (or Enter to keep/skip):
+Education 02 Degree (or Enter to keep/skip):
+Education 03 Degree (or Enter to keep/skip):
+
+SUCCESS: Profile updated successfully!
+
+
+=== Your Profile ===
+
+First Name: Tall
+Last Name: Girl
+University/College: USF
+Major: Tallness
+Graduation Year: 2029
+
+
+
+
+Experience(s):
+
+
+Education(s):
+
+First Name: Tall
+Last Name: Girl
+University/College: USF
+Major: Tallness
+Graduation Year: 2029
+
+
+
+
+Experience(s):
+
+
+Education(s):
+
+First name (press enter to keep current):
+Last name (press enter to keep current):
