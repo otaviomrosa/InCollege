@@ -1,3 +1,4 @@
+ *>    team Oklahoma 
  *>    compile code - cobc -x -free -Wall -o incollege InCollege.cob  
  *>    run - ./incollege   
       
@@ -9,7 +10,7 @@
       file-control.
 *>    Define three files: input-file, output-file, and accounts-file and assign them to text files
 *>    The accounts-file will be used to store user account information
-          select input-file assign to KEYBOARD
+          select input-file assign to 'InCollege-Input.txt'
               organization is line sequential.
           select output-file assign to 'InCollege-Output.txt'
               organization is line sequential.
@@ -912,7 +913,7 @@
            exit paragraph.
        
        *> ========= View My Pending Requests =========
-      view-my-pending-requests.
+        view-my-pending-requests.
         move 0 to ws-list-count
 
 
@@ -1072,7 +1073,7 @@
                    end-if
 
                    if ws-action-choice not = '1' and ws-action-choice not = '2'
-                       move "Invalid choice, try again." to ws-message
+                       move "Invalid choice, skipping this request." to ws-message
                        perform display-error
                    end-if
                end-if
