@@ -975,6 +975,13 @@
            move "Pending Connection Requests" to ws-message
            perform display-title
 
+           *> RESET LOOP/STATE FLAGS FOR A FRESH RUN - added by A
+            move 'N' to ws-no-more-pending
+            move 'N' to ws-requests-eof
+            move 'N' to ws-found-request
+            move spaces to ws-action-choice
+            move 'N' to ws-processed-any
+
            *> Process requests one by one until no more pending requests
            perform until no-more-pending-requests
                move spaces to ws-requests-status     *> ensure fresh status each iteration
