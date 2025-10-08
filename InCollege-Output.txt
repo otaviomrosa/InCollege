@@ -13,7 +13,7 @@ Please enter your password:
 SUCCESS: You have successfully logged in.
 
 
-Welcome, carol!
+Welcome, alice!
 
 
 === Main Menu ===
@@ -24,18 +24,17 @@ Welcome, carol!
 --------------------------------------------------------------------------------
   4. Create/Edit My Profile
   5. View My Profile
-  6. Log Out
-  7. View My Pending Connection Requests
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Log Out
 --------------------------------------------------------------------------------
-  8. Exit program
+  9. Exit program
 Enter your choice:
 
-=== Find someone you know ===
+=== Pending Connection Requests ===
 
-Enter FIRST name (or 0 to go back):
-Enter LAST name:
 
-No user profile exists for the name you have entered.
+You have no pending connection requests at this time.
 
 
 === Main Menu ===
@@ -46,44 +45,17 @@ No user profile exists for the name you have entered.
 --------------------------------------------------------------------------------
   4. Create/Edit My Profile
   5. View My Profile
-  6. Log Out
-  7. View My Pending Connection Requests
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Log Out
 --------------------------------------------------------------------------------
-  8. Exit program
+  9. Exit program
 Enter your choice:
 
-=== Find someone you know ===
-
-Enter FIRST name (or 0 to go back):
-Enter LAST name:
-
-=== User Profile ===
-
-First Name: Carol
-Last Name: Denvers
-University/College: usf
-Major: comp sci
-Graduation Year: 2026
-About Me: q34tq34itq394tq9304tjg9q03j4f0q93ikfq3iwt09q3itiq394tiq34itq39i4t9q3i4
+=== Your Network ===
 
 
-
-
-Experience(s):
-
-Job Title: 0000
-Company: q34tq34itq394tq9304tjg9q03j4f0q93ikfq3iw
-
-
-
-
-Education(s):
-
-  1. Send Connection Request
-  2. Back to Main Menu
-Enter your choice:
-
-You cannot connect with yourself.
+No connections found.
 
 
 === Main Menu ===
@@ -94,10 +66,11 @@ You cannot connect with yourself.
 --------------------------------------------------------------------------------
   4. Create/Edit My Profile
   5. View My Profile
-  6. Log Out
-  7. View My Pending Connection Requests
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Log Out
 --------------------------------------------------------------------------------
-  8. Exit program
+  9. Exit program
 Enter your choice:
 
 === Find someone you know ===
@@ -108,41 +81,30 @@ Enter LAST name:
 === User Profile ===
 
 First Name: Bob
-Last Name: Johnson
-University/College: USF
-Major: Computer Science
-Graduation Year: 2027
-About Me: Love programming
+Last Name: Jones
+University/College: University of Florida
+Major: Electrical Engineering
+Graduation Year: 2024
+About Me: Interested in embedded systems and robotics.
 
 
 
 
 Experience(s):
 
-Job Title: 8. View My Pending Connection
-Company: Google
-Dates Worked: 2026
-Description: Summer Intern
-
-
-
-Job Title: 8. View My Pending Connection
-
-
-
-Job Title: 8. View My Pending Connection
-Company: USF
-Dates Worked: 2024-2025
-Description: CS Tutor
+Job Title: Senior Software Developer
+Company: Amazon
+Dates Worked: 2024-Present
+Description: Cloud infrastructure and scalable systems work.
 
 
 
 
 Education(s):
 
-Degree: Computer Science
-School: 6
-Years: 3
+Degree: B.Sc. Electrical Engineering
+School: University of Florida
+Years: 2020-2024
 
 
 
@@ -161,18 +123,31 @@ SUCCESS: Successfully sent Connection Request
 --------------------------------------------------------------------------------
   4. Create/Edit My Profile
   5. View My Profile
-  6. Log Out
-  7. View My Pending Connection Requests
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Log Out
 --------------------------------------------------------------------------------
-  8. Exit program
+  9. Exit program
 Enter your choice:
 
-=== Find someone you know ===
+SUCCESS: Successfully Logged Out!
 
-Enter FIRST name (or 0 to go back):
-Enter LAST name:
 
-No user profile exists for the name you have entered.
+=== Welcome to InCollege! ===
+
+  1. Log In
+  2. Create an Account
+--------------------------------------------------------------------------------
+  3. Exit Program
+--------------------------------------------------------------------------------
+Enter your choice:
+Please enter your username:
+Please enter your password:
+
+SUCCESS: You have successfully logged in.
+
+
+Welcome, bob!
 
 
 === Main Menu ===
@@ -183,14 +158,25 @@ No user profile exists for the name you have entered.
 --------------------------------------------------------------------------------
   4. Create/Edit My Profile
   5. View My Profile
-  6. Log Out
-  7. View My Pending Connection Requests
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Log Out
 --------------------------------------------------------------------------------
-  8. Exit program
+  9. Exit program
 Enter your choice:
---- Pending Connection Requests ---
-You have no pending connection requests at this time.
------------------------------------
+
+=== Pending Connection Requests ===
+
+Request from: alice
+  1. Accept
+  2. Reject
+Enter your choice:
+
+SUCCESS: Connection request accepted!
+
+
+You have no more pending connection requests.
+
 
 === Main Menu ===
 
@@ -200,8 +186,96 @@ You have no pending connection requests at this time.
 --------------------------------------------------------------------------------
   4. Create/Edit My Profile
   5. View My Profile
-  6. Log Out
-  7. View My Pending Connection Requests
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Log Out
 --------------------------------------------------------------------------------
-  8. Exit program
+  9. Exit program
+Enter your choice:
+
+=== Your Network ===
+
+Connected with: Alice Smith
+(University: University of Miami, Major: Computer Science)
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Log Out
+--------------------------------------------------------------------------------
+  9. Exit program
+Enter your choice:
+
+SUCCESS: Successfully Logged Out!
+
+
+=== Welcome to InCollege! ===
+
+  1. Log In
+  2. Create an Account
+--------------------------------------------------------------------------------
+  3. Exit Program
+--------------------------------------------------------------------------------
+Enter your choice:
+Please enter your username:
+Please enter your password:
+
+SUCCESS: You have successfully logged in.
+
+
+Welcome, alice!
+
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Log Out
+--------------------------------------------------------------------------------
+  9. Exit program
+Enter your choice:
+
+=== Your Network ===
+
+Connected with: Bob Jones
+(University: University of Florida, Major: Electrical Engineering)
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Log Out
+--------------------------------------------------------------------------------
+  9. Exit program
+Enter your choice:
+
+SUCCESS: Successfully Logged Out!
+
+
+=== Welcome to InCollege! ===
+
+  1. Log In
+  2. Create an Account
+--------------------------------------------------------------------------------
+  3. Exit Program
+--------------------------------------------------------------------------------
 Enter your choice:
