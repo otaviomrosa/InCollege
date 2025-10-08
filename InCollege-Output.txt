@@ -105,7 +105,7 @@ Please enter your password:
 SUCCESS: You have successfully logged in.
 
 
-Welcome, carol!
+Welcome, alice!
 
 
 === Main Menu ===
@@ -146,7 +146,7 @@ Enter your choice:
 
 === Pending Connection Requests ===
 
-Request from: dave
+Request from: alice
   1. Accept
   2. Reject
 Enter your choice:
@@ -155,6 +155,61 @@ SUCCESS: Connection request accepted!
 
 
 You have no more pending connection requests.
+
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Log Out
+--------------------------------------------------------------------------------
+  9. Exit program
+Enter your choice:
+
+=== Your Network ===
+
+Connected with: Alice Smith
+(University: University of Miami, Major: Computer Science)
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Log Out
+--------------------------------------------------------------------------------
+  9. Exit program
+Enter your choice:
+
+SUCCESS: Successfully Logged Out!
+
+
+=== Welcome to InCollege! ===
+
+  1. Log In
+  2. Create an Account
+--------------------------------------------------------------------------------
+  3. Exit Program
+--------------------------------------------------------------------------------
+Enter your choice:
+Please enter your username:
+Please enter your password:
+
+SUCCESS: You have successfully logged in.
+
+
+Welcome, alice!
 
 
 === Main Menu ===
@@ -300,6 +355,18 @@ Connected with: Dave Rodriguez
   8. Log Out
 --------------------------------------------------------------------------------
   9. Exit program
+Enter your choice:
+
+SUCCESS: Successfully Logged Out!
+
+
+=== Welcome to InCollege! ===
+
+  1. Log In
+  2. Create an Account
+--------------------------------------------------------------------------------
+  3. Exit Program
+--------------------------------------------------------------------------------
 Enter your choice:
 
 SUCCESS: Successfully Logged Out!
