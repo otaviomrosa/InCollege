@@ -13,7 +13,49 @@ Please enter your password:
 SUCCESS: You have successfully logged in.
 
 
-Welcome, dave!
+Welcome, alice!
+
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Log Out
+--------------------------------------------------------------------------------
+  9. Exit program
+Enter your choice:
+
+=== Pending Connection Requests ===
+
+
+You have no pending connection requests at this time.
+
+
+=== Main Menu ===
+
+  1. Search for a job
+  2. Find someone you know
+  3. Learn a new skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Log Out
+--------------------------------------------------------------------------------
+  9. Exit program
+Enter your choice:
+
+=== Your Network ===
+
+
+No connections found.
 
 
 === Main Menu ===
@@ -38,30 +80,30 @@ Enter LAST name:
 
 === User Profile ===
 
-First Name: Carol
-Last Name: Williams
-University/College: MIT
-Major: Engineering
+First Name: Bob
+Last Name: Jones
+University/College: University of Florida
+Major: Electrical Engineering
 Graduation Year: 2024
-About Me: Love solving problems
+About Me: Interested in embedded systems and robotics.
 
 
 
 
 Experience(s):
 
-Job Title: Research Assistant
-Company: MIT Lab
-Dates Worked: 2023-2024
-Description: Worked on AI projects
+Job Title: Senior Software Developer
+Company: Amazon
+Dates Worked: 2024-Present
+Description: Cloud infrastructure and scalable systems work.
 
 
 
 
 Education(s):
 
-Degree: BS Engineering
-School: MIT
+Degree: B.Sc. Electrical Engineering
+School: University of Florida
 Years: 2020-2024
 
 
@@ -105,28 +147,7 @@ Please enter your password:
 SUCCESS: You have successfully logged in.
 
 
-Welcome, alice!
-
-
-=== Main Menu ===
-
-  1. Search for a job
-  2. Find someone you know
-  3. Learn a new skill
---------------------------------------------------------------------------------
-  4. Create/Edit My Profile
-  5. View My Profile
-  6. View My Pending Connection Requests
-  7. View My Network
-  8. Log Out
---------------------------------------------------------------------------------
-  9. Exit program
-Enter your choice:
-
-=== Your Network ===
-
-
-No connections found.
+Welcome, bob!
 
 
 === Main Menu ===
@@ -229,8 +250,8 @@ Enter your choice:
 
 === Your Network ===
 
-Connected with: Dave Rodriguez
-(University: University of South Florida, Major: Computer Engineering)
+Connected with: Bob Jones
+(University: University of Florida, Major: Electrical Engineering)
 
 === Main Menu ===
 
@@ -245,128 +266,6 @@ Connected with: Dave Rodriguez
   8. Log Out
 --------------------------------------------------------------------------------
   9. Exit program
-Enter your choice:
-
-SUCCESS: Successfully Logged Out!
-
-
-=== Welcome to InCollege! ===
-
-  1. Log In
-  2. Create an Account
---------------------------------------------------------------------------------
-  3. Exit Program
---------------------------------------------------------------------------------
-Enter your choice:
-Please enter your username:
-Please enter your password:
-
-SUCCESS: You have successfully logged in.
-
-
-Welcome, dave!
-
-
-=== Main Menu ===
-
-  1. Search for a job
-  2. Find someone you know
-  3. Learn a new skill
---------------------------------------------------------------------------------
-  4. Create/Edit My Profile
-  5. View My Profile
-  6. View My Pending Connection Requests
-  7. View My Network
-  8. Log Out
---------------------------------------------------------------------------------
-  9. Exit program
-Enter your choice:
-
-=== Your Network ===
-
-Connected with: Carol Williams
-(University: MIT, Major: Engineering)
-
-=== Main Menu ===
-
-  1. Search for a job
-  2. Find someone you know
-  3. Learn a new skill
---------------------------------------------------------------------------------
-  4. Create/Edit My Profile
-  5. View My Profile
-  6. View My Pending Connection Requests
-  7. View My Network
-  8. Log Out
---------------------------------------------------------------------------------
-  9. Exit program
-Enter your choice:
-
-SUCCESS: Successfully Logged Out!
-
-
-=== Welcome to InCollege! ===
-
-  1. Log In
-  2. Create an Account
---------------------------------------------------------------------------------
-  3. Exit Program
---------------------------------------------------------------------------------
-Enter your choice:
-Please enter your username:
-Please enter your password:
-
-SUCCESS: You have successfully logged in.
-
-
-Welcome, carol!
-
-
-=== Main Menu ===
-
-  1. Search for a job
-  2. Find someone you know
-  3. Learn a new skill
---------------------------------------------------------------------------------
-  4. Create/Edit My Profile
-  5. View My Profile
-  6. View My Pending Connection Requests
-  7. View My Network
-  8. Log Out
---------------------------------------------------------------------------------
-  9. Exit program
-Enter your choice:
-
-=== Your Network ===
-
-Connected with: Dave Rodriguez
-(University: University of South Florida, Major: Computer Engineering)
-
-=== Main Menu ===
-
-  1. Search for a job
-  2. Find someone you know
-  3. Learn a new skill
---------------------------------------------------------------------------------
-  4. Create/Edit My Profile
-  5. View My Profile
-  6. View My Pending Connection Requests
-  7. View My Network
-  8. Log Out
---------------------------------------------------------------------------------
-  9. Exit program
-Enter your choice:
-
-SUCCESS: Successfully Logged Out!
-
-
-=== Welcome to InCollege! ===
-
-  1. Log In
-  2. Create an Account
---------------------------------------------------------------------------------
-  3. Exit Program
---------------------------------------------------------------------------------
 Enter your choice:
 
 SUCCESS: Successfully Logged Out!
