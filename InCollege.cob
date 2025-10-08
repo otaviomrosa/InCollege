@@ -9,7 +9,7 @@
       file-control.
 *>    Define three files: input-file, output-file, and accounts-file and assign them to text files
 *>    The accounts-file will be used to store user account information
-          select input-file assign to KEYBOARD
+          select input-file assign to 'InCollege-Input.txt'
               organization is line sequential.
           select output-file assign to 'InCollege-Output.txt'
               organization is line sequential.
@@ -974,6 +974,13 @@
        process-my-pending-requests.
            move "Pending Connection Requests" to ws-message
            perform display-title
+
+           *> RESET LOOP/STATE FLAGS FOR A FRESH RUN - added by A
+            move 'N' to ws-no-more-pending
+            move 'N' to ws-requests-eof
+            move 'N' to ws-found-request
+            move spaces to ws-action-choice
+            move 'N' to ws-processed-any
 
            *> Process requests one by one until no more pending requests
            perform until no-more-pending-requests
