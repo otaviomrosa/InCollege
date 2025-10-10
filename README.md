@@ -55,7 +55,7 @@ The program expects an **input file** (`InCollege-Input.txt`) to simulate user i
 
 - **`InCollege-Accounts.txt`** → Account storage  
   Stores created usernames and passwords between runs.  
-  - If this file does not exist when running the code, proper output will not be generated using our input file, so please refer to the info below about the accounts information we used in our cod.
+  - If this file does not exist when running the code, proper output will not be generated using our input file, so please refer to the info below about the accounts information we used in our code.
   ```bash
   alice               Aa1!aaaa
   bob                 Abcdef1!
