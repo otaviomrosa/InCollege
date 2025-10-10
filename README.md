@@ -70,6 +70,7 @@ The program expects an **input file** (`InCollege-Input.txt`) to simulate user i
 - **`InCollege-Profiles.txt`** → Profile storage  
   Stores user profile information including personal details, education, and work experience.
   - Created automatically when users create their first profile.
+  - For future epics (from Epic 6) this file will be included in our zip submission to ensure smooth running of the code.
 
 - **`InCollege-Pending-Requests.txt`** → Connection requests storage  
   Stores pending connection requests between users.
