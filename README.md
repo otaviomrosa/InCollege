@@ -56,13 +56,16 @@ The program expects an **input file** (`InCollege-Input.txt`) to simulate user i
 - **`InCollege-Accounts.txt`** → Account storage  
   Stores created usernames and passwords between runs.  
   - If this file does not exist when running the code, proper output will not be generated using our input file, so please refer to the info below about the accounts information we used in our cod.
-  - Maximum **5 accounts** can be created.
-  - the accounts we use for our code
+  ```bash
   alice               Aa1!aaaa
   bob                 Abcdef1!
   carol               Abcdefg1!
   dave                AbcDef1!Gh$Q
   eve                 Aa1!aaaaa
+  ```
+  - Maximum **5 accounts** can be created.
+  - the accounts we use for our code
+ 
 
 - **`InCollege-Profiles.txt`** → Profile storage  
   Stores user profile information including personal details, education, and work experience.
