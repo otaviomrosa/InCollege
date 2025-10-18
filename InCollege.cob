@@ -10,7 +10,7 @@
       file-control.
 *>    Define three files: input-file, output-file, and accounts-file and assign them to text files
 *>    The accounts-file will be used to store user account information
-          select input-file assign to 'InCollege-Input.txt'
+          select input-file assign to KEYBOARD
               organization is line sequential.
           select output-file assign to 'InCollege-Output.txt'
               organization is line sequential.
@@ -39,6 +39,10 @@
             organization is line sequential
             file status is ws-temp-status.
 
+*>    Jobs file for storing job postings
+          select jobs-file assign to 'InCollege-Jobs.txt'
+            organization is line sequential
+            file status is ws-jobs-status.
 
 
 
@@ -135,6 +139,15 @@
            01  temp-request-record.
                05  temp-req-sender    pic x(20).
                05  temp-req-recipient pic x(20).
+
+      fd  jobs-file.
+           01  job-record.
+               05  job-title          pic x(50).
+               05  job-description    pic x(200).
+               05  job-employer       pic x(50).
+               05  job-location       pic x(50).
+               05  job-salary         pic x(20).
+               05  job-poster         pic x(20).
 
 
 
@@ -304,6 +317,18 @@
           88 pending-other-way    value 'Y'.
        01  ws-connected-flag      pic a(1) value 'N'.
           88 users-already-connected value 'Y'.
+
+*>    - JOB POSTING VARIABLES -
+       01  ws-jobs-status         pic x(2).
+       01  ws-jobs-eof            pic a(1) value 'N'.
+          88 jobs-file-ended      value 'Y'.
+       
+       01  ws-job-data.
+           05  ws-job-title       pic x(50).
+           05  ws-job-description pic x(200).
+           05  ws-job-employer    pic x(50).
+           05  ws-job-location    pic x(50).
+           05  ws-job-salary      pic x(20).
        
        01  ws-found-username      pic x(20) value spaces.  *> username from matched profile
        01  ws-list-count          pic 9(4)  value 0.
@@ -421,7 +446,7 @@
                     move "MAIN-MENU" to ws-program-state
                end-if
           else if at-job-search-menu
-              perform display-under-construction
+              perform handle-job-search-menu
           else if at-find-someone-menu
               perform handle-find-someone
           else if at-learn-skill-menu
@@ -503,11 +528,11 @@
       display-main-menu.
           move "Main Menu" to ws-message
           perform display-title
-          move "1. Search for a job" to ws-message
+          move "1. Job Search/Internship" to ws-message
           perform display-option
-          move "2. Find someone you know" to ws-message
+          move "2. Find Someone You Know" to ws-message
           perform display-option
-          move "3. Learn a new skill" to ws-message
+          move "3. Learn a New Skill" to ws-message
           perform display-option
           display ws-line-separator
           perform write-separator
@@ -2195,6 +2220,172 @@
 
            end-if
        end-perform.
+
+*>    ===================== Job Search/Posting Procedures =====================
+      handle-job-search-menu.
+          perform display-job-search-menu
+          perform read-user-choice
+          if ws-user-choice = '1'
+              perform post-job
+          else if ws-user-choice = '2'
+              move "Job search feature coming soon!" to ws-message
+              perform display-info
+              move "MAIN-MENU" to ws-program-state
+          else if ws-user-choice = '3'
+              move "MAIN-MENU" to ws-program-state
+          else
+              move "Invalid option. Please try again" to ws-message
+              perform display-error
+              move "JOB-SEARCH-MENU" to ws-program-state
+          end-if.
+
+      display-job-search-menu.
+          move "Job Search/Internship" to ws-message
+          perform display-title
+          move "1. Post a Job/Internship" to ws-message
+          perform display-option
+          move "2. Browse Jobs/Internships" to ws-message
+          perform display-option
+          display ws-line-separator
+          perform write-separator
+          move "3. Go Back to Main Menu" to ws-message
+          perform display-special-option
+          display ws-line-separator
+          perform write-separator
+          move "Enter your choice: " to ws-message
+          perform display-prompt.
+
+      post-job.
+          initialize ws-job-data
+          
+          move "Post a New Job" to ws-message
+          perform display-title
+          
+          *> Job Title (required)
+          perform until ws-job-title not = spaces
+              move "Job Title: " to ws-message
+              perform display-prompt
+              perform read-next-input
+              if input-ended 
+                  move "JOB-SEARCH-MENU" to ws-program-state
+                  exit paragraph
+              end-if
+              move function trim(ws-last-input) to ws-job-title
+              if ws-job-title = spaces
+                  move "Job title is required." to ws-message
+                  perform display-error
+              else if function length(function trim(ws-job-title)) > 50
+                  move "Job title must be 50 characters or less." to ws-message
+                  perform display-error
+                  move spaces to ws-job-title
+              end-if
+          end-perform
+          
+          *> Job Description (required)
+          perform until ws-job-description not = spaces
+              move "Job Description: " to ws-message
+              perform display-prompt
+              perform read-next-input
+              if input-ended 
+                  move "JOB-SEARCH-MENU" to ws-program-state
+                  exit paragraph
+              end-if
+              move function trim(ws-last-input) to ws-job-description
+              if ws-job-description = spaces
+                  move "Job description is required." to ws-message
+                  perform display-error
+              else if function length(function trim(ws-job-description)) > 200
+                  move "Job description must be 200 characters or less." to ws-message
+                  perform display-error
+                  move spaces to ws-job-description
+              end-if
+          end-perform
+          
+          *> Employer (required)
+          perform until ws-job-employer not = spaces
+              move "Employer: " to ws-message
+              perform display-prompt
+              perform read-next-input
+              if input-ended 
+                  move "JOB-SEARCH-MENU" to ws-program-state
+                  exit paragraph
+              end-if
+              move function trim(ws-last-input) to ws-job-employer
+              if ws-job-employer = spaces
+                  move "Employer is required." to ws-message
+                  perform display-error
+              else if function length(function trim(ws-job-employer)) > 50
+                  move "Employer must be 50 characters or less." to ws-message
+                  perform display-error
+                  move spaces to ws-job-employer
+              end-if
+          end-perform
+          
+          *> Location (required)
+          perform until ws-job-location not = spaces
+              move "Location: " to ws-message
+              perform display-prompt
+              perform read-next-input
+              if input-ended 
+                  move "JOB-SEARCH-MENU" to ws-program-state
+                  exit paragraph
+              end-if
+              move function trim(ws-last-input) to ws-job-location
+              if ws-job-location = spaces
+                  move "Location is required." to ws-message
+                  perform display-error
+              else if function length(function trim(ws-job-location)) > 50
+                  move "Location must be 50 characters or less." to ws-message
+                  perform display-error
+                  move spaces to ws-job-location
+              end-if
+          end-perform
+          
+          *> Salary (optional)
+          move "Salary (optional, press Enter to skip): " to ws-message
+          perform display-prompt
+          perform read-next-input
+          if not input-ended
+              move function trim(ws-last-input) to ws-job-salary
+              if function length(function trim(ws-job-salary)) > 20
+                  move "Salary must be 20 characters or less." to ws-message
+                  perform display-error
+                  move spaces to ws-job-salary
+              end-if
+          end-if
+          
+          *> Save the job to file
+          perform save-job
+          
+          move "Job posted successfully!" to ws-message
+          perform display-success
+          move "MAIN-MENU" to ws-program-state.
+
+      save-job.
+          open extend jobs-file
+          
+          if ws-jobs-status = "35"
+              *> File doesn't exist, create it
+              close jobs-file
+              open output jobs-file
+              close jobs-file
+              open extend jobs-file
+          end-if
+          
+          if ws-jobs-status not = "00"
+              move "Error opening jobs file. Status: " to ws-message
+              string ws-message ws-jobs-status into ws-message
+              perform display-error
+          else
+              move ws-job-title to job-title
+              move ws-job-description to job-description
+              move ws-job-employer to job-employer
+              move ws-job-location to job-location
+              move ws-job-salary to job-salary
+              move ws-current-username to job-poster
+              write job-record
+              close jobs-file
+          end-if.
 
       cleanup-files.
           open output accounts-file
