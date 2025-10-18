@@ -50,7 +50,7 @@
       file section.
 *>    Define the record structure for each of the three files
       fd input-file.
-      01  input-record      pic x(256).
+      01  input-record      pic x(500).
       fd  output-file.
       01  output-record     pic x(80).
       fd  accounts-file.
@@ -143,7 +143,7 @@
       fd  jobs-file.
            01  job-record.
                05  job-title          pic x(50).
-               05  job-description    pic x(200).
+               05  job-description    pic x(500).
                05  job-employer       pic x(50).
                05  job-location       pic x(50).
                05  job-salary         pic x(20).
@@ -162,7 +162,7 @@
       88  input-ended         value 'Y'.
 
 
-      01  ws-last-input     pic x(256) value spaces.
+      01  ws-last-input     pic x(500) value spaces.
       01  ws-profile-header        pic x(30) value spaces.
       01  ws-prev-degree            pic x(30).
 
@@ -171,6 +171,7 @@
       01 MAX-EXP-COMP    pic 9(3) value 40.
       01 MAX-EXP-DATES   pic 9(3) value 30.
       01 MAX-EXP-DESC    pic 9(3) value 120.
+      01 MAX-JOB-DESC    pic 9(3) value 500.
        
       01 ws-input-len    pic 9(4) value 0.
 
@@ -325,7 +326,7 @@
        
        01  ws-job-data.
            05  ws-job-title       pic x(50).
-           05  ws-job-description pic x(200).
+           05  ws-job-description pic x(500).
            05  ws-job-employer    pic x(50).
            05  ws-job-location    pic x(50).
            05  ws-job-salary      pic x(20).
@@ -2283,7 +2284,7 @@
           
           *> Job Description (required)
           perform until ws-job-description not = spaces
-              move "Job Description: " to ws-message
+              move "Job Description (max 500 chars): " to ws-message
               perform display-prompt
               perform read-next-input
               if input-ended 
@@ -2294,8 +2295,8 @@
               if ws-job-description = spaces
                   move "Job description is required." to ws-message
                   perform display-error
-              else if function length(function trim(ws-job-description)) > 200
-                  move "Job description must be 200 characters or less." to ws-message
+              else if function length(function trim(ws-job-description)) > MAX-JOB-DESC
+                  move "Job description too long! Maximum 500 characters allowed." to ws-message
                   perform display-error
                   move spaces to ws-job-description
               end-if
