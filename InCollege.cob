@@ -2271,14 +2271,16 @@
                   move "JOB-SEARCH-MENU" to ws-program-state
                   exit paragraph
               end-if
-              move function trim(ws-last-input) to ws-job-title
+              if function length(function trim(ws-last-input)) > 50
+                  move "WARNING: Job title is too long! Truncating to 50 characters." to ws-message
+                  perform display-info
+                  move ws-last-input(1:50) to ws-job-title
+              else
+                  move function trim(ws-last-input) to ws-job-title
+              end-if
               if ws-job-title = spaces
                   move "Job title is required." to ws-message
                   perform display-error
-              else if function length(function trim(ws-job-title)) > 50
-                  move "Job title must be 50 characters or less." to ws-message
-                  perform display-error
-                  move spaces to ws-job-title
               end-if
           end-perform
           
@@ -2291,14 +2293,16 @@
                   move "JOB-SEARCH-MENU" to ws-program-state
                   exit paragraph
               end-if
-              move function trim(ws-last-input) to ws-job-description
+              if function length(function trim(ws-last-input)) > MAX-JOB-DESC
+                  move "WARNING: Job description is too long! Truncating to 500 characters." to ws-message
+                  perform display-info
+                  move ws-last-input(1:MAX-JOB-DESC) to ws-job-description
+              else
+                  move function trim(ws-last-input) to ws-job-description
+              end-if
               if ws-job-description = spaces
                   move "Job description is required." to ws-message
                   perform display-error
-              else if function length(function trim(ws-job-description)) > MAX-JOB-DESC
-                  move "Job description too long! Maximum 500 characters allowed." to ws-message
-                  perform display-error
-                  move spaces to ws-job-description
               end-if
           end-perform
           
@@ -2311,14 +2315,16 @@
                   move "JOB-SEARCH-MENU" to ws-program-state
                   exit paragraph
               end-if
-              move function trim(ws-last-input) to ws-job-employer
+              if function length(function trim(ws-last-input)) > 50
+                  move "WARNING: Employer name is too long! Truncating to 50 characters." to ws-message
+                  perform display-info
+                  move ws-last-input(1:50) to ws-job-employer
+              else
+                  move function trim(ws-last-input) to ws-job-employer
+              end-if
               if ws-job-employer = spaces
                   move "Employer is required." to ws-message
                   perform display-error
-              else if function length(function trim(ws-job-employer)) > 50
-                  move "Employer must be 50 characters or less." to ws-message
-                  perform display-error
-                  move spaces to ws-job-employer
               end-if
           end-perform
           
@@ -2331,14 +2337,16 @@
                   move "JOB-SEARCH-MENU" to ws-program-state
                   exit paragraph
               end-if
-              move function trim(ws-last-input) to ws-job-location
+              if function length(function trim(ws-last-input)) > 50
+                  move "WARNING: Location is too long! Truncating to 50 characters." to ws-message
+                  perform display-info
+                  move ws-last-input(1:50) to ws-job-location
+              else
+                  move function trim(ws-last-input) to ws-job-location
+              end-if
               if ws-job-location = spaces
                   move "Location is required." to ws-message
                   perform display-error
-              else if function length(function trim(ws-job-location)) > 50
-                  move "Location must be 50 characters or less." to ws-message
-                  perform display-error
-                  move spaces to ws-job-location
               end-if
           end-perform
           
@@ -2347,11 +2355,12 @@
           perform display-prompt
           perform read-next-input
           if not input-ended
-              move function trim(ws-last-input) to ws-job-salary
-              if function length(function trim(ws-job-salary)) > 20
-                  move "Salary must be 20 characters or less." to ws-message
-                  perform display-error
-                  move spaces to ws-job-salary
+              if function length(function trim(ws-last-input)) > 20
+                  move "WARNING: Salary is too long! Truncating to 20 characters." to ws-message
+                  perform display-info
+                  move ws-last-input(1:20) to ws-job-salary
+              else
+                  move function trim(ws-last-input) to ws-job-salary
               end-if
           end-if
           
