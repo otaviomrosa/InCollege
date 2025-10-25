@@ -73,9 +73,12 @@ The program expects an **input file** (`InCollege-Input.txt`) to simulate user i
   - For future epics (from Epic 6) this file will be included in our zip submission to ensure smooth running of the code.
 
 - **`InCollege-Pending-Requests.txt`** → Connection requests storage  
-  Stores pending connection requests between users.
+  - Stores pending connection requests between users.
   - Created automatically when the first connection request is sent.
-
+ 
+- **`InCollege-Jobs.txt`** → Job postings storage 
+  - Stores job postings created and needed for week 7
+  - - If this file does not exist when running the code, proper output will not be generated using our input file
 ---
 
 ## ✨ Features
