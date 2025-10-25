@@ -78,7 +78,11 @@ The program expects an **input file** (`InCollege-Input.txt`) to simulate user i
  
 - **`InCollege-Jobs.txt`** → Job postings storage 
   - Stores job postings created and needed for week 7
-  - - If this file does not exist when running the code, proper output will not be generated using our input file
+  - If this file does not exist when running the code, proper output will not be generated using our input file
+
+- **`InCollege-Applications.txt`** → Job application storage  
+  - Stores new applications made by users when they apply to a job posting.
+  - Created automatically when the first application is made.
 ---
 
 ## ✨ Features
@@ -105,8 +109,18 @@ The program expects an **input file** (`InCollege-Input.txt`) to simulate user i
 - Case-insensitive name searches
 - Prevents duplicate requests and self-connections
 
+### Week 7 Update – Job Browsing and Applications
+
+- Implemented the **Browse Jobs/Internships** feature: users can now view a list of all job and internship postings (Title, Employer, and Location).
+- Added the ability to **view full job details** (Title, Employer, Location, Salary, Description) by selecting a numbered job listing.
+- Implemented a **simulated application process**:
+  - Users can choose “Apply for this Job” when viewing details.
+  - The system records the logged-in user’s application in a persistent file `InCollege-Applications.txt`.
+  - A confirmation message is displayed once the application is stored.
+- Enhanced job-search menu navigation and file-handling (proper error/status checks and persistence).
+
+
 ### 🚧 Placeholder Features
-- **Search for Jobs**: Under construction
 - **Learn New Skills**: Under construction
 
 ---
