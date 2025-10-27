@@ -350,6 +350,10 @@
        01  ws-app-status          pic x(2).
        01  ws-app-eof             pic a(1) value 'N'.
           88 applications-file-ended value 'Y'.
+*>     duplicate-application flag
+        01  ws-dup-apply-found   pic a(1) value 'N'.
+        88 dup-apply-found   value 'Y'.
+
 
 *>    - BROWSE/VIEW TEMP STATE -
        01  ws-selected-index      pic 9(4) value 0.
@@ -2627,64 +2631,81 @@
               perform show-job-details
           end-if.
 
-    *> =========================================================
-    *>  Apply to currently selected job (uses sj-* + ws-current-username)
-    *>  Persists to InCollege-Applications.txt
-    *> =========================================================
-    apply-for-job.
-        *> First try to append. If the file doesn't exist (status 35), create it, then append.
-        open extend applications-file
+        *> =========================================================
+        *>  Apply to currently selected job (uses sj-* + ws-current-username)
+        *>  Persists to InCollege-Applications.txt
+        *>  Prevent duplicate applications by the same user to the same job
+        *> =========================================================
+        apply-for-job.
+            *> First: check duplicates
+            perform check-duplicate-application
+            if dup-apply-found
+                move spaces to ws-message
+                string
+                  "You have already applied to "
+                  function trim(sj-title)
+                  " at "
+                  function trim(sj-employer)
+                  "."
+                  into ws-message
+                end-string
+                perform display-info
+                exit paragraph
+            end-if
 
-        if ws-app-status = "35"
-            *> File missing -> create then append
-            open output applications-file
+            *> Try to append; create-if-missing then append
+            open extend applications-file
+
+            if ws-app-status = "35"
+                open output applications-file
+                if ws-app-status not = "00"
+                    move "Error creating applications file. Status: " to ws-message
+                    string ws-message ws-app-status into ws-message
+                    perform display-error
+                    exit paragraph
+                end-if
+                close applications-file
+                open extend applications-file
+            end-if
+
             if ws-app-status not = "00"
-                move "Error creating applications file. Status: " to ws-message
+                move "Error opening applications file. Status: " to ws-message
                 string ws-message ws-app-status into ws-message
                 perform display-error
                 exit paragraph
             end-if
+
+            *> Populate record fields
+            move ws-current-username to app-username
+            move sj-title            to app-job-title
+            move sj-employer         to app-job-employer
+            move sj-location         to app-job-location
+            move sj-salary           to app-job-salary
+
+            *> Write the record
+            write application-record
+
+            if ws-app-status not = "00"
+                move "Error writing application record. Status: " to ws-message
+                string ws-message ws-app-status into ws-message
+                perform display-error
+                close applications-file
+                exit paragraph
+            end-if
+
             close applications-file
-            open extend applications-file
-        end-if
 
-        if ws-app-status not = "00"
-            move "Error opening applications file. Status: " to ws-message
-            string ws-message ws-app-status into ws-message
-            perform display-error
-            exit paragraph
-        end-if
+            *> Confirmation to user
+            move spaces to ws-message
+            string
+              "Your application for "
+              function trim(sj-title)
+              " at "
+              function trim(sj-employer)
+              " has been submitted."
+              into ws-message
+            perform display-success.
 
-        *> Populate record fields
-        move ws-current-username to app-username
-        move sj-title            to app-job-title
-        move sj-employer         to app-job-employer
-        move sj-location         to app-job-location
-        move sj-salary           to app-job-salary
-
-        *> Write the record
-        write application-record
-
-        if ws-app-status not = "00"
-            move "Error writing application record. Status: " to ws-message
-            string ws-message ws-app-status into ws-message
-            perform display-error
-            close applications-file
-            exit paragraph
-        end-if
-
-        close applications-file
-
-        *> Confirmation to user
-        move spaces to ws-message
-        string
-          "Your application for "
-          function trim(sj-title)
-          " at "
-          function trim(sj-employer)
-          " has been submitted."
-          into ws-message
-        perform display-success.
 
 
       *> =========================================================
@@ -2834,6 +2855,49 @@
               perform display-info
           end-if.
 
+*>    =========================================================
+*>    Check if current user already applied to the selected job
+*>    Match on: username + title + employer + location (case-insensitive)
+*>    Sets: dup-apply-found
+*>    =========================================================
+    check-duplicate-application.
+        move 'N' to ws-dup-apply-found
+
+        open input applications-file
+        evaluate ws-app-status
+            when "00" continue
+            when "35"
+                *> No applications file yet -> definitely no duplicates
+                close applications-file
+                exit paragraph
+            when other
+                *> Fail safe: treat as no duplicate but inform user
+                move "Warning: could not open applications to check duplicates." to ws-message
+                perform display-info
+                close applications-file
+                exit paragraph
+        end-evaluate
+
+        move 'N' to ws-app-eof
+        perform until applications-file-ended or dup-apply-found
+            read applications-file
+                at end
+                    move 'Y' to ws-app-eof
+                not at end
+                    if function upper-case(function trim(app-username))
+                          = function upper-case(function trim(ws-current-username))
+                       and function upper-case(function trim(app-job-title))
+                          = function upper-case(function trim(sj-title))
+                       and function upper-case(function trim(app-job-employer))
+                          = function upper-case(function trim(sj-employer))
+                       and function upper-case(function trim(app-job-location))
+                          = function upper-case(function trim(sj-location))
+                        set dup-apply-found to true
+                    end-if
+            end-read
+        end-perform
+
+        close applications-file.
 
       cleanup-files.
           open output accounts-file
