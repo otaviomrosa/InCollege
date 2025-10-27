@@ -348,6 +348,8 @@
 
 *>    - APPLICATION PERSISTENCE -
        01  ws-app-status          pic x(2).
+       01  ws-app-eof             pic a(1) value 'N'.
+          88 applications-file-ended value 'Y'.
 
 *>    - BROWSE/VIEW TEMP STATE -
        01  ws-selected-index      pic 9(4) value 0.
@@ -2275,6 +2277,9 @@
               perform browse-jobs
               move "JOB-SEARCH-MENU" to ws-program-state
           else if ws-user-choice = '3'
+              perform view-my-applications
+              move "JOB-SEARCH-MENU" to ws-program-state
+          else if ws-user-choice = '4'
               move "MAIN-MENU" to ws-program-state
           else
               move "Invalid option. Please try again" to ws-message
@@ -2289,9 +2294,11 @@
           perform display-option
           move "2. Browse Jobs/Internships" to ws-message
           perform display-option
+          move "3. View My Applications" to ws-message
+          perform display-option
           display ws-line-separator
           perform write-separator
-          move "3. Go Back to Main Menu" to ws-message
+          move "4. Go Back to Main Menu" to ws-message
           perform display-special-option
           display ws-line-separator
           perform write-separator
@@ -2723,6 +2730,109 @@
                   add 1 to ws-desc-idx
               end-perform
           end-perform.
+
+      *> =========================================================
+      *>  View My Applications - Display report of all applications
+      *>  submitted by the current user
+      *> =========================================================
+      view-my-applications.
+          move 0 to ws-list-count
+          
+          move "Your Job Applications" to ws-message
+          perform display-title
+
+          open input applications-file
+
+          if ws-app-status = "35"
+              *> Applications file does not exist yet
+              move "You have not applied to any jobs yet." to ws-message
+              perform display-info
+              close applications-file
+              exit paragraph
+          end-if
+
+          if ws-app-status not = "00"
+              move "Error opening applications file. Status: " to ws-message
+              string ws-message ws-app-status into ws-message
+              perform display-error
+              close applications-file
+              exit paragraph
+          end-if
+
+          *> Read through all applications and display those for current user
+          move 'N' to ws-app-eof
+          perform until applications-file-ended
+              read applications-file
+                at end
+                  move 'Y' to ws-app-eof
+                not at end
+                  *> Check if this application belongs to current user
+                  if function upper-case(function trim(app-username))
+                     = function upper-case(function trim(ws-current-username))
+                      add 1 to ws-list-count
+                      
+                      *> Display application details
+                      move spaces to ws-message
+                      string
+                        "Application #"
+                        ws-list-count
+                        into ws-message
+                      perform display-info
+                      
+                      move spaces to ws-message
+                      string
+                        "  Job Title: "
+                        function trim(app-job-title)
+                        into ws-message
+                      perform display-line
+                      
+                      move spaces to ws-message
+                      string
+                        "  Employer: "
+                        function trim(app-job-employer)
+                        into ws-message
+                      perform display-line
+                      
+                      move spaces to ws-message
+                      string
+                        "  Location: "
+                        function trim(app-job-location)
+                        into ws-message
+                      perform display-line
+                      
+                      if function trim(app-job-salary) not = spaces
+                          move spaces to ws-message
+                          string
+                            "  Salary: "
+                            function trim(app-job-salary)
+                            into ws-message
+                          perform display-line
+                      end-if
+                      
+                      *> Blank line between applications
+                      move spaces to ws-message
+                      perform display-info
+                  end-if
+              end-read
+          end-perform
+
+          close applications-file
+
+          *> Display summary
+          display ws-line-separator
+          perform write-separator
+          
+          if ws-list-count = 0
+              move "You have not applied to any jobs yet." to ws-message
+              perform display-info
+          else
+              move spaces to ws-message
+              string
+                "Total Applications: "
+                ws-list-count
+                into ws-message
+              perform display-info
+          end-if.
 
 
       cleanup-files.
