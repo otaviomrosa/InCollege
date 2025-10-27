@@ -10,7 +10,7 @@
       file-control.
 *>    Define three files: input-file, output-file, and accounts-file and assign them to text files
 *>    The accounts-file will be used to store user account information
-          select input-file assign to 'InCollege-Input.txt'
+          select input-file assign to KEYBOARD
               organization is line sequential.
           select output-file assign to 'InCollege-Output.txt'
               organization is line sequential.
@@ -39,6 +39,16 @@
             organization is line sequential
             file status is ws-temp-status.
 
+*>    Jobs file for storing job postings
+          select jobs-file assign to 'InCollege-Jobs.txt'
+            organization is line sequential
+            file status is ws-jobs-status.
+
+*>    Applications file for storing who applied to which job
+          select applications-file assign to 'InCollege-Applications.txt'
+            organization is line sequential
+            file status is ws-app-status.
+
 
 
 
@@ -46,7 +56,7 @@
       file section.
 *>    Define the record structure for each of the three files
       fd input-file.
-      01  input-record      pic x(256).
+      01  input-record      pic x(500).
       fd  output-file.
       01  output-record     pic x(80).
       fd  accounts-file.
@@ -136,6 +146,24 @@
                05  temp-req-sender    pic x(20).
                05  temp-req-recipient pic x(20).
 
+      fd  jobs-file.
+           01  job-record.
+               05  job-title          pic x(50).
+               05  job-description    pic x(500).
+               05  job-employer       pic x(50).
+               05  job-location       pic x(50).
+               05  job-salary         pic x(20).
+               05  job-poster         pic x(20).
+
+      fd  applications-file.
+           01  application-record.
+               05  app-username      pic x(20).
+               05  app-job-title     pic x(50).
+               05  app-job-employer  pic x(50).
+               05  app-job-location  pic x(50).
+               05  app-job-salary    pic x(20).
+
+
 
 
       working-storage section.
@@ -149,7 +177,7 @@
       88  input-ended         value 'Y'.
 
 
-      01  ws-last-input     pic x(256) value spaces.
+      01  ws-last-input     pic x(500) value spaces.
       01  ws-profile-header        pic x(30) value spaces.
       01  ws-prev-degree            pic x(30).
 
@@ -158,6 +186,7 @@
       01 MAX-EXP-COMP    pic 9(3) value 40.
       01 MAX-EXP-DATES   pic 9(3) value 30.
       01 MAX-EXP-DESC    pic 9(3) value 120.
+      01 MAX-JOB-DESC    pic 9(3) value 500.
        
       01 ws-input-len    pic 9(4) value 0.
 
@@ -304,6 +333,47 @@
           88 pending-other-way    value 'Y'.
        01  ws-connected-flag      pic a(1) value 'N'.
           88 users-already-connected value 'Y'.
+
+*>    - JOB POSTING VARIABLES -
+       01  ws-jobs-status         pic x(2).
+       01  ws-jobs-eof            pic a(1) value 'N'.
+          88 jobs-file-ended      value 'Y'.
+       
+       01  ws-job-data.
+           05  ws-job-title       pic x(50).
+           05  ws-job-description pic x(500).
+           05  ws-job-employer    pic x(50).
+           05  ws-job-location    pic x(50).
+           05  ws-job-salary      pic x(20).
+
+*>    - APPLICATION PERSISTENCE -
+       01  ws-app-status          pic x(2).
+       01  ws-app-eof             pic a(1) value 'N'.
+          88 applications-file-ended value 'Y'.
+
+*>    - BROWSE/VIEW TEMP STATE -
+       01  ws-selected-index      pic 9(4) value 0.
+       01  ws-wrap-cols           pic 9(3) value 70.
+       01  ws-desc-idx            pic 9(4) value 1.
+       01  ws-desc-len            pic 9(4) value 0.
+       01  ws-remaining           pic 9(4) value 0.
+       01  ws-chunk-len           pic 9(4) value 0.
+       01  ws-j                   pic 9(4) value 0.
+
+       01  ws-total-jobs          pic 9(4) value 0.
+       01  ws-num-2              pic 99     value 0.
+       01  ws-num-txt            pic x(2)   value spaces.
+
+
+
+*>    Buffer for a selected job (used by view/apply)
+       01  ws-selected-job.
+           05  sj-title           pic x(50).
+           05  sj-description     pic x(500).
+           05  sj-employer        pic x(50).
+           05  sj-location        pic x(50).
+           05  sj-salary          pic x(20).
+
        
        01  ws-found-username      pic x(20) value spaces.  *> username from matched profile
        01  ws-list-count          pic 9(4)  value 0.
@@ -421,7 +491,7 @@
                     move "MAIN-MENU" to ws-program-state
                end-if
           else if at-job-search-menu
-              perform display-under-construction
+              perform handle-job-search-menu
           else if at-find-someone-menu
               perform handle-find-someone
           else if at-learn-skill-menu
@@ -503,11 +573,11 @@
       display-main-menu.
           move "Main Menu" to ws-message
           perform display-title
-          move "1. Search for a job" to ws-message
+          move "1. Job Search/Internship" to ws-message
           perform display-option
-          move "2. Find someone you know" to ws-message
+          move "2. Find Someone You Know" to ws-message
           perform display-option
-          move "3. Learn a new skill" to ws-message
+          move "3. Learn a New Skill" to ws-message
           perform display-option
           display ws-line-separator
           perform write-separator
@@ -2195,6 +2265,575 @@
 
            end-if
        end-perform.
+
+*>    ===================== Job Search/Posting Procedures =====================
+      handle-job-search-menu.
+          perform display-job-search-menu
+          perform read-user-choice
+          if ws-user-choice = '1'
+              perform post-job
+*>     No longer under construction - A (week 7)
+          else if ws-user-choice = '2'
+              perform browse-jobs
+              move "JOB-SEARCH-MENU" to ws-program-state
+          else if ws-user-choice = '3'
+              perform view-my-applications
+              move "JOB-SEARCH-MENU" to ws-program-state
+          else if ws-user-choice = '4'
+              move "MAIN-MENU" to ws-program-state
+          else
+              move "Invalid option. Please try again" to ws-message
+              perform display-error
+              move "JOB-SEARCH-MENU" to ws-program-state
+          end-if.
+
+      display-job-search-menu.
+          move "Job Search/Internship" to ws-message
+          perform display-title
+          move "1. Post a Job/Internship" to ws-message
+          perform display-option
+          move "2. Browse Jobs/Internships" to ws-message
+          perform display-option
+          move "3. View My Applications" to ws-message
+          perform display-option
+          display ws-line-separator
+          perform write-separator
+          move "4. Go Back to Main Menu" to ws-message
+          perform display-special-option
+          display ws-line-separator
+          perform write-separator
+          move "Enter your choice: " to ws-message
+          perform display-prompt.
+
+      post-job.
+          initialize ws-job-data
+          
+          move "Post a New Job" to ws-message
+          perform display-title
+          
+          *> Job Title (required)
+          perform until ws-job-title not = spaces
+              move "Job Title: " to ws-message
+              perform display-prompt
+              perform read-next-input
+              if input-ended 
+                  move "JOB-SEARCH-MENU" to ws-program-state
+                  exit paragraph
+              end-if
+              if function length(function trim(ws-last-input)) > 50
+                  move "WARNING: Job title is too long! Truncating to 50 characters." to ws-message
+                  perform display-info
+                  move ws-last-input(1:50) to ws-job-title
+              else
+                  move function trim(ws-last-input) to ws-job-title
+              end-if
+              if ws-job-title = spaces
+                  move "Job title is required." to ws-message
+                  perform display-error
+              end-if
+          end-perform
+          
+          *> Job Description (required)
+          perform until ws-job-description not = spaces
+              move "Job Description (max 500 chars): " to ws-message
+              perform display-prompt
+              perform read-next-input
+              if input-ended 
+                  move "JOB-SEARCH-MENU" to ws-program-state
+                  exit paragraph
+              end-if
+              if function length(function trim(ws-last-input)) > MAX-JOB-DESC
+                  move "WARNING: Job description is too long! Truncating to 500 characters." to ws-message
+                  perform display-info
+                  move ws-last-input(1:MAX-JOB-DESC) to ws-job-description
+              else
+                  move function trim(ws-last-input) to ws-job-description
+              end-if
+              if ws-job-description = spaces
+                  move "Job description is required." to ws-message
+                  perform display-error
+              end-if
+          end-perform
+          
+          *> Employer (required)
+          perform until ws-job-employer not = spaces
+              move "Employer: " to ws-message
+              perform display-prompt
+              perform read-next-input
+              if input-ended 
+                  move "JOB-SEARCH-MENU" to ws-program-state
+                  exit paragraph
+              end-if
+              if function length(function trim(ws-last-input)) > 50
+                  move "WARNING: Employer name is too long! Truncating to 50 characters." to ws-message
+                  perform display-info
+                  move ws-last-input(1:50) to ws-job-employer
+              else
+                  move function trim(ws-last-input) to ws-job-employer
+              end-if
+              if ws-job-employer = spaces
+                  move "Employer is required." to ws-message
+                  perform display-error
+              end-if
+          end-perform
+          
+          *> Location (required)
+          perform until ws-job-location not = spaces
+              move "Location: " to ws-message
+              perform display-prompt
+              perform read-next-input
+              if input-ended 
+                  move "JOB-SEARCH-MENU" to ws-program-state
+                  exit paragraph
+              end-if
+              if function length(function trim(ws-last-input)) > 50
+                  move "WARNING: Location is too long! Truncating to 50 characters." to ws-message
+                  perform display-info
+                  move ws-last-input(1:50) to ws-job-location
+              else
+                  move function trim(ws-last-input) to ws-job-location
+              end-if
+              if ws-job-location = spaces
+                  move "Location is required." to ws-message
+                  perform display-error
+              end-if
+          end-perform
+          
+          *> Salary (optional)
+          move "Salary (optional, press Enter to skip): " to ws-message
+          perform display-prompt
+          perform read-next-input
+          if not input-ended
+              if function length(function trim(ws-last-input)) > 20
+                  move "WARNING: Salary is too long! Truncating to 20 characters." to ws-message
+                  perform display-info
+                  move ws-last-input(1:20) to ws-job-salary
+              else
+                  move function trim(ws-last-input) to ws-job-salary
+              end-if
+          end-if
+          
+          *> Save the job to file
+          perform save-job
+          
+          move "Job posted successfully!" to ws-message
+          perform display-success
+          move "MAIN-MENU" to ws-program-state.
+
+      save-job.
+          open extend jobs-file
+          
+          if ws-jobs-status = "35"
+              *> File doesn't exist, create it
+              close jobs-file
+              open output jobs-file
+              close jobs-file
+              open extend jobs-file
+          end-if
+          
+          if ws-jobs-status not = "00"
+              move "Error opening jobs file. Status: " to ws-message
+              string ws-message ws-jobs-status into ws-message
+              perform display-error
+          else
+              move ws-job-title to job-title
+              move ws-job-description to job-description
+              move ws-job-employer to job-employer
+              move ws-job-location to job-location
+              move ws-job-salary to job-salary
+              move ws-current-username to job-poster
+              write job-record
+              close jobs-file
+          end-if.
+
+      *> =========================================================
+      *>  Browse Jobs / Internships
+      *>  - Lists jobs with numbering (Title, Employer, Location)
+      *>  - Lets user pick a number to view full details
+      *> =========================================================
+      browse-jobs.
+          move 0 to ws-list-count
+          move 0 to ws-total-jobs
+          move "Browse Jobs/Internships" to ws-message
+          perform display-title
+
+          open input jobs-file
+
+          if ws-jobs-status = "35"
+             *> jobs file does not exist yet
+             move "No jobs posted yet." to ws-message
+             perform display-info
+             close jobs-file
+             exit paragraph
+          end-if
+
+          if ws-jobs-status not = "00"
+             move "Error opening jobs file. Status: " to ws-message
+             string ws-message ws-jobs-status into ws-message
+             perform display-error
+             close jobs-file
+             exit paragraph
+          end-if
+
+          move 'N' to ws-jobs-eof
+          perform until jobs-file-ended
+              read jobs-file
+                at end
+                  move 'Y' to ws-jobs-eof
+                not at end
+                  add 1 to ws-list-count
+                  move ws-list-count to ws-total-jobs
+                  *> Show short line: "n) Title  |  Employer  |  Location"
+                  move spaces to ws-message
+                move ws-list-count to ws-num-2               *> numeric 2-digit (leading zeros)
+                move ws-num-2      to ws-num-txt             *> now '01', '02', ... '10'
+
+
+                string
+                      function trim(ws-num-txt)              ") "       delimited by size
+                      function trim(job-title)               "  |  "    delimited by size
+                      function trim(job-employer)            "  |  "    delimited by size
+                      function trim(job-location)
+                  into ws-message
+                end-string
+
+                perform display-option
+
+              end-read
+          end-perform
+          close jobs-file
+
+          if ws-total-jobs = 0
+              move "No jobs posted yet." to ws-message
+              perform display-info
+              exit paragraph
+          end-if
+
+          display ws-line-separator
+          perform write-separator
+          move "Enter a job number to view, or 0 to go back: " to ws-message
+          perform display-prompt
+          perform read-next-input
+          if input-ended
+              exit paragraph
+          end-if
+
+          *> Convert input to number (invalid -> loop back)
+          move function numval(ws-last-input) to ws-selected-index
+          if ws-selected-index = 0
+              exit paragraph
+          end-if
+          if ws-selected-index < 1 or ws-selected-index > ws-total-jobs
+              move "Invalid selection. Please try again." to ws-message
+              perform display-error
+              perform browse-jobs
+              exit paragraph
+          end-if
+
+          perform show-job-details.
+
+      *> =========================================================
+      *>  Show Job Details for ws-selected-index
+      *>  - Displays full details
+      *>  - Offers: 1) Apply,  2) Back to list
+      *> =========================================================
+      show-job-details.
+          open input jobs-file
+          if ws-jobs-status not = "00"
+             move "Error opening jobs file. Status: " to ws-message
+             string ws-message ws-jobs-status into ws-message
+             perform display-error
+             close jobs-file
+             exit paragraph
+          end-if
+
+          move 0 to ws-list-count
+          move 'N' to ws-jobs-eof
+          perform until jobs-file-ended
+              read jobs-file
+                at end
+                  move 'Y' to ws-jobs-eof
+                not at end
+                  add 1 to ws-list-count
+                  if ws-list-count = ws-selected-index
+                      *> Cache selected job into ws-selected-job
+                      move job-title       to sj-title
+                      move job-description to sj-description
+                      move job-employer    to sj-employer
+                      move job-location    to sj-location
+                      move job-salary      to sj-salary
+                      exit perform
+                  end-if
+              end-read
+          end-perform
+          close jobs-file
+
+          if sj-title = spaces
+              move "That job could not be found." to ws-message
+              perform display-error
+              exit paragraph
+          end-if
+
+          display ws-line-separator
+          perform write-separator
+          move "Job Details" to ws-message
+          perform display-title
+
+          move spaces to ws-message
+          string "Title: "     function trim(sj-title)     into ws-message
+          perform display-info
+          move spaces to ws-message
+          string "Employer: "  function trim(sj-employer)  into ws-message
+          perform display-info
+          move spaces to ws-message
+          string "Location: "  function trim(sj-location)  into ws-message
+          perform display-info
+
+          if function trim(sj-salary) not = spaces
+             move spaces to ws-message
+             string "Salary: "   function trim(sj-salary)  into ws-message
+             perform display-info
+          end-if
+
+          move spaces to ws-message
+          string "Description: " into ws-message
+          perform display-info
+
+          *> old single-line print removed, now wrap across lines
+          perform print-long-description
+
+
+          display ws-line-separator
+          perform write-separator
+          move "1. Apply for this Job" to ws-message
+          perform display-option
+          move "2. Back to Job List"   to ws-message
+          perform display-special-option
+          display ws-line-separator
+          perform write-separator
+          move "Enter your choice: " to ws-message
+          perform display-prompt
+          perform read-user-choice
+
+          if ws-user-choice = '1'
+              perform apply-for-job
+              *> after applying, go back to list
+              perform browse-jobs
+          else if ws-user-choice = '2'
+              perform browse-jobs
+          else
+              move "Invalid option. Please try again." to ws-message
+              perform display-error
+              perform show-job-details
+          end-if.
+
+    *> =========================================================
+    *>  Apply to currently selected job (uses sj-* + ws-current-username)
+    *>  Persists to InCollege-Applications.txt
+    *> =========================================================
+    apply-for-job.
+        *> First try to append. If the file doesn't exist (status 35), create it, then append.
+        open extend applications-file
+
+        if ws-app-status = "35"
+            *> File missing -> create then append
+            open output applications-file
+            if ws-app-status not = "00"
+                move "Error creating applications file. Status: " to ws-message
+                string ws-message ws-app-status into ws-message
+                perform display-error
+                exit paragraph
+            end-if
+            close applications-file
+            open extend applications-file
+        end-if
+
+        if ws-app-status not = "00"
+            move "Error opening applications file. Status: " to ws-message
+            string ws-message ws-app-status into ws-message
+            perform display-error
+            exit paragraph
+        end-if
+
+        *> Populate record fields
+        move ws-current-username to app-username
+        move sj-title            to app-job-title
+        move sj-employer         to app-job-employer
+        move sj-location         to app-job-location
+        move sj-salary           to app-job-salary
+
+        *> Write the record
+        write application-record
+
+        if ws-app-status not = "00"
+            move "Error writing application record. Status: " to ws-message
+            string ws-message ws-app-status into ws-message
+            perform display-error
+            close applications-file
+            exit paragraph
+        end-if
+
+        close applications-file
+
+        *> Confirmation to user
+        move spaces to ws-message
+        string
+          "Your application for "
+          function trim(sj-title)
+          " at "
+          function trim(sj-employer)
+          " has been submitted."
+          into ws-message
+        perform display-success.
+
+
+      *> =========================================================
+      *>  Print sj-description wrapped across lines (no word split)
+      *> =========================================================
+      print-long-description.
+          move function length(function trim(sj-description)) to ws-desc-len
+          if ws-desc-len = 0
+              move "(No description provided.)" to ws-message
+              perform display-info
+              exit paragraph
+          end-if
+
+          move 1 to ws-desc-idx
+          perform until ws-desc-idx > ws-desc-len
+              compute ws-remaining = ws-desc-len - ws-desc-idx + 1
+              if ws-remaining <= ws-wrap-cols
+                  move ws-remaining to ws-chunk-len
+              else
+                  move ws-wrap-cols to ws-chunk-len
+                  *> try not to cut a word: search backward for a space
+            compute ws-j = ws-desc-idx + ws-chunk-len - 1
+            perform varying ws-j from ws-j by -1
+                    until ws-j < ws-desc-idx or sj-description(ws-j:1) = " "
+                continue
+            end-perform
+
+            if ws-j >= ws-desc-idx and sj-description(ws-j:1) = " "
+                compute ws-chunk-len = ws-j - ws-desc-idx + 1
+            end-if
+
+              end-if
+
+              move spaces to ws-message
+              move sj-description(ws-desc-idx:ws-chunk-len) to ws-message
+              perform display-info
+
+              add ws-chunk-len to ws-desc-idx
+
+              *> skip any extra spaces at the new start
+              perform until ws-desc-idx > ws-desc-len
+                         or sj-description(ws-desc-idx:1) not = " "
+                  add 1 to ws-desc-idx
+              end-perform
+          end-perform.
+
+      *> =========================================================
+      *>  View My Applications - Display report of all applications
+      *>  submitted by the current user
+      *> =========================================================
+      view-my-applications.
+          move 0 to ws-list-count
+          
+          move "Your Job Applications" to ws-message
+          perform display-title
+
+          open input applications-file
+
+          if ws-app-status = "35"
+              *> Applications file does not exist yet
+              move "You have not applied to any jobs yet." to ws-message
+              perform display-info
+              close applications-file
+              exit paragraph
+          end-if
+
+          if ws-app-status not = "00"
+              move "Error opening applications file. Status: " to ws-message
+              string ws-message ws-app-status into ws-message
+              perform display-error
+              close applications-file
+              exit paragraph
+          end-if
+
+          *> Read through all applications and display those for current user
+          move 'N' to ws-app-eof
+          perform until applications-file-ended
+              read applications-file
+                at end
+                  move 'Y' to ws-app-eof
+                not at end
+                  *> Check if this application belongs to current user
+                  if function upper-case(function trim(app-username))
+                     = function upper-case(function trim(ws-current-username))
+                      add 1 to ws-list-count
+                      
+                      *> Display application details
+                      move spaces to ws-message
+                      string
+                        "Application #"
+                        ws-list-count
+                        into ws-message
+                      perform display-info
+                      
+                      move spaces to ws-message
+                      string
+                        "  Job Title: "
+                        function trim(app-job-title)
+                        into ws-message
+                      perform display-line
+                      
+                      move spaces to ws-message
+                      string
+                        "  Employer: "
+                        function trim(app-job-employer)
+                        into ws-message
+                      perform display-line
+                      
+                      move spaces to ws-message
+                      string
+                        "  Location: "
+                        function trim(app-job-location)
+                        into ws-message
+                      perform display-line
+                      
+                      if function trim(app-job-salary) not = spaces
+                          move spaces to ws-message
+                          string
+                            "  Salary: "
+                            function trim(app-job-salary)
+                            into ws-message
+                          perform display-line
+                      end-if
+                      
+                      *> Blank line between applications
+                      move spaces to ws-message
+                      perform display-info
+                  end-if
+              end-read
+          end-perform
+
+          close applications-file
+
+          *> Display summary
+          display ws-line-separator
+          perform write-separator
+          
+          if ws-list-count = 0
+              move "You have not applied to any jobs yet." to ws-message
+              perform display-info
+          else
+              move spaces to ws-message
+              string
+                "Total Applications: "
+                ws-list-count
+                into ws-message
+              perform display-info
+          end-if.
+
 
       cleanup-files.
           open output accounts-file
