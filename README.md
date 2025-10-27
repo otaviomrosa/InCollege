@@ -77,8 +77,9 @@ The program expects an **input file** (`InCollege-Input.txt`) to simulate user i
   - Created automatically when the first connection request is sent.
  
 - **`InCollege-Jobs.txt`** → Job postings storage 
-  - Stores job postings created and needed for week 7
-  - If this file does not exist when running the code, proper output will not be generated using our input file
+  - Stores job postings created
+  - Created automatically when the first application is made.
+  - The current sample input file for week 7 will automatically make it.
 
 - **`InCollege-Applications.txt`** → Job application storage  
   - Stores new applications made by users when they apply to a job posting.
