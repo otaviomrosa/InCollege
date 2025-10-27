@@ -10,7 +10,7 @@
       file-control.
 *>    Define three files: input-file, output-file, and accounts-file and assign them to text files
 *>    The accounts-file will be used to store user account information
-          select input-file assign to KEYBOARD
+          select input-file assign to 'InCollege-Input.txt'
               organization is line sequential.
           select output-file assign to 'InCollege-Output.txt'
               organization is line sequential.
@@ -58,7 +58,7 @@
       fd input-file.
       01  input-record      pic x(500).
       fd  output-file.
-      01  output-record     pic x(80).
+      01  output-record     pic x(200).
       fd  accounts-file.
       01  account-record.
 *>    Each account record consists of a username and password
@@ -307,10 +307,10 @@
 
 
 *>    - Variable to hold message for display + write -
-      01  ws-message          pic x(80).
-      01  ws-temp-message     pic x(80).
-      01  ws-blank-line       pic x(80) value spaces.
-      01  ws-line-separator   pic x(80) value all "-".
+        01  ws-message          pic x(200).
+        01  ws-temp-message     pic x(200).
+        01  ws-blank-line       pic x(200) value spaces.
+        01  ws-line-separator   pic x(80) value all "-".
 
 *>    formatting
        01  ws-label                  pic x(30) value spaces.

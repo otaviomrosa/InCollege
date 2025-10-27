@@ -1,0 +1,364 @@
+
+=== Welcome to InCollege! ===
+
+  1. Log In
+  2. Create an Account
+--------------------------------------------------------------------------------
+  3. Exit Program
+--------------------------------------------------------------------------------
+Enter your choice:
+Please enter your username:
+Please enter your password:
+
+SUCCESS: You have successfully logged in.
+
+
+Welcome, alice!
+
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Log Out
+--------------------------------------------------------------------------------
+  9. Exit program
+Enter your choice:
+
+=== Job Search/Internship ===
+
+  1. Post a Job/Internship
+  2. Browse Jobs/Internships
+  3. View My Applications
+--------------------------------------------------------------------------------
+  4. Go Back to Main Menu
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Browse Jobs/Internships ===
+
+
+No jobs posted yet.
+
+
+=== Job Search/Internship ===
+
+  1. Post a Job/Internship
+  2. Browse Jobs/Internships
+  3. View My Applications
+--------------------------------------------------------------------------------
+  4. Go Back to Main Menu
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Log Out
+--------------------------------------------------------------------------------
+  9. Exit program
+Enter your choice:
+
+SUCCESS: Successfully Logged Out!
+
+
+=== Welcome to InCollege! ===
+
+  1. Log In
+  2. Create an Account
+--------------------------------------------------------------------------------
+  3. Exit Program
+--------------------------------------------------------------------------------
+Enter your choice:
+Please enter your username:
+Please enter your password:
+
+SUCCESS: You have successfully logged in.
+
+
+Welcome, bob!
+
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Log Out
+--------------------------------------------------------------------------------
+  9. Exit program
+Enter your choice:
+
+=== Job Search/Internship ===
+
+  1. Post a Job/Internship
+  2. Browse Jobs/Internships
+  3. View My Applications
+--------------------------------------------------------------------------------
+  4. Go Back to Main Menu
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Post a New Job ===
+
+Job Title:
+Job Description (max 500 chars):
+Employer:
+Location:
+Salary (optional, press Enter to skip):
+
+SUCCESS: Job posted successfully!
+
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Log Out
+--------------------------------------------------------------------------------
+  9. Exit program
+Enter your choice:
+
+=== Job Search/Internship ===
+
+  1. Post a Job/Internship
+  2. Browse Jobs/Internships
+  3. View My Applications
+--------------------------------------------------------------------------------
+  4. Go Back to Main Menu
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Post a New Job ===
+
+Job Title:
+Job Description (max 500 chars):
+Employer:
+Location:
+Salary (optional, press Enter to skip):
+
+SUCCESS: Job posted successfully!
+
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Log Out
+--------------------------------------------------------------------------------
+  9. Exit program
+Enter your choice:
+
+SUCCESS: Successfully Logged Out!
+
+
+=== Welcome to InCollege! ===
+
+  1. Log In
+  2. Create an Account
+--------------------------------------------------------------------------------
+  3. Exit Program
+--------------------------------------------------------------------------------
+Enter your choice:
+Please enter your username:
+Please enter your password:
+
+SUCCESS: You have successfully logged in.
+
+
+Welcome, alice!
+
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Log Out
+--------------------------------------------------------------------------------
+  9. Exit program
+Enter your choice:
+
+=== Job Search/Internship ===
+
+  1. Post a Job/Internship
+  2. Browse Jobs/Internships
+  3. View My Applications
+--------------------------------------------------------------------------------
+  4. Go Back to Main Menu
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Browse Jobs/Internships ===
+
+  01) Software Engineer  |  Tech Innovations LLC  |  Tampa
+  02) Backend Developer  |  Digital Solutions Corp  |  Orlando
+--------------------------------------------------------------------------------
+Enter a job number to view, or 0 to go back:
+--------------------------------------------------------------------------------
+
+=== Job Details ===
+
+
+Title: Backend Developer
+
+
+Employer: Digital Solutions Corp
+
+
+Location: Orlando
+
+
+Salary: $85,000 - $105,000
+
+
+Description:
+
+
+Own backend APIs, database performance, and distributed systems.
+
+
+Collaborate with product and UX to ship reliable features at scale.
+
+--------------------------------------------------------------------------------
+  1. Apply for this Job
+  2. Back to Job List
+--------------------------------------------------------------------------------
+Enter your choice:
+
+SUCCESS: Your application for Backend Developer at Digital Solutions Corp has been submitted.
+
+
+=== Browse Jobs/Internships ===
+
+  01) Software Engineer  |  Tech Innovations LLC  |  Tampa
+  02) Backend Developer  |  Digital Solutions Corp  |  Orlando
+--------------------------------------------------------------------------------
+Enter a job number to view, or 0 to go back:
+--------------------------------------------------------------------------------
+
+=== Job Details ===
+
+
+Title: Software Engineer
+
+
+Employer: Tech Innovations LLC
+
+
+Location: Tampa
+
+
+Salary: $75,000 - $95,000
+
+
+Description:
+
+
+We are looking for a talented software engineer to join our team.
+
+
+Responsibilities include backend development, debugging, and
+
+
+collaborating with cross-functional teams.
+
+--------------------------------------------------------------------------------
+  1. Apply for this Job
+  2. Back to Job List
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Browse Jobs/Internships ===
+
+  01) Software Engineer  |  Tech Innovations LLC  |  Tampa
+  02) Backend Developer  |  Digital Solutions Corp  |  Orlando
+--------------------------------------------------------------------------------
+Enter a job number to view, or 0 to go back:
+
+=== Job Search/Internship ===
+
+  1. Post a Job/Internship
+  2. Browse Jobs/Internships
+  3. View My Applications
+--------------------------------------------------------------------------------
+  4. Go Back to Main Menu
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Your Job Applications ===
+
+
+Application #0001
+
+Job Title: Backend Developer
+Employer: Digital Solutions Corp
+Location: Orlando
+Salary: $85,000 - $105,000
+
+
+
+--------------------------------------------------------------------------------
+
+Total Applications: 0001
+
+
+=== Job Search/Internship ===
+
+  1. Post a Job/Internship
+  2. Browse Jobs/Internships
+  3. View My Applications
+--------------------------------------------------------------------------------
+  4. Go Back to Main Menu
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Log Out
+--------------------------------------------------------------------------------
+  9. Exit program
+Enter your choice:
