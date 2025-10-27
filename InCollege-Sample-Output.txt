@@ -86,32 +86,6 @@ Enter your choice:
 Please enter your username:
 Please enter your password:
 
-ERROR: Incorrect password. Returning to menu.
-
-
-=== Welcome to InCollege! ===
-
-  1. Log In
-  2. Create an Account
---------------------------------------------------------------------------------
-  3. Exit Program
---------------------------------------------------------------------------------
-Enter your choice:
-
-ERROR: Invalid option. Please try again
-
-
-=== Welcome to InCollege! ===
-
-  1. Log In
-  2. Create an Account
---------------------------------------------------------------------------------
-  3. Exit Program
---------------------------------------------------------------------------------
-Enter your choice:
-Please enter your username:
-Please enter your password:
-
 SUCCESS: You have successfully logged in.
 
 

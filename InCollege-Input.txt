@@ -1,25 +1,38 @@
 1
 alice
 Aa1!aaaa
-6
-7
-2
-Bob
-Jones
 1
+2
+4
 8
 1
 bob
 Abcdef1!
-6
 1
-7
+1
+Software Engineer
+We are looking for a talented software engineer to join our team. Responsibilities include backend development, debugging, and collaborating with cross-functional teams.
+Tech Innovations LLC
+Tampa
+$75,000 - $95,000
+1
+1
+Backend Developer
+Own backend APIs, database performance, and distributed systems. Collaborate with product and UX to ship reliable features at scale.
+Digital Solutions Corp
+Orlando
+$85,000 - $105,000
 8
 1
 alice
 Aa1!aaaa
-7
-8
+1
+2
+2
+1
+1
+2
+0 
 3
-
-
+4
+9
