@@ -48,6 +48,11 @@
           select applications-file assign to 'InCollege-Applications.txt'
             organization is line sequential
             file status is ws-app-status.
+*>    To store messages
+         select messages-file assign to 'InCollege-Messages.txt'
+               organization is line sequential
+               file status is ws-messages-status.
+
 
 
 
@@ -58,7 +63,7 @@
       fd input-file.
       01  input-record      pic x(500).
       fd  output-file.
-      01  output-record     pic x(80).
+      01  output-record     pic x(200).
       fd  accounts-file.
       01  account-record.
 *>    Each account record consists of a username and password
@@ -141,6 +146,17 @@
                05  conn-user-a     pic x(20).
                05  conn-user-b     pic x(20).
 
+      fd  messages-file.
+       01  message-record.
+       05  msg-sender     pic x(20).
+       05  msg-recipient  pic x(20).
+       05  msg-timestamp  pic x(14).     *> YYYYMMDDHHMMSS
+       05  msg-text       pic x(200).
+
+
+
+
+
       fd  temp-pending-file.
            01  temp-request-record.
                05  temp-req-sender    pic x(20).
@@ -190,6 +206,30 @@
        
       01 ws-input-len    pic 9(4) value 0.
 
+      01  ws-next-message-id   pic 9(8) value 1.
+        01  ws-current-msg-id    pic 9(8) value 0.
+        01  ws-line-num          pic 9(4) value 0.
+        01  ws-rem-text          pic x(1000) value spaces.
+        01  ws-rem-text-next     pic x(1000) value spaces.
+
+        01  ws-msg-rem-len      pic 9(4) value 0.
+        01  ws-msg-chunk        pic x(200).
+        01  ws-msg-chunk-len    pic 9(4) value 0.
+        
+
+       *> loop to send multiple messages in one go
+       01  ws-msg-again           pic x value "N".
+
+       01  ws-date         pic 9(8).    *> YYYYMMDD
+        01  ws-time         pic 9(6).    *> HHMMSS
+        01  ws-timestamp    pic x(14).   *> YYYYMMDDHHMMSS
+
+
+
+
+      01  ws-connection-found-flag    pic x value 'N'.
+
+
 
 *>    - PROGRAM FLOW AND INPUT -
       01  ws-program-state    pic x(20) value 'INITIAL-MENU'.
@@ -201,6 +241,9 @@
           88  at-job-search-menu      value 'JOB-SEARCH-MENU'.
           88  at-find-someone-menu    value 'FIND-SOMEONE-MENU'.
           88  at-learn-skill-menu     value 'SKILL-MENU'.
+
+          88  at-messages-menu        value 'MESSAGES-MENU'.
+
          
 *>    A - profile menu option
           88  at-profile-menu         value 'PROFILE-MENU'.
@@ -307,10 +350,10 @@
 
 
 *>    - Variable to hold message for display + write -
-      01  ws-message          pic x(80).
-      01  ws-temp-message     pic x(80).
-      01  ws-blank-line       pic x(80) value spaces.
-      01  ws-line-separator   pic x(80) value all "-".
+        01  ws-message          pic x(200).
+        01  ws-temp-message     pic x(200).
+        01  ws-blank-line       pic x(200) value spaces.
+        01  ws-line-separator   pic x(80) value all "-".
 
 *>    formatting
        01  ws-label                  pic x(30) value spaces.
@@ -321,6 +364,12 @@
        01  ws-requests-status     pic x(2).
        01  ws-connections-status  pic x(2).
        01  ws-temp-status         pic x(2).
+
+       01  ws-messages-status     pic x(2).
+
+       01  ws-message-text        pic x(200).
+       01  ws-message-recipient   pic x(20).
+
        
        01  ws-requests-eof        pic a(1) value 'N'.
           88 requests-file-ended  value 'Y'.
@@ -348,6 +397,12 @@
 
 *>    - APPLICATION PERSISTENCE -
        01  ws-app-status          pic x(2).
+       01  ws-app-eof             pic a(1) value 'N'.
+          88 applications-file-ended value 'Y'.
+*>     duplicate-application flag
+        01  ws-dup-apply-found   pic a(1) value 'N'.
+        88 dup-apply-found   value 'Y'.
+
 
 *>    - BROWSE/VIEW TEMP STATE -
        01  ws-selected-index      pic 9(4) value 0.
@@ -454,40 +509,45 @@
 
 
           else if at-main-menu
-              perform display-main-menu
-              perform read-user-choice
-               if ws-user-choice = '1'
-                    move "JOB-SEARCH-MENU" to ws-program-state
-               else if ws-user-choice = '2'
-                    move "FIND-SOMEONE-MENU" to ws-program-state
-               else if ws-user-choice = '3'
-                    move "SKILL-MENU" to ws-program-state
-     *>   A - profile create/edit else if
-               else if ws-user-choice = '4'
-                    move "PROFILE-MENU" to ws-program-state
-               else if ws-user-choice = '5'
-                    perform view-profile
-*>         option 6 to view pending requests
-               else if ws-user-choice = '6'
-                   perform process-my-pending-requests
+            perform display-main-menu
+            *> display-main-menu already read the input into ws-last-input
+            move function trim(ws-last-input) to ws-user-choice
 
-*>         option 7 to view network
-               else if ws-user-choice = '7'
-                   perform view-my-network
-                   move "MAIN-MENU" to ws-program-state
-               else if ws-user-choice = '8'
-                    move "Successfully Logged Out!" to ws-message
-                    perform display-success
-                    move spaces to ws-current-username              
-                    move "INITIAL-MENU" to ws-program-state
-               else if ws-user-choice = '9'
-                   perform cleanup-files
-                   stop run
-               else   
-                    move "Invalid option. Please try again" to ws-message
-                    perform display-error
-                    move "MAIN-MENU" to ws-program-state
-               end-if
+             if ws-user-choice = '1'
+                 move "JOB-SEARCH-MENU" to ws-program-state
+             else if ws-user-choice = '2'
+                 move "FIND-SOMEONE-MENU" to ws-program-state
+             else if ws-user-choice = '3'
+                 move "SKILL-MENU" to ws-program-state
+             else if ws-user-choice = '4'
+                 move "PROFILE-MENU" to ws-program-state
+             else if ws-user-choice = '5'
+                 perform view-profile
+             else if ws-user-choice = '6'
+                 perform process-my-pending-requests
+             else if ws-user-choice = '7'
+                 perform view-my-network
+                 move "MAIN-MENU" to ws-program-state
+             else if ws-user-choice = '8'
+                 *> go to Messages
+                 perform display-messages-menu
+                 move "MESSAGES-MENU" to ws-program-state
+
+             else if ws-user-choice = '9'
+                 move "Successfully Logged Out!" to ws-message
+                 perform display-success
+                 move spaces to ws-current-username
+                 move "INITIAL-MENU" to ws-program-state
+             else if ws-user-choice = '10'
+                 perform cleanup-files
+                 stop run
+             else
+                 move "Invalid option. Please try again" to ws-message
+                 perform display-error
+                 move "MAIN-MENU" to ws-program-state
+             end-if
+
+
           else if at-job-search-menu
               perform handle-job-search-menu
           else if at-find-someone-menu
@@ -504,6 +564,8 @@
 *>    A - profile menu logic
           else if at-profile-menu
               perform handle-profile-menu
+          else if at-messages-menu
+              perform display-messages-menu
           end-if.
 
 
@@ -569,33 +631,36 @@
 
 
       display-main-menu.
-          move "Main Menu" to ws-message
-          perform display-title
-          move "1. Job Search/Internship" to ws-message
-          perform display-option
-          move "2. Find Someone You Know" to ws-message
-          perform display-option
-          move "3. Learn a New Skill" to ws-message
-          perform display-option
-          display ws-line-separator
-          perform write-separator
-          move "4. Create/Edit My Profile" to ws-message
-          perform display-special-option
-          move "5. View My Profile" to ws-message
-          perform display-special-option
-          move "6. View My Pending Connection Requests" to ws-message
-          perform display-special-option
-          move "7. View My Network" to ws-message
-          perform display-special-option
-          move "8. Log Out" to ws-message
-          perform display-special-option
-          display ws-line-separator
-          perform write-separator
-          move "9. Exit program" to ws-message
-          perform display-special-option
+           move "Main Menu" to ws-message
+           perform display-title
+           move "1. Job Search/Internship" to ws-message
+           perform display-option
+           move "2. Find Someone You Know" to ws-message
+           perform display-option
+           move "3. Learn a New Skill" to ws-message
+           perform display-option
+           display ws-line-separator
+           perform write-separator
+           move "4. Create/Edit My Profile" to ws-message
+           perform display-special-option
+           move "5. View My Profile" to ws-message
+           perform display-special-option
+           move "6. View My Pending Connection Requests" to ws-message
+           perform display-special-option
+           move "7. View My Network" to ws-message
+           perform display-special-option
+           move "8. Messages" to ws-message
+           perform display-special-option
+           move "9. Log Out" to ws-message
+           perform display-special-option
+           move "10. Exit program" to ws-message
+           perform display-special-option
+           display ws-line-separator
+           perform write-separator
+           move "Enter your choice: " to ws-message
+           perform display-prompt
+           perform read-next-input.
 
-          move "Enter your choice: " to ws-message
-          perform display-prompt.
 
 
       display-skills.
@@ -619,6 +684,38 @@
           perform write-separator
           move "Enter your choice: " to ws-message
           perform display-prompt.
+
+      display-messages-menu.
+           move "Messages" to ws-message
+           perform display-title
+           move "1. Send a New Message" to ws-message
+           perform display-option
+           move "2. View My Messages" to ws-message
+           perform display-option
+           move "0. Return to Main Menu" to ws-message
+           perform display-special-option
+           display ws-line-separator
+           perform write-separator
+           move "Enter your choice: " to ws-message
+           perform display-prompt
+           perform read-next-input
+
+           move function trim(ws-last-input) to ws-user-choice
+
+           if ws-user-choice = "1"
+               perform send-a-message
+               move "MESSAGES-MENU" to ws-program-state
+           else if ws-user-choice = "2"
+               move "This feature is under construction for this week." to ws-message
+               perform display-info
+               move "MESSAGES-MENU" to ws-program-state
+           else if ws-user-choice = "0"
+               move "MAIN-MENU" to ws-program-state
+           else
+               move "Invalid choice. Please try again." to ws-message
+               perform display-error
+               move "MESSAGES-MENU" to ws-program-state
+           end-if.
 
 
       display-under-construction.
@@ -2275,6 +2372,9 @@
               perform browse-jobs
               move "JOB-SEARCH-MENU" to ws-program-state
           else if ws-user-choice = '3'
+              perform view-my-applications
+              move "JOB-SEARCH-MENU" to ws-program-state
+          else if ws-user-choice = '4'
               move "MAIN-MENU" to ws-program-state
           else
               move "Invalid option. Please try again" to ws-message
@@ -2289,9 +2389,11 @@
           perform display-option
           move "2. Browse Jobs/Internships" to ws-message
           perform display-option
+          move "3. View My Applications" to ws-message
+          perform display-option
           display ws-line-separator
           perform write-separator
-          move "3. Go Back to Main Menu" to ws-message
+          move "4. Go Back to Main Menu" to ws-message
           perform display-special-option
           display ws-line-separator
           perform write-separator
@@ -2620,64 +2722,81 @@
               perform show-job-details
           end-if.
 
-    *> =========================================================
-    *>  Apply to currently selected job (uses sj-* + ws-current-username)
-    *>  Persists to InCollege-Applications.txt
-    *> =========================================================
-    apply-for-job.
-        *> First try to append. If the file doesn't exist (status 35), create it, then append.
-        open extend applications-file
+        *> =========================================================
+        *>  Apply to currently selected job (uses sj-* + ws-current-username)
+        *>  Persists to InCollege-Applications.txt
+        *>  Prevent duplicate applications by the same user to the same job
+        *> =========================================================
+        apply-for-job.
+            *> First: check duplicates
+            perform check-duplicate-application
+            if dup-apply-found
+                move spaces to ws-message
+                string
+                  "You have already applied to "
+                  function trim(sj-title)
+                  " at "
+                  function trim(sj-employer)
+                  "."
+                  into ws-message
+                end-string
+                perform display-info
+                exit paragraph
+            end-if
 
-        if ws-app-status = "35"
-            *> File missing -> create then append
-            open output applications-file
+            *> Try to append; create-if-missing then append
+            open extend applications-file
+
+            if ws-app-status = "35"
+                open output applications-file
+                if ws-app-status not = "00"
+                    move "Error creating applications file. Status: " to ws-message
+                    string ws-message ws-app-status into ws-message
+                    perform display-error
+                    exit paragraph
+                end-if
+                close applications-file
+                open extend applications-file
+            end-if
+
             if ws-app-status not = "00"
-                move "Error creating applications file. Status: " to ws-message
+                move "Error opening applications file. Status: " to ws-message
                 string ws-message ws-app-status into ws-message
                 perform display-error
                 exit paragraph
             end-if
+
+            *> Populate record fields
+            move ws-current-username to app-username
+            move sj-title            to app-job-title
+            move sj-employer         to app-job-employer
+            move sj-location         to app-job-location
+            move sj-salary           to app-job-salary
+
+            *> Write the record
+            write application-record
+
+            if ws-app-status not = "00"
+                move "Error writing application record. Status: " to ws-message
+                string ws-message ws-app-status into ws-message
+                perform display-error
+                close applications-file
+                exit paragraph
+            end-if
+
             close applications-file
-            open extend applications-file
-        end-if
 
-        if ws-app-status not = "00"
-            move "Error opening applications file. Status: " to ws-message
-            string ws-message ws-app-status into ws-message
-            perform display-error
-            exit paragraph
-        end-if
+            *> Confirmation to user
+            move spaces to ws-message
+            string
+              "Your application for "
+              function trim(sj-title)
+              " at "
+              function trim(sj-employer)
+              " has been submitted."
+              into ws-message
+            perform display-success.
 
-        *> Populate record fields
-        move ws-current-username to app-username
-        move sj-title            to app-job-title
-        move sj-employer         to app-job-employer
-        move sj-location         to app-job-location
-        move sj-salary           to app-job-salary
-
-        *> Write the record
-        write application-record
-
-        if ws-app-status not = "00"
-            move "Error writing application record. Status: " to ws-message
-            string ws-message ws-app-status into ws-message
-            perform display-error
-            close applications-file
-            exit paragraph
-        end-if
-
-        close applications-file
-
-        *> Confirmation to user
-        move spaces to ws-message
-        string
-          "Your application for "
-          function trim(sj-title)
-          " at "
-          function trim(sj-employer)
-          " has been submitted."
-          into ws-message
-        perform display-success.
 
 
       *> =========================================================
@@ -2723,6 +2842,305 @@
                   add 1 to ws-desc-idx
               end-perform
           end-perform.
+
+      *> =========================================================
+      *>  View My Applications - Display report of all applications
+      *>  submitted by the current user
+      *> =========================================================
+      view-my-applications.
+          move 0 to ws-list-count
+          
+          move "Your Job Applications" to ws-message
+          perform display-title
+
+          open input applications-file
+
+          if ws-app-status = "35"
+              *> Applications file does not exist yet
+              move "You have not applied to any jobs yet." to ws-message
+              perform display-info
+              close applications-file
+              exit paragraph
+          end-if
+
+          if ws-app-status not = "00"
+              move "Error opening applications file. Status: " to ws-message
+              string ws-message ws-app-status into ws-message
+              perform display-error
+              close applications-file
+              exit paragraph
+          end-if
+
+          *> Read through all applications and display those for current user
+          move 'N' to ws-app-eof
+          perform until applications-file-ended
+              read applications-file
+                at end
+                  move 'Y' to ws-app-eof
+                not at end
+                  *> Check if this application belongs to current user
+                  if function upper-case(function trim(app-username))
+                     = function upper-case(function trim(ws-current-username))
+                      add 1 to ws-list-count
+                      
+                      *> Display application details
+                      move spaces to ws-message
+                      string
+                        "Application #"
+                        ws-list-count
+                        into ws-message
+                      perform display-info
+                      
+                      move spaces to ws-message
+                      string
+                        "  Job Title: "
+                        function trim(app-job-title)
+                        into ws-message
+                      perform display-line
+                      
+                      move spaces to ws-message
+                      string
+                        "  Employer: "
+                        function trim(app-job-employer)
+                        into ws-message
+                      perform display-line
+                      
+                      move spaces to ws-message
+                      string
+                        "  Location: "
+                        function trim(app-job-location)
+                        into ws-message
+                      perform display-line
+                      
+                      if function trim(app-job-salary) not = spaces
+                          move spaces to ws-message
+                          string
+                            "  Salary: "
+                            function trim(app-job-salary)
+                            into ws-message
+                          perform display-line
+                      end-if
+                      
+                      *> Blank line between applications
+                      move spaces to ws-message
+                      perform display-info
+                  end-if
+              end-read
+          end-perform
+
+          close applications-file
+
+          *> Display summary
+          display ws-line-separator
+          perform write-separator
+          
+          if ws-list-count = 0
+              move "You have not applied to any jobs yet." to ws-message
+              perform display-info
+          else
+              move spaces to ws-message
+              string
+                "Total Applications: "
+                ws-list-count
+                into ws-message
+              perform display-info
+          end-if.
+
+*>    =========================================================
+*>    Check if current user already applied to the selected job
+*>    Match on: username + title + employer + location (case-insensitive)
+*>    Sets: dup-apply-found
+*>    =========================================================
+    check-duplicate-application.
+        move 'N' to ws-dup-apply-found
+
+        open input applications-file
+        evaluate ws-app-status
+            when "00" continue
+            when "35"
+                *> No applications file yet -> definitely no duplicates
+                close applications-file
+                exit paragraph
+            when other
+                *> Fail safe: treat as no duplicate but inform user
+                move "Warning: could not open applications to check duplicates." to ws-message
+                perform display-info
+                close applications-file
+                exit paragraph
+        end-evaluate
+
+        move 'N' to ws-app-eof
+        perform until applications-file-ended or dup-apply-found
+            read applications-file
+                at end
+                    move 'Y' to ws-app-eof
+                not at end
+                    if function upper-case(function trim(app-username))
+                          = function upper-case(function trim(ws-current-username))
+                       and function upper-case(function trim(app-job-title))
+                          = function upper-case(function trim(sj-title))
+                       and function upper-case(function trim(app-job-employer))
+                          = function upper-case(function trim(sj-employer))
+                       and function upper-case(function trim(app-job-location))
+                          = function upper-case(function trim(sj-location))
+                        set dup-apply-found to true
+                    end-if
+            end-read
+        end-perform
+
+        close applications-file.
+
+
+              send-a-message.
+           *> =============================
+           *> 1. ASK FOR RECIPIENT (ONCE)
+           *> =============================
+           move "Enter the username of the person you want to message: " to ws-message
+           perform display-prompt
+           perform read-next-input
+
+           if input-ended
+               move "MESSAGES-MENU" to ws-program-state
+               exit paragraph
+           end-if
+
+           move function trim(ws-last-input) to ws-message-recipient
+
+           *> =============================
+           *> 2. VALIDATE CONNECTION (ONCE)
+           *> =============================
+           move 'N' to ws-connection-found-flag
+           move 'N' to ws-conns-eof
+
+           open input connections-file
+           evaluate ws-connections-status
+               when "00"
+                   continue
+               when "35"
+                   close connections-file
+                   move "You are not connected with this person. You can only message users you are connected with." to ws-message
+                   perform display-error
+                   move "MESSAGES-MENU" to ws-program-state
+                   exit paragraph
+               when other
+                   close connections-file
+                   move "Connections file error." to ws-message
+                   perform display-error
+                   move "MESSAGES-MENU" to ws-program-state
+                   exit paragraph
+           end-evaluate
+
+           if ws-connections-status = "00"
+               perform until ws-conns-eof = 'Y' or ws-connection-found-flag = 'Y'
+                   read connections-file next record
+                       at end
+                           move 'Y' to ws-conns-eof
+                       not at end
+                           if (function upper-case(function trim(conn-user-a)) =
+                               function upper-case(function trim(ws-current-username))
+                              and
+                              function upper-case(function trim(conn-user-b)) =
+                               function upper-case(function trim(ws-message-recipient)))
+                              or
+                              (function upper-case(function trim(conn-user-b)) =
+                               function upper-case(function trim(ws-current-username))
+                               and
+                               function upper-case(function trim(conn-user-a)) =
+                               function upper-case(function trim(ws-message-recipient)))
+                               move 'Y' to ws-connection-found-flag
+                           end-if
+                   end-read
+               end-perform
+               close connections-file
+           end-if
+
+           if ws-connection-found-flag not = 'Y'
+               move "You can only message users you are connected with, or user not found in your network." to ws-message
+               perform display-error
+               move "MESSAGES-MENU" to ws-program-state
+               exit paragraph
+           end-if
+
+           *> =============================
+           *> 3. LOOP: SEND MULTIPLE TO SAME USER
+           *>     blank line = finish
+           *> =============================
+           perform forever
+
+               move "Enter your message (blank to go back): " to ws-message
+               perform display-prompt
+               perform read-next-input
+
+               *> user wants to go back
+               if input-ended
+                   move "MESSAGES-MENU" to ws-program-state
+                   exit paragraph
+               end-if
+
+               if function trim(ws-last-input) = spaces
+                   move "MESSAGES-MENU" to ws-program-state
+                   exit paragraph
+               end-if
+
+               *> put the whole message into the buffer
+               move function trim(ws-last-input) to ws-rem-text
+               move function length(function trim(ws-last-input)) to ws-msg-rem-len
+
+               *> get current timestamp for THIS message
+               accept ws-date from date
+               accept ws-time from time
+               string ws-date ws-time into ws-timestamp
+               end-string
+
+               open extend messages-file
+               if ws-messages-status not = "00" and ws-messages-status not = "35"
+                   move "Could not open messages file." to ws-message
+                   perform display-error
+                   close messages-file
+                   move "MESSAGES-MENU" to ws-program-state
+                   exit paragraph
+               end-if
+
+               *> write message in 200-char chunks if needed
+               perform until ws-msg-rem-len = 0
+
+                   if ws-msg-rem-len > 200
+                       move ws-rem-text(1:200) to ws-msg-chunk
+                       move 200 to ws-msg-chunk-len
+                   else
+                       move ws-rem-text(1:ws-msg-rem-len) to ws-msg-chunk
+                       move ws-msg-rem-len to ws-msg-chunk-len
+                       if ws-msg-chunk-len < 200
+                           move spaces
+                               to ws-msg-chunk(ws-msg-chunk-len + 1:
+                                               200 - ws-msg-chunk-len)
+                       end-if
+                   end-if
+
+                   move ws-current-username  to msg-sender
+                   move ws-message-recipient to msg-recipient
+                   move ws-timestamp         to msg-timestamp
+                   move ws-msg-chunk         to msg-text
+
+                   write message-record
+
+                   if ws-msg-rem-len > 200
+                       move ws-rem-text(201:) to ws-rem-text-next
+                       move ws-rem-text-next  to ws-rem-text
+                       compute ws-msg-rem-len = ws-msg-rem-len - 200
+                   else
+                       move 0 to ws-msg-rem-len
+                   end-if
+               end-perform
+
+               close messages-file
+
+               move "Message sent successfully!" to ws-message
+               perform display-success
+
+           end-perform.
+
+
 
 
       cleanup-files.
