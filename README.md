@@ -79,7 +79,8 @@ The program expects an **input file** (`InCollege-Input.txt`) to simulate user i
 - **`InCollege-Jobs.txt`** → Job postings storage 
   - Stores job postings created
   - Created automatically when the first application is made.
-  - For week 7 testers are using a pre-existing file which will be included in the zip (the sample input file generates a different InCollege-Jobs.txt)
+  - For week 7, testers are using a pre-existing file which will be included in the zip (the sample input file generates a different InCollege-Jobs.txt)
+  - If the input file included in zip is run please make sure this file is empty for the desired output
     
 - **`InCollege-Applications.txt`** → Job application storage  
   - Stores new applications made by users when they apply to a job posting.
