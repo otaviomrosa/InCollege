@@ -10,7 +10,7 @@
       file-control.
 *>    Define three files: input-file, output-file, and accounts-file and assign them to text files
 *>    The accounts-file will be used to store user account information
-          select input-file assign to KEYBOARD
+          select input-file assign to 'InCollege-Input.txt'
               organization is line sequential.
           select output-file assign to 'InCollege-Output.txt'
               organization is line sequential.
@@ -3093,13 +3093,19 @@
                end-string
 
                open extend messages-file
-               if ws-messages-status not = "00" and ws-messages-status not = "35"
-                   move "Could not open messages file." to ws-message
-                   perform display-error
-                   close messages-file
-                   move "MESSAGES-MENU" to ws-program-state
-                   exit paragraph
-               end-if
+                    if ws-messages-status = "35"
+                        *> File does not exist yet — create it
+                        open output messages-file
+                    end-if
+
+                    if ws-messages-status not = "00"
+                        move "Could not open messages file." to ws-message
+                        perform display-error
+                        close messages-file
+                        move "MESSAGES-MENU" to ws-program-state
+                        exit paragraph
+                    end-if
+
 
                *> write message in 200-char chunks if needed
                perform until ws-msg-rem-len = 0
