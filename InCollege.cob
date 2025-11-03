@@ -12,7 +12,7 @@
 *>    The accounts-file will be used to store user account information
           select input-file assign to 'InCollege-Input.txt'
               organization is line sequential.
-          select output-file assign to 'InCollege-Sample-Output-Week8.txt'
+          select output-file assign to 'InCollege-Output.txt'
               organization is line sequential.
           select accounts-file assign to 'InCollege-Accounts.txt'
               organization is line sequential
