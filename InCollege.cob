@@ -10,7 +10,7 @@
       file-control.
 *>    Define three files: input-file, output-file, and accounts-file and assign them to text files
 *>    The accounts-file will be used to store user account information
-          select input-file assign to KEYBOARD
+          select input-file assign to 'InCollege-Input.txt'
               organization is line sequential.
           select output-file assign to 'InCollege-Output.txt'
               organization is line sequential.
@@ -250,7 +250,7 @@
       01  ws-user-choice      pic x(40).
 
       *> Debug mode switch: Y = interactive (ACCEPT), N = file (READ)
-      01  ws-debug-mode    pic a(1) value 'N'.
+      01  ws-debug-mode    pic a(1) value 'Y'.
           88 debug-mode    value 'Y'.
           
 *>    - ACCOUNT DATA - We keep a copy of the accounts file locally at runtime for faster access instead of reading the file everytime (simply for good practice)
@@ -442,7 +442,11 @@
        01  ws-current-sender    pic x(20) value spaces.
        01  ws-network-count     pic 9(4)  value 0.
         
-
+       01  ws-messages-eof      pic a(1) value 'N'.
+          88 messages-file-ended  value 'Y'.
+       
+       01  ws-msg-count        pic 9(4) value 0.
+          01 ws-display-timestamp pic x(20).
 
       procedure division.
 *>    Open all files that wil be used
@@ -706,8 +710,7 @@
                perform send-a-message
                move "MESSAGES-MENU" to ws-program-state
            else if ws-user-choice = "2"
-               move "This feature is under construction for this week." to ws-message
-               perform display-info
+               perform view-my-messages
                move "MESSAGES-MENU" to ws-program-state
            else if ws-user-choice = "0"
                move "MAIN-MENU" to ws-program-state
@@ -716,6 +719,164 @@
                perform display-error
                move "MESSAGES-MENU" to ws-program-state
            end-if.
+           
+      *> ================================================================
+       *> NEW PROCEDURE: view-my-messages
+       *> Displays all messages received by the logged-in user
+       *> Handles:
+       *>   - Reading messages from file
+       *>   - Filtering by recipient (current user)
+       *>   - Formatting display with sender, timestamp, content
+       *>   - Reassembling multi-chunk messages
+       *>   - Handling "no messages" case
+       *> ================================================================
+       view-my-messages.
+           move 0 to ws-msg-count
+           move "Your Received Messages" to ws-message
+           perform display-title
+       
+           *> Open messages file for reading
+           open input messages-file
+           
+           evaluate ws-messages-status
+               when "00"
+                   continue
+               when "35"
+                   *> File doesn't exist - no messages yet
+                   move "You have no messages at this time." to ws-message
+                   perform display-info
+                   close messages-file
+                   exit paragraph
+               when other
+                   move "Error opening messages file." to ws-message
+                   perform display-error
+                   close messages-file
+                   exit paragraph
+           end-evaluate
+       
+           *> Read through all messages and display those for current user
+           move 'N' to ws-messages-eof
+           move spaces to ws-current-sender
+           move spaces to ws-timestamp
+           move spaces to ws-rem-text
+       
+           perform until messages-file-ended
+               read messages-file next record
+                   at end
+                       move 'Y' to ws-messages-eof
+                       *> Display last accumulated message if any
+                       if ws-current-sender not = spaces
+                           perform display-single-message
+                       end-if
+                   not at end
+                       *> Check if this message is for the current user
+                       if function upper-case(function trim(msg-recipient))
+                          = function upper-case(function trim(ws-current-username))
+                           
+                           *> Check if this is a new message or continuation
+                           if msg-sender not = ws-current-sender
+                              or msg-timestamp not = ws-timestamp
+                               *> New message - display previous accumulated message first
+                               if ws-current-sender not = spaces
+                                   perform display-single-message
+                               end-if
+                               
+                               *> Start accumulating new message
+                               add 1 to ws-msg-count
+                               move msg-sender to ws-current-sender
+                               move msg-timestamp to ws-timestamp
+                               move msg-text to ws-rem-text
+                           else
+                               *> Same message (continuation chunk) - append
+                               string 
+                                   function trim(ws-rem-text)
+                                   function trim(msg-text)
+                                   delimited by size
+                                   into ws-rem-text
+                               end-string
+                           end-if
+                       end-if
+               end-read
+           end-perform
+       
+           close messages-file
+       
+           *> Display summary
+           display ws-line-separator
+           perform write-separator
+           
+           if ws-msg-count = 0
+               move "You have no messages at this time." to ws-message
+               perform display-info
+           else
+               move spaces to ws-message
+               string
+                   "Total Messages: "
+                   ws-msg-count
+                   into ws-message
+               perform display-info
+           end-if
+           exit paragraph.
+       
+       *> ================================================================
+       *> HELPER PROCEDURE: display-single-message
+       *> Formats and displays one complete message with sender and content
+       *> ================================================================
+       display-single-message.
+           *> Blank line before message
+           move spaces to ws-message
+           perform display-info
+           
+           *> Format timestamp (YYYYMMDDHHMMSS -> YYYY/MM/DD HH:MM:SS)
+           perform format-timestamp
+           
+           *> Display message header with sender and timestamp
+           move spaces to ws-message
+           string
+               "From: "
+               function trim(ws-current-sender)
+               " | "
+               ws-display-timestamp
+               delimited by size
+               into ws-message
+           perform display-line
+           
+           *> Display separator
+           move all "-" to ws-message(1:50)
+           perform display-line
+           
+           *> Display message content
+           move function trim(ws-rem-text) to ws-message
+           perform display-line
+           
+           *> Reset accumulators
+           move spaces to ws-current-sender
+           move spaces to ws-timestamp
+           move spaces to ws-rem-text
+           exit paragraph.
+       
+       *> ================================================================
+       *> HELPER PROCEDURE: format-timestamp
+       *> Converts YYYYMMDDHHMMSS to readable format YYYY/MM/DD HH:MM:SS
+       *> ================================================================
+       format-timestamp.
+           move spaces to ws-display-timestamp
+           
+           if ws-timestamp = spaces or ws-timestamp = zeros
+               move "No timestamp" to ws-display-timestamp
+           else
+               *> Format: YYYY/MM/DD HH:MM:SS
+               string
+                   ws-timestamp(1:4)  "/"      *> YYYY/
+                   ws-timestamp(5:2)  "/"      *> MM/
+                   ws-timestamp(7:2)  " "      *> DD 
+                   ws-timestamp(9:2)  ":"      *> HH:
+                   ws-timestamp(11:2) ":"      *> MM:
+                   ws-timestamp(13:2)          *> SS
+                   delimited by size
+                   into ws-display-timestamp
+           end-if
+           exit paragraph.
 
 
       display-under-construction.
@@ -3093,13 +3254,19 @@
                end-string
 
                open extend messages-file
-               if ws-messages-status not = "00" and ws-messages-status not = "35"
-                   move "Could not open messages file." to ws-message
-                   perform display-error
-                   close messages-file
-                   move "MESSAGES-MENU" to ws-program-state
-                   exit paragraph
-               end-if
+                    if ws-messages-status = "35"
+                        *> File does not exist yet — create it
+                        open output messages-file
+                    end-if
+
+                    if ws-messages-status not = "00"
+                        move "Could not open messages file." to ws-message
+                        perform display-error
+                        close messages-file
+                        move "MESSAGES-MENU" to ws-program-state
+                        exit paragraph
+                    end-if
+
 
                *> write message in 200-char chunks if needed
                perform until ws-msg-rem-len = 0
