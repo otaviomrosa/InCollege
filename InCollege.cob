@@ -10,7 +10,7 @@
       file-control.
 *>    Define three files: input-file, output-file, and accounts-file and assign them to text files
 *>    The accounts-file will be used to store user account information
-          select input-file assign to 'InCollege-Input.txt'
+          select input-file assign to KEYBOARD
               organization is line sequential.
           select output-file assign to 'InCollege-Output.txt'
               organization is line sequential.
@@ -191,6 +191,7 @@
       01  ws-userdata-status  pic x(2).
       01  ws-input-eof        pic a(1) value 'N'.
       88  input-ended         value 'Y'.
+      88 input-ok    value "N".
 
 
       01  ws-last-input     pic x(500) value spaces.
@@ -3232,11 +3233,13 @@
                perform display-prompt
                perform read-next-input
 
-               *> user wants to go back
-               if input-ended
-                   move "MESSAGES-MENU" to ws-program-state
-                   exit paragraph
-               end-if
+               *> user wants to go back / or we hit EOF in file-mode
+            if input-ended
+                move "MESSAGES-MENU" to ws-program-state
+                *> IMPORTANT: don't let the outer loop think we're done
+                set input-ok to true     *> or: move "N" to input-ended, depending on your 88s
+                exit paragraph
+            end-if
 
                if function trim(ws-last-input) = spaces
                    move "MESSAGES-MENU" to ws-program-state

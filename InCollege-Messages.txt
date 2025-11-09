@@ -1,0 +1,4 @@
+bob                 alice               00251109430266Hi Alice
+alice               bob                 00251109571234Hi Bob
+alice               bob                 00251109571604How are you?
+alice               bob                 00251109572404Have not seen you in a while

@@ -13,7 +13,7 @@ Please enter your password:
 SUCCESS: You have successfully logged in.
 
 
-Welcome, alice!
+Welcome, bob!
 
 
 === Main Menu ===
@@ -26,34 +26,42 @@ Welcome, alice!
   5. View My Profile
   6. View My Pending Connection Requests
   7. View My Network
-  8. Log Out
---------------------------------------------------------------------------------
-  9. Exit program
-Enter your choice:
-
-=== Job Search/Internship ===
-
-  1. Post a Job/Internship
-  2. Browse Jobs/Internships
-  3. View My Applications
---------------------------------------------------------------------------------
-  4. Go Back to Main Menu
+  8. Messages
+  9. Log Out
+  10. Exit program
 --------------------------------------------------------------------------------
 Enter your choice:
 
-=== Browse Jobs/Internships ===
+=== Messages ===
 
-
-No jobs posted yet.
-
-
-=== Job Search/Internship ===
-
-  1. Post a Job/Internship
-  2. Browse Jobs/Internships
-  3. View My Applications
+  1. Send a New Message
+  2. View My Messages
+  0. Return to Main Menu
 --------------------------------------------------------------------------------
-  4. Go Back to Main Menu
+Enter your choice:
+Enter the username of the person you want to message:
+Enter your message (blank to go back):
+
+=== Messages ===
+
+  1. Send a New Message
+  2. View My Messages
+  0. Return to Main Menu
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Your Received Messages ===
+
+--------------------------------------------------------------------------------
+
+You have no messages at this time.
+
+
+=== Messages ===
+
+  1. Send a New Message
+  2. View My Messages
+  0. Return to Main Menu
 --------------------------------------------------------------------------------
 Enter your choice:
 
@@ -67,9 +75,10 @@ Enter your choice:
   5. View My Profile
   6. View My Pending Connection Requests
   7. View My Network
-  8. Log Out
+  8. Messages
+  9. Log Out
+  10. Exit program
 --------------------------------------------------------------------------------
-  9. Exit program
 Enter your choice:
 
 SUCCESS: Successfully Logged Out!
@@ -86,19 +95,117 @@ Enter your choice:
 Please enter your username:
 Please enter your password:
 
-ERROR: Incorrect password. Returning to menu.
+SUCCESS: You have successfully logged in.
 
 
-=== Welcome to InCollege! ===
+Welcome, alice!
 
-  1. Log In
-  2. Create an Account
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
 --------------------------------------------------------------------------------
-  3. Exit Program
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Messages
+  9. Log Out
+  10. Exit program
 --------------------------------------------------------------------------------
 Enter your choice:
 
-ERROR: Invalid option. Please try again
+=== Messages ===
+
+  1. Send a New Message
+  2. View My Messages
+  0. Return to Main Menu
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Your Received Messages ===
+
+
+
+
+From: bob | 0025/11/09 43:02:66
+--------------------------------------------------
+Hi Alice
+--------------------------------------------------------------------------------
+
+Total Messages: 0001
+
+
+=== Messages ===
+
+  1. Send a New Message
+  2. View My Messages
+  0. Return to Main Menu
+--------------------------------------------------------------------------------
+Enter your choice:
+Enter the username of the person you want to message:
+Enter your message (blank to go back):
+
+SUCCESS: Message sent successfully!
+
+Enter your message (blank to go back):
+
+SUCCESS: Message sent successfully!
+
+Enter your message (blank to go back):
+
+SUCCESS: Message sent successfully!
+
+Enter your message (blank to go back):
+
+=== Messages ===
+
+  1. Send a New Message
+  2. View My Messages
+  0. Return to Main Menu
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Your Received Messages ===
+
+
+
+
+From: bob | 0025/11/09 43:02:66
+--------------------------------------------------
+Hi Alice
+--------------------------------------------------------------------------------
+
+Total Messages: 0001
+
+
+=== Messages ===
+
+  1. Send a New Message
+  2. View My Messages
+  0. Return to Main Menu
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Messages
+  9. Log Out
+  10. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+SUCCESS: Successfully Logged Out!
 
 
 === Welcome to InCollege! ===
@@ -128,249 +235,50 @@ Welcome, bob!
   5. View My Profile
   6. View My Pending Connection Requests
   7. View My Network
-  8. Log Out
---------------------------------------------------------------------------------
-  9. Exit program
-Enter your choice:
-
-=== Job Search/Internship ===
-
-  1. Post a Job/Internship
-  2. Browse Jobs/Internships
-  3. View My Applications
---------------------------------------------------------------------------------
-  4. Go Back to Main Menu
+  8. Messages
+  9. Log Out
+  10. Exit program
 --------------------------------------------------------------------------------
 Enter your choice:
 
-=== Post a New Job ===
+=== Messages ===
 
-Job Title:
-Job Description (max 500 chars):
-Employer:
-Location:
-Salary (optional, press Enter to skip):
-
-SUCCESS: Job posted successfully!
-
-
-=== Main Menu ===
-
-  1. Job Search/Internship
-  2. Find Someone You Know
-  3. Learn a New Skill
---------------------------------------------------------------------------------
-  4. Create/Edit My Profile
-  5. View My Profile
-  6. View My Pending Connection Requests
-  7. View My Network
-  8. Log Out
---------------------------------------------------------------------------------
-  9. Exit program
-Enter your choice:
-
-=== Job Search/Internship ===
-
-  1. Post a Job/Internship
-  2. Browse Jobs/Internships
-  3. View My Applications
---------------------------------------------------------------------------------
-  4. Go Back to Main Menu
+  1. Send a New Message
+  2. View My Messages
+  0. Return to Main Menu
 --------------------------------------------------------------------------------
 Enter your choice:
 
-=== Post a New Job ===
-
-Job Title:
-Job Description (max 500 chars):
-Employer:
-Location:
-Salary (optional, press Enter to skip):
-
-SUCCESS: Job posted successfully!
+=== Your Received Messages ===
 
 
-=== Main Menu ===
-
-  1. Job Search/Internship
-  2. Find Someone You Know
-  3. Learn a New Skill
---------------------------------------------------------------------------------
-  4. Create/Edit My Profile
-  5. View My Profile
-  6. View My Pending Connection Requests
-  7. View My Network
-  8. Log Out
---------------------------------------------------------------------------------
-  9. Exit program
-Enter your choice:
-
-SUCCESS: Successfully Logged Out!
 
 
-=== Welcome to InCollege! ===
-
-  1. Log In
-  2. Create an Account
---------------------------------------------------------------------------------
-  3. Exit Program
---------------------------------------------------------------------------------
-Enter your choice:
-Please enter your username:
-Please enter your password:
-
-SUCCESS: You have successfully logged in.
+From: alice | 0025/11/09 57:12:34
+--------------------------------------------------
+Hi Bob
 
 
-Welcome, alice!
+
+From: alice | 0025/11/09 57:16:04
+--------------------------------------------------
+How are you?
 
 
-=== Main Menu ===
 
-  1. Job Search/Internship
-  2. Find Someone You Know
-  3. Learn a New Skill
---------------------------------------------------------------------------------
-  4. Create/Edit My Profile
-  5. View My Profile
-  6. View My Pending Connection Requests
-  7. View My Network
-  8. Log Out
---------------------------------------------------------------------------------
-  9. Exit program
-Enter your choice:
-
-=== Job Search/Internship ===
-
-  1. Post a Job/Internship
-  2. Browse Jobs/Internships
-  3. View My Applications
---------------------------------------------------------------------------------
-  4. Go Back to Main Menu
---------------------------------------------------------------------------------
-Enter your choice:
-
-=== Browse Jobs/Internships ===
-
-  01) Software Engineer  |  Tech Innovations LLC  |  Tampa
-  02) Backend Developer  |  Digital Solutions Corp  |  Orlando
---------------------------------------------------------------------------------
-Enter a job number to view, or 0 to go back:
+From: alice | 0025/11/09 57:24:04
+--------------------------------------------------
+Have not seen you in a while
 --------------------------------------------------------------------------------
 
-=== Job Details ===
+Total Messages: 0003
 
 
-Title: Backend Developer
+=== Messages ===
 
-
-Employer: Digital Solutions Corp
-
-
-Location: Orlando
-
-
-Salary: $85,000 - $105,000
-
-
-Description:
-
-
-Own backend APIs, database performance, and distributed systems.
-
-
-Collaborate with product and UX to ship reliable features at scale.
-
---------------------------------------------------------------------------------
-  1. Apply for this Job
-  2. Back to Job List
---------------------------------------------------------------------------------
-Enter your choice:
-
-SUCCESS: Your application for Backend Developer at Digital Solutions Corp has been submitted.
-
-
-=== Browse Jobs/Internships ===
-
-  01) Software Engineer  |  Tech Innovations LLC  |  Tampa
-  02) Backend Developer  |  Digital Solutions Corp  |  Orlando
---------------------------------------------------------------------------------
-Enter a job number to view, or 0 to go back:
---------------------------------------------------------------------------------
-
-=== Job Details ===
-
-
-Title: Software Engineer
-
-
-Employer: Tech Innovations LLC
-
-
-Location: Tampa
-
-
-Salary: $75,000 - $95,000
-
-
-Description:
-
-
-We are looking for a talented software engineer to join our team.
-
-
-Responsibilities include backend development, debugging, and
-
-
-collaborating with cross-functional teams.
-
---------------------------------------------------------------------------------
-  1. Apply for this Job
-  2. Back to Job List
---------------------------------------------------------------------------------
-Enter your choice:
-
-=== Browse Jobs/Internships ===
-
-  01) Software Engineer  |  Tech Innovations LLC  |  Tampa
-  02) Backend Developer  |  Digital Solutions Corp  |  Orlando
---------------------------------------------------------------------------------
-Enter a job number to view, or 0 to go back:
-
-=== Job Search/Internship ===
-
-  1. Post a Job/Internship
-  2. Browse Jobs/Internships
-  3. View My Applications
---------------------------------------------------------------------------------
-  4. Go Back to Main Menu
---------------------------------------------------------------------------------
-Enter your choice:
-
-=== Your Job Applications ===
-
-
-Application #0001
-
-Job Title: Backend Developer
-Employer: Digital Solutions Corp
-Location: Orlando
-Salary: $85,000 - $105,000
-
-
-
---------------------------------------------------------------------------------
-
-Total Applications: 0001
-
-
-=== Job Search/Internship ===
-
-  1. Post a Job/Internship
-  2. Browse Jobs/Internships
-  3. View My Applications
---------------------------------------------------------------------------------
-  4. Go Back to Main Menu
+  1. Send a New Message
+  2. View My Messages
+  0. Return to Main Menu
 --------------------------------------------------------------------------------
 Enter your choice:
 
@@ -384,7 +292,40 @@ Enter your choice:
   5. View My Profile
   6. View My Pending Connection Requests
   7. View My Network
-  8. Log Out
+  8. Messages
+  9. Log Out
+  10. Exit program
 --------------------------------------------------------------------------------
-  9. Exit program
+Enter your choice:
+
+=== Messages ===
+
+  1. Send a New Message
+  2. View My Messages
+  0. Return to Main Menu
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Messages ===
+
+  1. Send a New Message
+  2. View My Messages
+  0. Return to Main Menu
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Messages
+  9. Log Out
+  10. Exit program
+--------------------------------------------------------------------------------
 Enter your choice:
