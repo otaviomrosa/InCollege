@@ -535,7 +535,7 @@
                  move "MAIN-MENU" to ws-program-state
              else if ws-user-choice = '8'
                  *> go to Messages
-                 perform display-messages-menu
+                 
                  move "MESSAGES-MENU" to ws-program-state
 
              else if ws-user-choice = '9'
