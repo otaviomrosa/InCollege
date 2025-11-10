@@ -1,0 +1,36 @@
+1
+alice
+Aa1!aaaa
+2
+bob
+Jones
+1
+9
+1
+bob
+Abcdef1!
+6
+1
+8
+1
+alice
+SendingUser|ReceivingUser|This is a very long message to test wrapping and to make sure the COBOL display loop prints the entire line without cutting it off or skipping to the next message too early.asuhbckuajsbcashcoiahsnclkasnvcliahsvil
+
+0
+9
+1
+alice
+Aa1!aaaa
+8
+2
+1
+bob
+This is a very long message to test wrapping and to make sure the COBOL display loop prints the entire line without cutting it off or skipping to the next message too early.This is a very long message to test wrapping and to make sure the COBOL display loop prints the entire line without cutting it off or skipping to the next message too early.
+
+0
+9
+1
+bob
+Abcdef1!
+8
+2
