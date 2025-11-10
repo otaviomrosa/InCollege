@@ -222,7 +222,7 @@
        01  ws-msg-again           pic x value "N".
 
        01  ws-date         pic 9(8).    *> YYYYMMDD
-        01  ws-time         pic 9(6).    *> HHMMSS
+        01  ws-time         pic 9(8).    *> HHMMSS
         01  ws-timestamp    pic x(14).   *> YYYYMMDDHHMMSS
 
 
@@ -3251,9 +3251,9 @@
                move function length(function trim(ws-last-input)) to ws-msg-rem-len
 
                *> get current timestamp for THIS message
-               accept ws-date from date
+               accept ws-date from date  YYYYMMDD
                accept ws-time from time
-               string ws-date ws-time into ws-timestamp
+               string ws-date ws-time(1:6) into ws-timestamp
                end-string
 
                open extend messages-file
