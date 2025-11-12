@@ -43,6 +43,7 @@ Run the program with:
 ```
 
 The program expects an **input file** (`InCollege-Input.txt`) to simulate user input.
+The connections and messages files should be cleared before running the input and test files.
 
 ---
 
@@ -280,7 +281,9 @@ SUCCESS: Successfully Logged Out!
 ## 🧪 Testing 
 
 Use the provided test files:
-- **`InCollege-Test-Requests.txt`** → Comprehensive test of connection request functionality
+- **`Epic-Story9-Test-Input.zip`** → All testing files
+- **`InCollege-Input.txt`** → Sample Input file
+- The connections and messages files should be cleared before running the test and sample input files
 - Tests include valid connections, error cases, edge cases, and menu navigation
 
 ---
