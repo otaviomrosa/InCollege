@@ -1,0 +1,177 @@
+
+=== Welcome to InCollege! ===
+
+  1. Log In
+  2. Create an Account
+--------------------------------------------------------------------------------
+  3. Exit Program
+--------------------------------------------------------------------------------
+Enter your choice:
+Please enter your username:
+Please enter your password:
+
+SUCCESS: You have successfully logged in.
+
+
+Welcome, bob!
+
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Messages
+  9. Log Out
+  10. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Messages ===
+
+  1. Send a New Message
+  2. View My Messages
+  0. Return to Main Menu
+--------------------------------------------------------------------------------
+Enter your choice:
+Enter the username of the person you want to message:
+Enter your message (blank to go back):
+
+SUCCESS: Message sent successfully!
+
+Enter your message (blank to go back):
+
+SUCCESS: Message sent successfully!
+
+Enter your message (blank to go back):
+
+=== Messages ===
+
+  1. Send a New Message
+  2. View My Messages
+  0. Return to Main Menu
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Your Received Messages ===
+
+--------------------------------------------------------------------------------
+
+You have no messages at this time.
+
+
+=== Messages ===
+
+  1. Send a New Message
+  2. View My Messages
+  0. Return to Main Menu
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Messages
+  9. Log Out
+  10. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+SUCCESS: Successfully Logged Out!
+
+
+=== Welcome to InCollege! ===
+
+  1. Log In
+  2. Create an Account
+--------------------------------------------------------------------------------
+  3. Exit Program
+--------------------------------------------------------------------------------
+Enter your choice:
+Please enter your username:
+Please enter your password:
+
+SUCCESS: You have successfully logged in.
+
+
+Welcome, alice!
+
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Messages
+  9. Log Out
+  10. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Messages ===
+
+  1. Send a New Message
+  2. View My Messages
+  0. Return to Main Menu
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Your Received Messages ===
+
+
+
+
+From: bob | 2025/11/12 15:20:30
+--------------------------------------------------
+hi alice
+
+
+
+From: bob | 2025/11/12 15:20:32
+--------------------------------------------------
+how are you
+--------------------------------------------------------------------------------
+
+Total Messages: 0002
+
+
+=== Messages ===
+
+  1. Send a New Message
+  2. View My Messages
+  0. Return to Main Menu
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Messages
+  9. Log Out
+  10. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:

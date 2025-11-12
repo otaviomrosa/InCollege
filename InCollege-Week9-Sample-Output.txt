@@ -1,0 +1,300 @@
+
+=== Welcome to InCollege! ===
+
+  1. Log In
+  2. Create an Account
+--------------------------------------------------------------------------------
+  3. Exit Program
+--------------------------------------------------------------------------------
+Enter your choice:
+Please enter your username:
+Please enter your password:
+
+SUCCESS: You have successfully logged in.
+
+
+Welcome, alice!
+
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Messages
+  9. Log Out
+  10. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Find someone you know ===
+
+Enter FIRST name (or 0 to go back):
+Enter LAST name:
+
+=== User Profile ===
+
+First Name: Bob
+Last Name: Jones
+University/College: University of Florida
+Major: Electrical Engineering
+Graduation Year: 2024
+About Me: Interested in embedded systems and robotics.
+
+
+
+
+Experience(s):
+
+Job Title: Senior Software Developer
+Company: Amazon
+Dates Worked: 2024-Present
+Description: Cloud infrastructure and scalable systems work.
+
+
+
+
+Education(s):
+
+Degree: B.Sc. Electrical Engineering
+School: University of Florida
+Years: 2020-2024
+
+
+
+  1. Send Connection Request
+  2. Back to Main Menu
+Enter your choice:
+
+SUCCESS: Successfully sent Connection Request
+
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Messages
+  9. Log Out
+  10. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+SUCCESS: Successfully Logged Out!
+
+
+=== Welcome to InCollege! ===
+
+  1. Log In
+  2. Create an Account
+--------------------------------------------------------------------------------
+  3. Exit Program
+--------------------------------------------------------------------------------
+Enter your choice:
+Please enter your username:
+Please enter your password:
+
+SUCCESS: You have successfully logged in.
+
+
+Welcome, bob!
+
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Messages
+  9. Log Out
+  10. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Pending Connection Requests ===
+
+Request from: alice
+  1. Accept
+  2. Reject
+Enter your choice:
+
+SUCCESS: Connection request accepted!
+
+
+You have no more pending connection requests.
+
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Messages
+  9. Log Out
+  10. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Messages ===
+
+  1. Send a New Message
+  2. View My Messages
+  0. Return to Main Menu
+--------------------------------------------------------------------------------
+Enter your choice:
+Enter the username of the person you want to message:
+Enter your message (blank to go back):
+
+SUCCESS: Message sent successfully!
+
+Enter your message (blank to go back):
+
+SUCCESS: Message sent successfully!
+
+Enter your message (blank to go back):
+
+=== Messages ===
+
+  1. Send a New Message
+  2. View My Messages
+  0. Return to Main Menu
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Your Received Messages ===
+
+--------------------------------------------------------------------------------
+
+You have no messages at this time.
+
+
+=== Messages ===
+
+  1. Send a New Message
+  2. View My Messages
+  0. Return to Main Menu
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Messages
+  9. Log Out
+  10. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+SUCCESS: Successfully Logged Out!
+
+
+=== Welcome to InCollege! ===
+
+  1. Log In
+  2. Create an Account
+--------------------------------------------------------------------------------
+  3. Exit Program
+--------------------------------------------------------------------------------
+Enter your choice:
+Please enter your username:
+Please enter your password:
+
+SUCCESS: You have successfully logged in.
+
+
+Welcome, alice!
+
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Messages
+  9. Log Out
+  10. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Messages ===
+
+  1. Send a New Message
+  2. View My Messages
+  0. Return to Main Menu
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Your Received Messages ===
+
+
+
+
+From: bob | 2025/11/12 15:23:13
+--------------------------------------------------
+hi alice
+
+
+
+From: bob | 2025/11/12 15:23:13
+--------------------------------------------------
+how are you
+--------------------------------------------------------------------------------
+
+Total Messages: 0002
+
+
+=== Messages ===
+
+  1. Send a New Message
+  2. View My Messages
+  0. Return to Main Menu
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Messages
+  9. Log Out
+  10. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
