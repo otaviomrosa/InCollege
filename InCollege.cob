@@ -148,6 +148,7 @@
 
       fd  messages-file.
        01  message-record.
+       05  msg-id         pic 9(8).
        05  msg-sender     pic x(20).
        05  msg-recipient  pic x(20).
        05  msg-timestamp  pic x(14).     *> YYYYMMDDHHMMSS
@@ -732,6 +733,7 @@
        *>   - Handling "no messages" case
        *> ================================================================
        view-my-messages.
+           move 0 to ws-current-msg-id
            move 0 to ws-msg-count
            move "Your Received Messages" to ws-message
            perform display-title
@@ -777,8 +779,7 @@
                        if function upper-case(function trim(msg-recipient))
                           = function upper-case(function trim(ws-current-username))     
                            *> Check if this is a new message or continuation
-                           if msg-sender not = ws-current-sender
-                              or msg-timestamp not = ws-timestamp
+                           if msg-id not = ws-current-msg-id
                                *> New message - display previous accumulated message first
                                if ws-current-sender not = spaces
                                    perform display-single-message
@@ -786,6 +787,7 @@
                                
                                *> Start accumulating new message
                                add 1 to ws-msg-count
+                               move msg-id to ws-current-msg-id
                                move msg-sender to ws-current-sender
                                move msg-timestamp to ws-timestamp
                                move msg-text to ws-rem-text
@@ -3188,6 +3190,7 @@
 
 
               send-a-message.
+           
            *> =============================
            *> 1. ASK FOR RECIPIENT (ONCE)
            *> =============================
@@ -3285,7 +3288,7 @@
                move function trim(ws-last-input) to ws-rem-text
                move function length(function trim(ws-last-input)) to ws-msg-rem-len
                
-
+               add 1 to ws-next-message-id
                *> get current timestamp for THIS message
                accept ws-date from date  YYYYMMDD
                accept ws-time from time
@@ -3325,13 +3328,14 @@
                        end-if
                    end-if
 
-                move ws-current-username  to msg-sender
+                   move ws-next-message-id   to msg-id
+                   move ws-current-username  to msg-sender
                    move ws-message-recipient to msg-recipient
                    move ws-timestamp         to msg-timestamp
                    move ws-msg-chunk         to msg-text
 
-                   write message-record
-
+                  write message-record
+      
                    if ws-msg-rem-len > 200
                        add 200 to ws-desc-idx
                        compute ws-msg-rem-len = ws-msg-rem-len - 200
