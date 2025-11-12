@@ -4,11 +4,12 @@ This project is a **menu-driven simulation** of the InCollege application, writt
 It allows users to:
 - Create an account (with validation rules)
 - Log in with an existing account
-- Search for jobs (placeholder feature)
+- Search and apply for jobs 
 - Find and connect with other users
 - Send and see connection requests
 - Create and edit personal profiles
 - Learn new skills (placeholder feature)
+- Send and receive messages
 - Logout and return to the initial menu
 - Exit the application safely while saving account data
 
@@ -85,6 +86,9 @@ The program expects an **input file** (`InCollege-Input.txt`) to simulate user i
 - **`InCollege-Applications.txt`** → Job application storage  
   - Stores new applications made by users when they apply to a job posting.
   - Created automatically when the first application is made.
+
+- **`InCollege-Messages.txt`** → Message storage  
+  All sent messages are stored with the sender, receiver and the timestamp
 ---
 
 ## ✨ Features
@@ -108,18 +112,14 @@ The program expects an **input file** (`InCollege-Input.txt`) to simulate user i
 - **Find Someone**: Search for other users by first and last name
 - **Send Connection Requests**: Connect with users who have profiles
 - **View Pending Requests**: See who has sent you connection requests
+- **Messages**: Send and receive messages
 - Case-insensitive name searches
 - Prevents duplicate requests and self-connections
 
-### Week 7 Update – Job Browsing and Applications
+### Week 9 Update – Basic Messaging System - Part 2 (View Messages)
 
-- Implemented the **Browse Jobs/Internships** feature: users can now view a list of all job and internship postings (Title, Employer, and Location).
-- Added the ability to **view full job details** (Title, Employer, Location, Salary, Description) by selecting a numbered job listing.
-- Implemented a **simulated application process**:
-  - Users can choose “Apply for this Job” when viewing details.
-  - The system records the logged-in user’s application in a persistent file `InCollege-Applications.txt`.
-  - A confirmation message is displayed once the application is stored.
-- Enhanced job-search menu navigation and file-handling (proper error/status checks and persistence).
+- Implemented the **View Messages** feature: users can now retrive and view messages sent to them.
+- Added the ability to **view my messages** (From, Timestamp, Message Content, Total amount of messages)
 
 
 ### 🚧 Placeholder Features
@@ -184,14 +184,16 @@ This simulates:
 - `3` → Exit Program
 
 ### Main Menu (after login)
-- `1` → Search for a job (under construction)
+- `1` → Job Search/Internship
 - `2` → Find someone you know
 - `3` → Learn a new skill (under construction)
 - `4` → Create/Edit My Profile
 - `5` → View My Profile
-- `6` → Log Out
-- `7` → View My Pending Connection Requests
-- `8` → Exit program
+- `6` → View My Pending Connection Requests
+- `7` → View My Network
+- `8` → Messages
+- `9` → Log Out
+- `10` → Exit Program
 
 ### Find Someone Menu
 - Enter first name (or `0` to go back)
@@ -259,6 +261,9 @@ SUCCESS: Successfully Logged Out!
 - Cannot send duplicate requests to the same user
 - Name searches are case-insensitive
 
+### Messaging Rules
+- Users have to have a connection between them
+
 ### System Limitations
 - Maximum **5 user accounts**
 - Profile information is stored persistently between sessions
@@ -272,7 +277,7 @@ SUCCESS: Successfully Logged Out!
 
 ---
 
-## 🧪 Testing
+## 🧪 Testing 
 
 Use the provided test files:
 - **`InCollege-Test-Requests.txt`** → Comprehensive test of connection request functionality
