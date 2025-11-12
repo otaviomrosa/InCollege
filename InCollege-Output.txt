@@ -40,18 +40,14 @@ Enter your choice:
 --------------------------------------------------------------------------------
 Enter your choice:
 Enter the username of the person you want to message:
+Enter your message (blank to go back):
 
-ERROR: You can only message users you are connected with, or user not found in your network.
+SUCCESS: Message sent successfully!
 
+Enter your message (blank to go back):
 
-=== Messages ===
+SUCCESS: Message sent successfully!
 
-  1. Send a New Message
-  2. View My Messages
-  0. Return to Main Menu
---------------------------------------------------------------------------------
-Enter your choice:
-Enter the username of the person you want to message:
 Enter your message (blank to go back):
 
 SUCCESS: Message sent successfully!
@@ -131,78 +127,36 @@ Enter your choice:
 
 
 
-From: alice | 2025/11/11 20:59:27
+From: alice | 2025/11/12 13:48:29
 --------------------------------------------------
-This is a really long message to test the wrapping functionality. I'm writing a lot of text here to make sure that when messages exceed 200 characters, they display properly across multiple lines
-without getting cut off. The system should handle this gracefully by breaking the message into chunks and displaying each chunk on a separate line. This way, users can read their entire message
-without losing any content. It's important that the messaging system works correctly because communication is
+2
 
 
 
-From: alice | 2025/11/11 21:01:32
+From: alice | 2025/11/12 13:48:30
 --------------------------------------------------
-This is a really long message to test the wrapping functionality. I'm writing a lot of text here to make sure that when messages exceed 200 characters, they display properly across multiple lines
-without getting cut off. The system should handle this gracefully by breaking the message into chunks and displaying each chunk on a separate line. This way, users can read their entire message
-without losing any content. It's important that the messaging system works correctly because communication is
+hi
 
 
 
-From: alice | 2025/11/11 21:04:17
+From: alice | 2025/11/12 13:55:54
 --------------------------------------------------
-This is a really long message to test the wrapping functionality. I'm writing a lot of text here to make sure that when messages exceed 200 characters, they display properly across multiple lines
-without getting cut off. The system should handle this gracefully by breaking the message into chunks and displaying each chunk on a separate line. This way, users can read their entire message
-without losing any content. It's important that the messaging system works correctly because communication is
+hi
 
 
 
-From: alice | 2025/11/11 21:07:19
+From: alice | 2025/11/12 13:55:57
 --------------------------------------------------
-This is a really long message to test the wrapping functionality. I'm writing a lot of text here to make sure that when messages exceed 200 characters, they display properly across multiple lines
-without getting cut off. The system should handle this gracefully by breaking the message into chunks and displaying each chunk on a separate line. This way, users can read their entire message
-without losing any content. It's important that the messaging system works correctly because communication is a key feature of InCollege. Users need to be able to send and receive messages of varying
-lengths without any issues.
+how are you
 
 
 
-From: alice | 2025/11/11 21:07:20
+From: alice | 2025/11/12 13:55:58
 --------------------------------------------------
-0
-
-
-
-From: alice | 2025/11/11 21:08:21
---------------------------------------------------
-0
-
-
-
-From: alice | 2025/11/11 21:09:15
---------------------------------------------------
-This is a really long message to test the wrapping functionality. I'm writing a lot of text here to make sure that when messages exceed 200 characters, they display properly across multiple lines
-without getting cut off. The system should handle this gracefully by breaking the message into chunks and displaying each chunk on a separate line. This way, users can read their entire message
-without losing any content. It's important that the messaging system works correctly because communication is a key feature of InCollege. Users need to be able to send and receive messages of varying
-lengths without any issues.
-
-
-
-From: alice | 2025/11/11 21:11:24
---------------------------------------------------
-This is a really long message to test the wrapping functionality. I'm writing a lot of text here to make sure that when messages exceed 200 characters, they display properly across multiple lines
-without getting cut off. The system should handle this gracefully by breaking the message into chunks and displaying each chunk on a separate line. This way, users can read their entire message
-without losing any content. It's important that the messaging system works correctly because communication is a key feature of InCollege. Users need to be able to send and receive messages of varying
-lengths without any issues.
-
-
-
-From: alice | 2025/11/11 21:14:06
---------------------------------------------------
-This is a really long message to test the wrapping functionality. I'm writing a lot of text here to make sure that when messages exceed 200 characters, they display properly across multiple lines
-without getting cut off. The system should handle this gracefully by breaking the message into chunks and displaying each chunk on a separate line. This way, users can read their entire message
-without losing any content. It's important that the messaging system works correctly because communication is a key feature of InCollege. Users need to be able to send and receive messages of varying
-lengths without any issues.
+bob
 --------------------------------------------------------------------------------
 
-Total Messages: 0009
+Total Messages: 0005
 
 
 === Messages ===
@@ -212,3 +166,6 @@ Total Messages: 0009
   0. Return to Main Menu
 --------------------------------------------------------------------------------
 Enter your choice:
+
+ERROR: Invalid choice. Please try again.
+

@@ -1,3 +1,4 @@
+
  *>    team Oklahoma 
  *>    compile code - cobc -x -free -Wall -o incollege InCollege.cob  
  *>    run - ./incollege   

@@ -27,3 +27,12 @@ alice               bob                 20251111211406This is a really long mess
 alice               bob                 20251111211406out getting cut off. The system should handle this gracefully by breaking the message into chunks and displaying each chunk on a separate line. This way, users can read their entire message without lo
 alice               bob                 20251111211406sing any content. It's important that the messaging system works correctly because communication is a key feature of InCollege. Users need to be able to send and receive messages of varying lengths wi
 alice               bob                 20251111211406thout any issues.
+00000002alice               bob                 202511121348292
+00000003alice               bob                 20251112134830hi
+00000004bob                 alice               20251112134926This is a really long message to test the wrapping functionality. I'm writing a lot of text here to make sure that when messages exceed 200 characters, they display properly across multiple lines with
+00000004bob                 alice               20251112134926out getting cut off. The system should handle this gracefully by breaking the message into chunks and displaying each chunk on a separate line. This way, users can read their entire message without lo
+00000004bob                 alice               20251112134926sing any content. It's important that the messaging system works correctly because communication is a key feature of InCollege. Users need to be able to send and receive messages of varying lengths wi
+00000004bob                 alice               20251112134926thout any issues
+00000002alice               bob                 20251112135554hi
+00000003alice               bob                 20251112135557how are you
+00000004alice               bob                 20251112135558bob
