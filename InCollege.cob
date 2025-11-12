@@ -194,7 +194,7 @@
       88 input-ok    value "N".
 
 
-      01  ws-last-input     pic x(500) value spaces.
+      01  ws-last-input     pic x(1000) value spaces.
       01  ws-profile-header        pic x(30) value spaces.
       01  ws-prev-degree            pic x(30).
 
@@ -770,10 +770,12 @@
                            perform display-single-message
                        end-if
                    not at end
+                      
+      
+                       
                        *> Check if this message is for the current user
                        if function upper-case(function trim(msg-recipient))
-                          = function upper-case(function trim(ws-current-username))
-                           
+                          = function upper-case(function trim(ws-current-username))     
                            *> Check if this is a new message or continuation
                            if msg-sender not = ws-current-sender
                               or msg-timestamp not = ws-timestamp
@@ -846,9 +848,41 @@
            move all "-" to ws-message(1:50)
            perform display-line
            
-           *> Display message content
-           move function trim(ws-rem-text) to ws-message
-           perform display-line
+           *> Display message content (handle long messages by wrapping)
+           move 1 to ws-desc-idx
+           compute ws-desc-len = function length(function trim(ws-rem-text))
+           
+           perform until ws-desc-idx > ws-desc-len
+               compute ws-remaining = ws-desc-len - ws-desc-idx + 1
+               
+               if ws-remaining <= 200
+                   move ws-remaining to ws-chunk-len
+               else
+                   move 200 to ws-chunk-len
+                   *> try not to cut a word: search backward for a space
+                   compute ws-j = ws-desc-idx + ws-chunk-len - 1
+                   perform varying ws-j from ws-j by -1
+                       until ws-j < ws-desc-idx or ws-rem-text(ws-j:1) = " "
+                       continue
+                   end-perform
+                   
+                   if ws-j >= ws-desc-idx and ws-rem-text(ws-j:1) = " "
+                       compute ws-chunk-len = ws-j - ws-desc-idx + 1
+                   end-if
+               end-if
+               
+               move spaces to ws-message
+               move ws-rem-text(ws-desc-idx:ws-chunk-len) to ws-message
+               perform display-line
+               
+               add ws-chunk-len to ws-desc-idx
+               
+               *> skip any extra spaces at the new start
+               perform until ws-desc-idx > ws-desc-len
+                          or ws-rem-text(ws-desc-idx:1) not = " "
+                   add 1 to ws-desc-idx
+               end-perform
+           end-perform
            
            *> Reset accumulators
            move spaces to ws-current-sender
@@ -3247,8 +3281,10 @@
                end-if
 
                *> put the whole message into the buffer
+             *> put the whole message into the buffer
                move function trim(ws-last-input) to ws-rem-text
                move function length(function trim(ws-last-input)) to ws-msg-rem-len
+               
 
                *> get current timestamp for THIS message
                accept ws-date from date  YYYYMMDD
@@ -3272,13 +3308,15 @@
 
 
                *> write message in 200-char chunks if needed
+              *> write message in 200-char chunks if needed
+               move 1 to ws-desc-idx
                perform until ws-msg-rem-len = 0
 
                    if ws-msg-rem-len > 200
-                       move ws-rem-text(1:200) to ws-msg-chunk
+                       move ws-rem-text(ws-desc-idx:200) to ws-msg-chunk
                        move 200 to ws-msg-chunk-len
                    else
-                       move ws-rem-text(1:ws-msg-rem-len) to ws-msg-chunk
+                       move ws-rem-text(ws-desc-idx:ws-msg-rem-len) to ws-msg-chunk
                        move ws-msg-rem-len to ws-msg-chunk-len
                        if ws-msg-chunk-len < 200
                            move spaces
@@ -3287,7 +3325,7 @@
                        end-if
                    end-if
 
-                   move ws-current-username  to msg-sender
+                move ws-current-username  to msg-sender
                    move ws-message-recipient to msg-recipient
                    move ws-timestamp         to msg-timestamp
                    move ws-msg-chunk         to msg-text
@@ -3295,8 +3333,7 @@
                    write message-record
 
                    if ws-msg-rem-len > 200
-                       move ws-rem-text(201:) to ws-rem-text-next
-                       move ws-rem-text-next  to ws-rem-text
+                       add 200 to ws-desc-idx
                        compute ws-msg-rem-len = ws-msg-rem-len - 200
                    else
                        move 0 to ws-msg-rem-len

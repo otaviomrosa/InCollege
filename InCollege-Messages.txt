@@ -1,2 +1,29 @@
 bob                 alice               00251102293216hi alice
 bob                 alice               00251102293216how are you
+alice               bob                 20251111205927This is a really long message to test the wrapping functionality. I'm writing a lot of text here to make sure that when messages exceed 200 characters, they display properly across multiple lines with
+alice               bob                 20251111205927out getting cut off. The system should handle this gracefully by breaking the message into chunks and displaying each chunk on a separate line. This way, users can read their entire message without lo
+alice               bob                 20251111205927sing any content. It's important that the messaging system works correctly because communication is
+alice               bob                 20251111210132This is a really long message to test the wrapping functionality. I'm writing a lot of text here to make sure that when messages exceed 200 characters, they display properly across multiple lines with
+alice               bob                 20251111210132out getting cut off. The system should handle this gracefully by breaking the message into chunks and displaying each chunk on a separate line. This way, users can read their entire message without lo
+alice               bob                 20251111210132sing any content. It's important that the messaging system works correctly because communication is
+alice               bob                 20251111210417This is a really long message to test the wrapping functionality. I'm writing a lot of text here to make sure that when messages exceed 200 characters, they display properly across multiple lines with
+alice               bob                 20251111210417out getting cut off. The system should handle this gracefully by breaking the message into chunks and displaying each chunk on a separate line. This way, users can read their entire message without lo
+alice               bob                 20251111210417sing any content. It's important that the messaging system works correctly because communication is
+alice               bob                 20251111210719This is a really long message to test the wrapping functionality. I'm writing a lot of text here to make sure that when messages exceed 200 characters, they display properly across multiple lines with
+alice               bob                 20251111210719out getting cut off. The system should handle this gracefully by breaking the message into chunks and displaying each chunk on a separate line. This way, users can read their entire message without lo
+alice               bob                 20251111210719sing any content. It's important that the messaging system works correctly because communication is a key feature of InCollege. Users need to be able to send and receive messages of varying lengths wi
+alice               bob                 20251111210719thout any issues.
+alice               bob                 202511112107200
+alice               bob                 202511112108210
+alice               bob                 20251111210915This is a really long message to test the wrapping functionality. I'm writing a lot of text here to make sure that when messages exceed 200 characters, they display properly across multiple lines with
+alice               bob                 20251111210915out getting cut off. The system should handle this gracefully by breaking the message into chunks and displaying each chunk on a separate line. This way, users can read their entire message without lo
+alice               bob                 20251111210915sing any content. It's important that the messaging system works correctly because communication is a key feature of InCollege. Users need to be able to send and receive messages of varying lengths wi
+alice               bob                 20251111210915thout any issues.
+alice               bob                 20251111211124This is a really long message to test the wrapping functionality. I'm writing a lot of text here to make sure that when messages exceed 200 characters, they display properly across multiple lines with
+alice               bob                 20251111211124out getting cut off. The system should handle this gracefully by breaking the message into chunks and displaying each chunk on a separate line. This way, users can read their entire message without lo
+alice               bob                 20251111211124sing any content. It's important that the messaging system works correctly because communication is a key feature of InCollege. Users need to be able to send and receive messages of varying lengths wi
+alice               bob                 20251111211124thout any issues.
+alice               bob                 20251111211406This is a really long message to test the wrapping functionality. I'm writing a lot of text here to make sure that when messages exceed 200 characters, they display properly across multiple lines with
+alice               bob                 20251111211406out getting cut off. The system should handle this gracefully by breaking the message into chunks and displaying each chunk on a separate line. This way, users can read their entire message without lo
+alice               bob                 20251111211406sing any content. It's important that the messaging system works correctly because communication is a key feature of InCollege. Users need to be able to send and receive messages of varying lengths wi
+alice               bob                 20251111211406thout any issues.

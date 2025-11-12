@@ -32,47 +32,39 @@ Welcome, alice!
 --------------------------------------------------------------------------------
 Enter your choice:
 
-=== Find someone you know ===
+=== Messages ===
 
-Enter FIRST name (or 0 to go back):
-Enter LAST name:
-
-=== User Profile ===
-
-First Name: Bob
-Last Name: Jones
-University/College: University of Florida
-Major: Electrical Engineering
-Graduation Year: 2024
-About Me: Interested in embedded systems and robotics.
-
-
-
-
-Experience(s):
-
-Job Title: Senior Software Developer
-Company: Amazon
-Dates Worked: 2024-Present
-Description: Cloud infrastructure and scalable systems work.
-
-
-
-
-Education(s):
-
-Degree: B.Sc. Electrical Engineering
-School: University of Florida
-Years: 2020-2024
-
-
-
-  1. Send Connection Request
-  2. Back to Main Menu
+  1. Send a New Message
+  2. View My Messages
+  0. Return to Main Menu
+--------------------------------------------------------------------------------
 Enter your choice:
+Enter the username of the person you want to message:
 
-SUCCESS: Successfully sent Connection Request
+ERROR: You can only message users you are connected with, or user not found in your network.
 
+
+=== Messages ===
+
+  1. Send a New Message
+  2. View My Messages
+  0. Return to Main Menu
+--------------------------------------------------------------------------------
+Enter your choice:
+Enter the username of the person you want to message:
+Enter your message (blank to go back):
+
+SUCCESS: Message sent successfully!
+
+Enter your message (blank to go back):
+
+=== Messages ===
+
+  1. Send a New Message
+  2. View My Messages
+  0. Return to Main Menu
+--------------------------------------------------------------------------------
+Enter your choice:
 
 === Main Menu ===
 
@@ -126,53 +118,6 @@ Welcome, bob!
 --------------------------------------------------------------------------------
 Enter your choice:
 
-=== Pending Connection Requests ===
-
-Request from: alice
-  1. Accept
-  2. Reject
-Enter your choice:
-
-SUCCESS: Connection request accepted!
-
-
-You have no more pending connection requests.
-
-
-=== Main Menu ===
-
-  1. Job Search/Internship
-  2. Find Someone You Know
-  3. Learn a New Skill
---------------------------------------------------------------------------------
-  4. Create/Edit My Profile
-  5. View My Profile
-  6. View My Pending Connection Requests
-  7. View My Network
-  8. Messages
-  9. Log Out
-  10. Exit program
---------------------------------------------------------------------------------
-Enter your choice:
-
-=== Messages ===
-
-  1. Send a New Message
-  2. View My Messages
-  0. Return to Main Menu
---------------------------------------------------------------------------------
-Enter your choice:
-Enter the username of the person you want to message:
-Enter your message (blank to go back):
-
-SUCCESS: Message sent successfully!
-
-Enter your message (blank to go back):
-
-SUCCESS: Message sent successfully!
-
-Enter your message (blank to go back):
-
 === Messages ===
 
   1. Send a New Message
@@ -181,7 +126,83 @@ Enter your message (blank to go back):
 --------------------------------------------------------------------------------
 Enter your choice:
 
-This feature is under construction for this week.
+=== Your Received Messages ===
+
+
+
+
+From: alice | 2025/11/11 20:59:27
+--------------------------------------------------
+This is a really long message to test the wrapping functionality. I'm writing a lot of text here to make sure that when messages exceed 200 characters, they display properly across multiple lines
+without getting cut off. The system should handle this gracefully by breaking the message into chunks and displaying each chunk on a separate line. This way, users can read their entire message
+without losing any content. It's important that the messaging system works correctly because communication is
+
+
+
+From: alice | 2025/11/11 21:01:32
+--------------------------------------------------
+This is a really long message to test the wrapping functionality. I'm writing a lot of text here to make sure that when messages exceed 200 characters, they display properly across multiple lines
+without getting cut off. The system should handle this gracefully by breaking the message into chunks and displaying each chunk on a separate line. This way, users can read their entire message
+without losing any content. It's important that the messaging system works correctly because communication is
+
+
+
+From: alice | 2025/11/11 21:04:17
+--------------------------------------------------
+This is a really long message to test the wrapping functionality. I'm writing a lot of text here to make sure that when messages exceed 200 characters, they display properly across multiple lines
+without getting cut off. The system should handle this gracefully by breaking the message into chunks and displaying each chunk on a separate line. This way, users can read their entire message
+without losing any content. It's important that the messaging system works correctly because communication is
+
+
+
+From: alice | 2025/11/11 21:07:19
+--------------------------------------------------
+This is a really long message to test the wrapping functionality. I'm writing a lot of text here to make sure that when messages exceed 200 characters, they display properly across multiple lines
+without getting cut off. The system should handle this gracefully by breaking the message into chunks and displaying each chunk on a separate line. This way, users can read their entire message
+without losing any content. It's important that the messaging system works correctly because communication is a key feature of InCollege. Users need to be able to send and receive messages of varying
+lengths without any issues.
+
+
+
+From: alice | 2025/11/11 21:07:20
+--------------------------------------------------
+0
+
+
+
+From: alice | 2025/11/11 21:08:21
+--------------------------------------------------
+0
+
+
+
+From: alice | 2025/11/11 21:09:15
+--------------------------------------------------
+This is a really long message to test the wrapping functionality. I'm writing a lot of text here to make sure that when messages exceed 200 characters, they display properly across multiple lines
+without getting cut off. The system should handle this gracefully by breaking the message into chunks and displaying each chunk on a separate line. This way, users can read their entire message
+without losing any content. It's important that the messaging system works correctly because communication is a key feature of InCollege. Users need to be able to send and receive messages of varying
+lengths without any issues.
+
+
+
+From: alice | 2025/11/11 21:11:24
+--------------------------------------------------
+This is a really long message to test the wrapping functionality. I'm writing a lot of text here to make sure that when messages exceed 200 characters, they display properly across multiple lines
+without getting cut off. The system should handle this gracefully by breaking the message into chunks and displaying each chunk on a separate line. This way, users can read their entire message
+without losing any content. It's important that the messaging system works correctly because communication is a key feature of InCollege. Users need to be able to send and receive messages of varying
+lengths without any issues.
+
+
+
+From: alice | 2025/11/11 21:14:06
+--------------------------------------------------
+This is a really long message to test the wrapping functionality. I'm writing a lot of text here to make sure that when messages exceed 200 characters, they display properly across multiple lines
+without getting cut off. The system should handle this gracefully by breaking the message into chunks and displaying each chunk on a separate line. This way, users can read their entire message
+without losing any content. It's important that the messaging system works correctly because communication is a key feature of InCollege. Users need to be able to send and receive messages of varying
+lengths without any issues.
+--------------------------------------------------------------------------------
+
+Total Messages: 0009
 
 
 === Messages ===
@@ -189,21 +210,5 @@ This feature is under construction for this week.
   1. Send a New Message
   2. View My Messages
   0. Return to Main Menu
---------------------------------------------------------------------------------
-Enter your choice:
-
-=== Main Menu ===
-
-  1. Job Search/Internship
-  2. Find Someone You Know
-  3. Learn a New Skill
---------------------------------------------------------------------------------
-  4. Create/Edit My Profile
-  5. View My Profile
-  6. View My Pending Connection Requests
-  7. View My Network
-  8. Messages
-  9. Log Out
-  10. Exit program
 --------------------------------------------------------------------------------
 Enter your choice:
