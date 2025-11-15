@@ -1,7 +1,0 @@
-00000003bob                 alice               0001hi alice
-00000004bob                 alice               0001how are you
-00000005bob                 alice               0001are you okay
-00000006bob                 alice               0001dcjhfoqwh;ichnedoinvwho;iwqhvDNVonqwvebghvoidnbviqnewhvigheidpbnwiPADbv'wioehvgweidhnviwapnephiwdsnwb vipwnidsbvwd kvnv iwdksnbvehihwibhdbnvjkdnvdahqiejedknvcldkahefihapvndao;jvnabhnphsdiucvhsvhsdhvio
-00000006bob                 alice               0002wdhsvoihdsoivhdsiohviodahoiviorvhihdfvisdhivhsvnlsdnvshvoisdhrviadhvishdivhsdihvsdhvisihvisdhvlshzvhaihviadhvi
-bob                 alice               00251030572576hi alice
-bob                 alice               00251030573233its very late
