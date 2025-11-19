@@ -1,4 +1,391 @@
 
+Accounts file not found. Creating a new one.
+
+
+=== Welcome to InCollege! ===
+
+  1. Log In
+  2. Create an Account
+--------------------------------------------------------------------------------
+  3. Exit Program
+--------------------------------------------------------------------------------
+Enter your choice:
+Please enter your username:
+
+ERROR: Username not found. Returning to menu.
+
+
+=== Welcome to InCollege! ===
+
+  1. Log In
+  2. Create an Account
+--------------------------------------------------------------------------------
+  3. Exit Program
+--------------------------------------------------------------------------------
+Enter your choice:
+Please create a username:
+Enter a password:
+
+(8-12 chars, 1 uppercase, 1 lower, 1 special)
+
+
+SUCCESS: Account created successfully!
+
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Messages
+  9. Log Out
+  10. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+Creating new profile...
+
+First name:
+Last name:
+University/college attended:
+Major:
+Graduation year (yyyy):
+About me (max 200 chars, Enter to keep/skip):
+Experience 01 Title (or Enter to keep/skip):
+Company (required):
+Dates (e.g., 2020-2024) (required):
+Description (Enter to keep/skip):
+Experience 02 Title (or Enter to keep/skip):
+Company (required):
+Dates (e.g., 2020-2024) (required):
+Description (Enter to keep/skip):
+Experience 03 Title (or Enter to keep/skip):
+Education 01 Degree (or Enter to keep/skip):
+School (required):
+Years (e.g., 2016-2020) (required):
+Education 02 Degree (or Enter to keep/skip):
+Education 03 Degree (or Enter to keep/skip):
+
+SUCCESS: Profile created successfully!
+
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Messages
+  9. Log Out
+  10. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+SUCCESS: Successfully Logged Out!
+
+
+=== Welcome to InCollege! ===
+
+  1. Log In
+  2. Create an Account
+--------------------------------------------------------------------------------
+  3. Exit Program
+--------------------------------------------------------------------------------
+Enter your choice:
+Please create a username:
+Enter a password:
+
+(8-12 chars, 1 uppercase, 1 lower, 1 special)
+
+
+SUCCESS: Account created successfully!
+
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Messages
+  9. Log Out
+  10. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+Creating new profile...
+
+First name:
+Last name:
+University/college attended:
+Major:
+Graduation year (yyyy):
+About me (max 200 chars, Enter to keep/skip):
+Experience 01 Title (or Enter to keep/skip):
+Company (required):
+Dates (e.g., 2020-2024) (required):
+Description (Enter to keep/skip):
+Experience 02 Title (or Enter to keep/skip):
+Experience 03 Title (or Enter to keep/skip):
+Education 01 Degree (or Enter to keep/skip):
+Education 02 Degree (or Enter to keep/skip):
+School (required):
+Years (e.g., 2016-2020) (required):
+Education 03 Degree (or Enter to keep/skip):
+
+SUCCESS: Profile created successfully!
+
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Messages
+  9. Log Out
+  10. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+SUCCESS: Successfully Logged Out!
+
+
+=== Welcome to InCollege! ===
+
+  1. Log In
+  2. Create an Account
+--------------------------------------------------------------------------------
+  3. Exit Program
+--------------------------------------------------------------------------------
+Enter your choice:
+Please create a username:
+Enter a password:
+
+(8-12 chars, 1 uppercase, 1 lower, 1 special)
+
+
+SUCCESS: Account created successfully!
+
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Messages
+  9. Log Out
+  10. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+Creating new profile...
+
+First name:
+Last name:
+University/college attended:
+Major:
+Graduation year (yyyy):
+About me (max 200 chars, Enter to keep/skip):
+Experience 01 Title (or Enter to keep/skip):
+Company (required):
+Dates (e.g., 2020-2024) (required):
+Description (Enter to keep/skip):
+Experience 02 Title (or Enter to keep/skip):
+Experience 03 Title (or Enter to keep/skip):
+Education 01 Degree (or Enter to keep/skip):
+School (required):
+Years (e.g., 2016-2020) (required):
+Education 02 Degree (or Enter to keep/skip):
+Education 03 Degree (or Enter to keep/skip):
+
+SUCCESS: Profile created successfully!
+
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Messages
+  9. Log Out
+  10. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+SUCCESS: Successfully Logged Out!
+
+
+=== Welcome to InCollege! ===
+
+  1. Log In
+  2. Create an Account
+--------------------------------------------------------------------------------
+  3. Exit Program
+--------------------------------------------------------------------------------
+Enter your choice:
+Please create a username:
+Enter a password:
+
+(8-12 chars, 1 uppercase, 1 lower, 1 special)
+
+
+SUCCESS: Account created successfully!
+
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Messages
+  9. Log Out
+  10. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+Creating new profile...
+
+First name:
+Last name:
+
+ERROR: Last name is required.
+
+Last name:
+University/college attended:
+Major:
+Graduation year (yyyy):
+About me (max 200 chars, Enter to keep/skip):
+Experience 01 Title (or Enter to keep/skip):
+Company (required):
+Dates (e.g., 2020-2024) (required):
+Description (Enter to keep/skip):
+Experience 02 Title (or Enter to keep/skip):
+Experience 03 Title (or Enter to keep/skip):
+Education 01 Degree (or Enter to keep/skip):
+School (required):
+Years (e.g., 2016-2020) (required):
+Education 02 Degree (or Enter to keep/skip):
+School (required):
+Years (e.g., 2016-2020) (required):
+Education 03 Degree (or Enter to keep/skip):
+
+SUCCESS: Profile created successfully!
+
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Messages
+  9. Log Out
+  10. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+SUCCESS: Successfully Logged Out!
+
+
+=== Welcome to InCollege! ===
+
+  1. Log In
+  2. Create an Account
+--------------------------------------------------------------------------------
+  3. Exit Program
+--------------------------------------------------------------------------------
+Enter your choice:
+Please create a username:
+Enter a password:
+
+(8-12 chars, 1 uppercase, 1 lower, 1 special)
+
+
+SUCCESS: Account created successfully!
+
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Messages
+  9. Log Out
+  10. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+SUCCESS: Successfully Logged Out!
+
+
+=== Welcome to InCollege! ===
+
+  1. Log In
+  2. Create an Account
+--------------------------------------------------------------------------------
+  3. Exit Program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+All permitted accounts have been created, please come back later.
+
+
+=== Welcome to InCollege! ===
+
+  1. Log In
+  2. Create an Account
+--------------------------------------------------------------------------------
+  3. Exit Program
+--------------------------------------------------------------------------------
+Enter your choice:
+Please enter your username:
+Please enter your password:
+
+ERROR: Incorrect password. Returning to menu.
+
+
 === Welcome to InCollege! ===
 
   1. Log In
@@ -26,35 +413,243 @@ Welcome, alice!
   5. View My Profile
   6. View My Pending Connection Requests
   7. View My Network
-  8. Log Out
---------------------------------------------------------------------------------
-  9. Exit program
-Enter your choice:
-
-=== Job Search/Internship ===
-
-  1. Post a Job/Internship
-  2. Browse Jobs/Internships
-  3. View My Applications
---------------------------------------------------------------------------------
-  4. Go Back to Main Menu
+  8. Messages
+  9. Log Out
+  10. Exit program
 --------------------------------------------------------------------------------
 Enter your choice:
 
-=== Browse Jobs/Internships ===
+=== Your Profile ===
+
+First Name: Alice
+Last Name: Smith
+University/College: University of Miami
+Major: Computer Science
+Graduation Year: 2025
+About Me: Enthusiastic CS student focusing on systems and AI.
 
 
-No jobs posted yet.
 
 
-=== Job Search/Internship ===
+Experience(s):
 
-  1. Post a Job/Internship
-  2. Browse Jobs/Internships
-  3. View My Applications
+Job Title: Software Intern
+Company: Microsoft
+Dates Worked: Summer 2024
+Description: Built features in a web application with teammates
+
+
+
+Job Title: Research Assistant
+Company: UM AI Lab
+Dates Worked: 2023-2024
+Description: Worked on NLP models and experiments for publications.
+
+
+
+
+Education(s):
+
+Degree: B.Sc. Computer Science
+School: University of Miami
+Years: 2021-2025
+
+
+
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
 --------------------------------------------------------------------------------
-  4. Go Back to Main Menu
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Messages
+  9. Log Out
+  10. Exit program
 --------------------------------------------------------------------------------
+Enter your choice:
+
+=== Find someone you know ===
+
+Enter FIRST name (or 0 to go back):
+Enter LAST name:
+
+No user profile exists for the name you have entered.
+
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Messages
+  9. Log Out
+  10. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Find someone you know ===
+
+Enter FIRST name (or 0 to go back):
+Enter LAST name:
+
+=== User Profile ===
+
+First Name: Bob
+Last Name: Jones
+University/College: University of Florida
+Major: Electrical Engineering
+Graduation Year: 2024
+About Me: Interested in embedded systems and robotics.
+
+
+
+
+Experience(s):
+
+Job Title: Senior Software Developer
+Company: Amazon
+Dates Worked: 2024-Present
+Description: Cloud infrastructure and scalable systems work.
+
+
+
+
+Education(s):
+
+Degree: B.Sc. Electrical Engineering
+School: University of Florida
+Years: 2020-2024
+
+
+
+  1. Send Connection Request
+  2. Back to Main Menu
+Enter your choice:
+
+SUCCESS: Successfully sent Connection Request
+
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Messages
+  9. Log Out
+  10. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Find someone you know ===
+
+Enter FIRST name (or 0 to go back):
+Enter LAST name:
+
+=== User Profile ===
+
+First Name: Bob
+Last Name: Jones
+University/College: University of Florida
+Major: Electrical Engineering
+Graduation Year: 2024
+About Me: Interested in embedded systems and robotics.
+
+
+
+
+Experience(s):
+
+Job Title: Senior Software Developer
+Company: Amazon
+Dates Worked: 2024-Present
+Description: Cloud infrastructure and scalable systems work.
+
+
+
+
+Education(s):
+
+Degree: B.Sc. Electrical Engineering
+School: University of Florida
+Years: 2020-2024
+
+
+
+  1. Send Connection Request
+  2. Back to Main Menu
+Enter your choice:
+
+You have already sent this user a connection request.
+
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Messages
+  9. Log Out
+  10. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Find someone you know ===
+
+Enter FIRST name (or 0 to go back):
+Enter LAST name:
+
+=== User Profile ===
+
+First Name: Carol
+Last Name: Williams
+University/College: MIT
+Major: Engineering
+Graduation Year: 2024
+About Me: Love solving problems
+
+
+
+
+Experience(s):
+
+Job Title: Research Assistant
+Company: MIT Lab
+Dates Worked: 2023-2024
+Description: Worked on AI projects
+
+
+
+
+Education(s):
+
+Degree: BS Engineering
+School: MIT
+Years: 2020-2024
+
+
+
+  1. Send Connection Request
+  2. Back to Main Menu
 Enter your choice:
 
 === Main Menu ===
@@ -67,9 +662,68 @@ Enter your choice:
   5. View My Profile
   6. View My Pending Connection Requests
   7. View My Network
-  8. Log Out
+  8. Messages
+  9. Log Out
+  10. Exit program
 --------------------------------------------------------------------------------
-  9. Exit program
+Enter your choice:
+
+=== Find someone you know ===
+
+Enter FIRST name (or 0 to go back):
+Enter LAST name:
+
+=== User Profile ===
+
+First Name: Carol
+Last Name: Williams
+University/College: MIT
+Major: Engineering
+Graduation Year: 2024
+About Me: Love solving problems
+
+
+
+
+Experience(s):
+
+Job Title: Research Assistant
+Company: MIT Lab
+Dates Worked: 2023-2024
+Description: Worked on AI projects
+
+
+
+
+Education(s):
+
+Degree: BS Engineering
+School: MIT
+Years: 2020-2024
+
+
+
+  1. Send Connection Request
+  2. Back to Main Menu
+Enter your choice:
+
+SUCCESS: Successfully sent Connection Request
+
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Messages
+  9. Log Out
+  10. Exit program
+--------------------------------------------------------------------------------
 Enter your choice:
 
 SUCCESS: Successfully Logged Out!
@@ -102,9 +756,330 @@ Welcome, bob!
   5. View My Profile
   6. View My Pending Connection Requests
   7. View My Network
-  8. Log Out
+  8. Messages
+  9. Log Out
+  10. Exit program
 --------------------------------------------------------------------------------
-  9. Exit program
+Enter your choice:
+
+=== Pending Connection Requests ===
+
+Request from: alice
+  1. Accept
+  2. Reject
+Enter your choice:
+
+SUCCESS: Connection request accepted!
+
+
+You have no more pending connection requests.
+
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Messages
+  9. Log Out
+  10. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Find someone you know ===
+
+Enter FIRST name (or 0 to go back):
+Enter LAST name:
+
+=== User Profile ===
+
+First Name: Carol
+Last Name: Williams
+University/College: MIT
+Major: Engineering
+Graduation Year: 2024
+About Me: Love solving problems
+
+
+
+
+Experience(s):
+
+Job Title: Research Assistant
+Company: MIT Lab
+Dates Worked: 2023-2024
+Description: Worked on AI projects
+
+
+
+
+Education(s):
+
+Degree: BS Engineering
+School: MIT
+Years: 2020-2024
+
+
+
+  1. Send Connection Request
+  2. Back to Main Menu
+Enter your choice:
+
+SUCCESS: Successfully sent Connection Request
+
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Messages
+  9. Log Out
+  10. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+SUCCESS: Successfully Logged Out!
+
+
+=== Welcome to InCollege! ===
+
+  1. Log In
+  2. Create an Account
+--------------------------------------------------------------------------------
+  3. Exit Program
+--------------------------------------------------------------------------------
+Enter your choice:
+Please enter your username:
+Please enter your password:
+
+SUCCESS: You have successfully logged in.
+
+
+Welcome, carol!
+
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Messages
+  9. Log Out
+  10. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Find someone you know ===
+
+Enter FIRST name (or 0 to go back):
+Enter LAST name:
+
+=== User Profile ===
+
+First Name: Bob
+Last Name: Jones
+University/College: University of Florida
+Major: Electrical Engineering
+Graduation Year: 2024
+About Me: Interested in embedded systems and robotics.
+
+
+
+
+Experience(s):
+
+Job Title: Senior Software Developer
+Company: Amazon
+Dates Worked: 2024-Present
+Description: Cloud infrastructure and scalable systems work.
+
+
+
+
+Education(s):
+
+Degree: B.Sc. Electrical Engineering
+School: University of Florida
+Years: 2020-2024
+
+
+
+  1. Send Connection Request
+  2. Back to Main Menu
+Enter your choice:
+
+This user has already sent you a connection request.
+
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Messages
+  9. Log Out
+  10. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Pending Connection Requests ===
+
+Request from: alice
+  1. Accept
+  2. Reject
+Enter your choice:
+
+SUCCESS: Connection request accepted!
+
+Request from: bob
+  1. Accept
+  2. Reject
+Enter your choice:
+
+SUCCESS: Connection request rejected.
+
+
+You have no more pending connection requests.
+
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Messages
+  9. Log Out
+  10. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Your Network ===
+
+Connected with: Alice Smith
+(University: University of Miami, Major: Computer Science)
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Messages
+  9. Log Out
+  10. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Job Search/Internship ===
+
+  1. Post a Job/Internship
+  2. Browse Jobs/Internships
+  3. View My Applications
+--------------------------------------------------------------------------------
+  4. Go Back to Main Menu
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Post a New Job ===
+
+Job Title:
+Job Description (max 500 chars):
+Employer:
+
+ERROR: Employer is required.
+
+Employer:
+Location:
+Salary (optional, press Enter to skip):
+
+SUCCESS: Job posted successfully!
+
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Messages
+  9. Log Out
+  10. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Job Search/Internship ===
+
+  1. Post a Job/Internship
+  2. Browse Jobs/Internships
+  3. View My Applications
+--------------------------------------------------------------------------------
+  4. Go Back to Main Menu
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Post a New Job ===
+
+Job Title:
+Job Description (max 500 chars):
+Employer:
+Location:
+
+ERROR: Location is required.
+
+Location:
+Salary (optional, press Enter to skip):
+
+SUCCESS: Job posted successfully!
+
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Messages
+  9. Log Out
+  10. Exit program
+--------------------------------------------------------------------------------
 Enter your choice:
 
 === Job Search/Internship ===
@@ -138,9 +1113,10 @@ SUCCESS: Job posted successfully!
   5. View My Profile
   6. View My Pending Connection Requests
   7. View My Network
-  8. Log Out
+  8. Messages
+  9. Log Out
+  10. Exit program
 --------------------------------------------------------------------------------
-  9. Exit program
 Enter your choice:
 
 === Job Search/Internship ===
@@ -174,9 +1150,10 @@ SUCCESS: Job posted successfully!
   5. View My Profile
   6. View My Pending Connection Requests
   7. View My Network
-  8. Log Out
+  8. Messages
+  9. Log Out
+  10. Exit program
 --------------------------------------------------------------------------------
-  9. Exit program
 Enter your choice:
 
 SUCCESS: Successfully Logged Out!
@@ -209,9 +1186,10 @@ Welcome, alice!
   5. View My Profile
   6. View My Pending Connection Requests
   7. View My Network
-  8. Log Out
+  8. Messages
+  9. Log Out
+  10. Exit program
 --------------------------------------------------------------------------------
-  9. Exit program
 Enter your choice:
 
 === Job Search/Internship ===
@@ -228,46 +1206,8 @@ Enter your choice:
 
   01) Software Engineer  |  Tech Innovations LLC  |  Tampa
   02) Backend Developer  |  Digital Solutions Corp  |  Orlando
---------------------------------------------------------------------------------
-Enter a job number to view, or 0 to go back:
---------------------------------------------------------------------------------
-
-=== Job Details ===
-
-
-Title: Backend Developer
-
-
-Employer: Digital Solutions Corp
-
-
-Location: Orlando
-
-
-Salary: $85,000 - $105,000
-
-
-Description:
-
-
-Own backend APIs, database performance, and distributed systems.
-
-
-Collaborate with product and UX to ship reliable features at scale.
-
---------------------------------------------------------------------------------
-  1. Apply for this Job
-  2. Back to Job List
---------------------------------------------------------------------------------
-Enter your choice:
-
-SUCCESS: Your application for Backend Developer at Digital Solutions Corp has been submitted.
-
-
-=== Browse Jobs/Internships ===
-
-  01) Software Engineer  |  Tech Innovations LLC  |  Tampa
-  02) Backend Developer  |  Digital Solutions Corp  |  Orlando
+  03) UX Designer  |  Creative Design Studio  |  Miami
+  04) Marketing Coordinator  |  Bright Marketing Agency  |  Jacksonville
 --------------------------------------------------------------------------------
 Enter a job number to view, or 0 to go back:
 --------------------------------------------------------------------------------
@@ -293,10 +1233,100 @@ Description:
 We are looking for a talented software engineer to join our team.
 
 
-Responsibilities include backend development, debugging, and
+Responsibilities include developing web applications, writing clean
 
 
-collaborating with cross-functional teams.
+code, and collaborating with cross-functional teams.
+
+--------------------------------------------------------------------------------
+  1. Apply for this Job
+  2. Back to Job List
+--------------------------------------------------------------------------------
+Enter your choice:
+
+SUCCESS: Your application for Software Engineer at Tech Innovations LLC has been submitted.
+
+
+=== Browse Jobs/Internships ===
+
+  01) Software Engineer  |  Tech Innovations LLC  |  Tampa
+  02) Backend Developer  |  Digital Solutions Corp  |  Orlando
+  03) UX Designer  |  Creative Design Studio  |  Miami
+  04) Marketing Coordinator  |  Bright Marketing Agency  |  Jacksonville
+--------------------------------------------------------------------------------
+Enter a job number to view, or 0 to go back:
+--------------------------------------------------------------------------------
+
+=== Job Details ===
+
+
+Title: Software Engineer
+
+
+Employer: Tech Innovations LLC
+
+
+Location: Tampa
+
+
+Salary: $75,000 - $95,000
+
+
+Description:
+
+
+We are looking for a talented software engineer to join our team.
+
+
+Responsibilities include developing web applications, writing clean
+
+
+code, and collaborating with cross-functional teams.
+
+--------------------------------------------------------------------------------
+  1. Apply for this Job
+  2. Back to Job List
+--------------------------------------------------------------------------------
+Enter your choice:
+
+You have already applied to Software Engineer at Tech Innovations LLC.
+
+
+=== Browse Jobs/Internships ===
+
+  01) Software Engineer  |  Tech Innovations LLC  |  Tampa
+  02) Backend Developer  |  Digital Solutions Corp  |  Orlando
+  03) UX Designer  |  Creative Design Studio  |  Miami
+  04) Marketing Coordinator  |  Bright Marketing Agency  |  Jacksonville
+--------------------------------------------------------------------------------
+Enter a job number to view, or 0 to go back:
+--------------------------------------------------------------------------------
+
+=== Job Details ===
+
+
+Title: Backend Developer
+
+
+Employer: Digital Solutions Corp
+
+
+Location: Orlando
+
+
+Salary: $80,000 - $100,000
+
+
+Description:
+
+
+Seeking an experienced backend developer to build scalable APIs and
+
+
+microservices. Must have strong knowledge of databases and
+
+
+server-side programming.
 
 --------------------------------------------------------------------------------
   1. Apply for this Job
@@ -308,6 +1338,8 @@ Enter your choice:
 
   01) Software Engineer  |  Tech Innovations LLC  |  Tampa
   02) Backend Developer  |  Digital Solutions Corp  |  Orlando
+  03) UX Designer  |  Creative Design Studio  |  Miami
+  04) Marketing Coordinator  |  Bright Marketing Agency  |  Jacksonville
 --------------------------------------------------------------------------------
 Enter a job number to view, or 0 to go back:
 
@@ -326,10 +1358,10 @@ Enter your choice:
 
 Application #0001
 
-Job Title: Backend Developer
-Employer: Digital Solutions Corp
-Location: Orlando
-Salary: $85,000 - $105,000
+Job Title: Software Engineer
+Employer: Tech Innovations LLC
+Location: Tampa
+Salary: $75,000 - $95,000
 
 
 
@@ -358,7 +1390,224 @@ Enter your choice:
   5. View My Profile
   6. View My Pending Connection Requests
   7. View My Network
-  8. Log Out
+  8. Messages
+  9. Log Out
+  10. Exit program
 --------------------------------------------------------------------------------
-  9. Exit program
+Enter your choice:
+
+=== Messages ===
+
+  1. Send a New Message
+  2. View My Messages
+  0. Return to Main Menu
+--------------------------------------------------------------------------------
+Enter your choice:
+Enter the username of the person you want to message:
+Enter your message (blank to go back):
+
+SUCCESS: Message sent successfully!
+
+Enter your message (blank to go back):
+
+SUCCESS: Message sent successfully!
+
+Enter your message (blank to go back):
+
+=== Messages ===
+
+  1. Send a New Message
+  2. View My Messages
+  0. Return to Main Menu
+--------------------------------------------------------------------------------
+Enter your choice:
+Enter the username of the person you want to message:
+
+ERROR: You can only message users you are connected with, or user not found in your network.
+
+
+=== Messages ===
+
+  1. Send a New Message
+  2. View My Messages
+  0. Return to Main Menu
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Messages
+  9. Log Out
+  10. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+SUCCESS: Successfully Logged Out!
+
+
+=== Welcome to InCollege! ===
+
+  1. Log In
+  2. Create an Account
+--------------------------------------------------------------------------------
+  3. Exit Program
+--------------------------------------------------------------------------------
+Enter your choice:
+Please enter your username:
+Please enter your password:
+
+SUCCESS: You have successfully logged in.
+
+
+Welcome, bob!
+
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Messages
+  9. Log Out
+  10. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Messages ===
+
+  1. Send a New Message
+  2. View My Messages
+  0. Return to Main Menu
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Your Received Messages ===
+
+
+
+
+From: alice | 2025/11/19 13:53:27
+--------------------------------------------------
+hi
+
+
+
+From: alice | 2025/11/19 13:53:27
+--------------------------------------------------
+how are you
+--------------------------------------------------------------------------------
+
+Total Messages: 0002
+
+
+=== Messages ===
+
+  1. Send a New Message
+  2. View My Messages
+  0. Return to Main Menu
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Messages
+  9. Log Out
+  10. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+SUCCESS: Successfully Logged Out!
+
+
+=== Welcome to InCollege! ===
+
+  1. Log In
+  2. Create an Account
+--------------------------------------------------------------------------------
+  3. Exit Program
+--------------------------------------------------------------------------------
+Enter your choice:
+Please enter your username:
+Please enter your password:
+
+SUCCESS: You have successfully logged in.
+
+
+Welcome, carol!
+
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Messages
+  9. Log Out
+  10. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Messages ===
+
+  1. Send a New Message
+  2. View My Messages
+  0. Return to Main Menu
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Your Received Messages ===
+
+--------------------------------------------------------------------------------
+
+You have no messages at this time.
+
+
+=== Messages ===
+
+  1. Send a New Message
+  2. View My Messages
+  0. Return to Main Menu
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Messages
+  9. Log Out
+  10. Exit program
+--------------------------------------------------------------------------------
 Enter your choice:

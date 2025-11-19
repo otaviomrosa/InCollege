@@ -1,38 +1,218 @@
 1
 alice
+2
+alice
 Aa1!aaaa
+4
+Alice
+Smith
+University of Miami
+Computer Science
+2025
+Enthusiastic CS student focusing on systems and AI.
+Software Intern
+Microsoft
+Summer 2024
+Built features in a web application with teammates
+Research Assistant
+UM AI Lab
+2023-2024
+Worked on NLP models and experiments for publications.
+
+B.Sc. Computer Science
+University of Miami
+2021-2025
+
+
+9
+2
+bob
+Abcdef1!
+4
+Bob
+Jones
+University of Florida
+Electrical Engineering
+2024
+Interested in embedded systems and robotics.
+Senior Software Developer
+Amazon
+2024-Present
+Cloud infrastructure and scalable systems work.
+
+
+
+B.Sc. Electrical Engineering
+University of Florida
+2020-2024
+
+9
+2
+carol
+Abcdefg1!
+4
+Carol
+Williams
+MIT
+Engineering
+2024
+Love solving problems
+Research Assistant
+MIT Lab
+2023-2024
+Worked on AI projects    
+
+
+BS Engineering
+MIT
+2020-2024
+
+
+9
+2
+dave
+AbcDef1!Gh$Q
+4
+Dave
+
+Rodriguez
+University of South Florida
+Computer Engineering
+2026
+Love programming and building real things.
+Teaching Assistant
+USF CS Dept
+2024-2025
+Helped students in programming courses and held office hours.
+
+
+MS Computer Science
+University of South Florida
+2024-2026
+B.Sc. Computer Engineering
+University of South Florida
+2021-2024
+
+9
+2
+eve
+Aa1!aaaaa
+9
+2
+1
+alice
+Aa1aaaa!
+1
+alice
+Aa1!aaaa
+5
+2
+Bob
+Davis
+2
+Bob
+Jones
 1
 2
-4
-8
+Bob
+Jones
+1
+2
+Carol
+Williams
+2
+2
+Carol
+Williams
+1
+9
 1
 bob
 Abcdef1!
+6
+1
+2
+Carol
+Williams
+1
+9
+1
+carol
+Abcdefg1!
+2
+Bob
+Jones
+1
+6
+1
+2
+7
 1
 1
 Software Engineer
-We are looking for a talented software engineer to join our team. Responsibilities include backend development, debugging, and collaborating with cross-functional teams.
+We are looking for a talented software engineer to join our team. Responsibilities include developing web applications, writing clean code, and collaborating with cross-functional teams.
+
 Tech Innovations LLC
 Tampa
 $75,000 - $95,000
 1
 1
 Backend Developer
-Own backend APIs, database performance, and distributed systems. Collaborate with product and UX to ship reliable features at scale.
+Seeking an experienced backend developer to build scalable APIs and microservices. Must have strong knowledge of databases and server-side programming.
 Digital Solutions Corp
+
 Orlando
-$85,000 - $105,000
-8
+$80,000 - $100,000
+1
+1
+UX Designer
+Join our creative team as a UX Designer! Design intuitive user interfaces and conduct user research to improve product experience.
+Creative Design Studio
+Miami
+$65,000 - $85,000
+1
+1
+Marketing Coordinator
+Looking for a marketing coordinator to help with social media campaigns, content creation, and market analysis.
+Bright Marketing Agency
+Jacksonville
+$50,000 - $60,000
+9
 1
 alice
 Aa1!aaaa
 1
 2
-2
+1
+1
 1
 1
 2
-0 
+2
+0
 3
 4
+8
+1
+bob
+hi
+how are you
+
+1
+dave
+0
 9
+1
+bob
+Abcdef1!
+8
+2
+0
+9
+1
+carol
+Abcdefg1!
+8
+2
+0
+10
