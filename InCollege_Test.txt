@@ -1,0 +1,178 @@
+2
+alice
+Aa1!aaaa
+9
+2
+bob
+Bb2!bbbb
+9
+2
+carol
+Cc3!cccc
+9
+2
+dave
+Dd4!dddd
+9
+2
+eve
+Ee5!eeee
+9
+2
+1
+carol
+Cc3!cccc
+4
+Carol
+Williams
+State University
+Arts
+2027
+Hi I am Carol, a passionate artist and student at State University.
+Intern
+Creative Studios
+2023-2024
+Assisted in various art projects and exhibitions.
+Freelance Artist
+Self-Employed
+2021-2023
+Created custom artwork for clients.
+Art Club President
+State University
+2020-2021
+Organized events and exhibitions for the art club.
+BA Arts
+State University
+2024
+
+
+9
+1
+alice
+Aa1!aaaa
+4
+Alice
+Smith
+University of InCollege
+Computer Science
+2025
+I am a passionate COBOL developer specializing in mainframe systems.
+Senior Developer
+COBOL Corp
+2020-2024
+Developed and maintained mission-critical financial systems.
+Project Manager
+Acme Tech
+2018-2020
+Managed a small team building internal tools.
+Lead Architect
+Global Solutions
+2015-2015
+Designed system architecture for cloud migration.
+BS Computer Science
+University of InCollege
+2021
+MS Computer Science
+University of InCollege
+2022
+PhD Computer Science
+University of InCollege
+2023
+4
+Alice2
+Smith2
+University of InCollege2
+Computer Science2
+2026
+New about me to test edit.
+Junior Developer
+Internship Co
+2024
+Wrote unit tests.
+Project Manager2
+Acme Tech2
+2018-20202
+Managed a small team building internal tools.2
+Lead Architect2
+Global Solutions2
+2015-20182
+Designed system architecture for cloud migration.2
+BS Computer Science2
+University of InCollege2
+20212
+MS Computer Science2
+University of InCollege2
+20222
+PhD Computer Science2
+University of InCollege2
+20232
+5
+9
+1
+bob
+Bb2!bbbb
+1
+1
+COBOL Developer
+Develop and maintain critical COBOL programs for financial institutions.
+Finance Systems Inc.
+New York, NY
+$120,000
+9
+1
+alice
+Aa1!aaaa
+1
+1
+Senior COBOL Tester
+This role involves creating comprehensive input files.
+COBOL Inc.
+Remote
+$80,000
+2
+Carol
+Williams
+1
+9
+1
+carol
+Cc3!cccc
+6
+1
+7 
+1 
+2 
+1
+1
+2
+1
+1
+1
+0
+3
+4
+9
+1
+alice
+Aa1!aaaa
+8
+1
+carol
+Hello Carol, this is Alice.
+
+1
+carol
+This is a very long message designed to test the multi-chunk messaging feature. The message payload will exceed 200 characters, requiring the system to split it into two separate records in the messages file. It should be reassembled correctly by the recipient's View My Messages function. This is critical for data integrity.
+
+0
+9
+1
+carol
+Cc3!cccc
+3
+1
+6
+8
+2
+0
+10

@@ -1,0 +1,1200 @@
+
+Accounts file not found. Creating a new one.
+
+
+=== Welcome to InCollege! ===
+
+  1. Log In
+  2. Create an Account
+--------------------------------------------------------------------------------
+  3. Exit Program
+--------------------------------------------------------------------------------
+Enter your choice:
+Please create a username:
+Enter a password:
+
+(8-12 chars, 1 uppercase, 1 lower, 1 special)
+
+
+SUCCESS: Account created successfully!
+
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Messages
+  9. Log Out
+  10. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+SUCCESS: Successfully Logged Out!
+
+
+=== Welcome to InCollege! ===
+
+  1. Log In
+  2. Create an Account
+--------------------------------------------------------------------------------
+  3. Exit Program
+--------------------------------------------------------------------------------
+Enter your choice:
+Please create a username:
+Enter a password:
+
+(8-12 chars, 1 uppercase, 1 lower, 1 special)
+
+
+SUCCESS: Account created successfully!
+
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Messages
+  9. Log Out
+  10. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+SUCCESS: Successfully Logged Out!
+
+
+=== Welcome to InCollege! ===
+
+  1. Log In
+  2. Create an Account
+--------------------------------------------------------------------------------
+  3. Exit Program
+--------------------------------------------------------------------------------
+Enter your choice:
+Please create a username:
+Enter a password:
+
+(8-12 chars, 1 uppercase, 1 lower, 1 special)
+
+
+SUCCESS: Account created successfully!
+
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Messages
+  9. Log Out
+  10. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+SUCCESS: Successfully Logged Out!
+
+
+=== Welcome to InCollege! ===
+
+  1. Log In
+  2. Create an Account
+--------------------------------------------------------------------------------
+  3. Exit Program
+--------------------------------------------------------------------------------
+Enter your choice:
+Please create a username:
+Enter a password:
+
+(8-12 chars, 1 uppercase, 1 lower, 1 special)
+
+
+SUCCESS: Account created successfully!
+
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Messages
+  9. Log Out
+  10. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+SUCCESS: Successfully Logged Out!
+
+
+=== Welcome to InCollege! ===
+
+  1. Log In
+  2. Create an Account
+--------------------------------------------------------------------------------
+  3. Exit Program
+--------------------------------------------------------------------------------
+Enter your choice:
+Please create a username:
+Enter a password:
+
+(8-12 chars, 1 uppercase, 1 lower, 1 special)
+
+
+SUCCESS: Account created successfully!
+
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Messages
+  9. Log Out
+  10. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+SUCCESS: Successfully Logged Out!
+
+
+=== Welcome to InCollege! ===
+
+  1. Log In
+  2. Create an Account
+--------------------------------------------------------------------------------
+  3. Exit Program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+All permitted accounts have been created, please come back later.
+
+
+=== Welcome to InCollege! ===
+
+  1. Log In
+  2. Create an Account
+--------------------------------------------------------------------------------
+  3. Exit Program
+--------------------------------------------------------------------------------
+Enter your choice:
+Please enter your username:
+Please enter your password:
+
+SUCCESS: You have successfully logged in.
+
+
+Welcome, carol!
+
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Messages
+  9. Log Out
+  10. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+Creating new profile...
+
+First name:
+Last name:
+University/college attended:
+Major:
+Graduation year (yyyy):
+About me (max 200 chars, Enter to keep/skip):
+Experience 01 Title (or Enter to keep/skip):
+Company (required):
+Dates (e.g., 2020-2024) (required):
+Description (Enter to keep/skip):
+Experience 02 Title (or Enter to keep/skip):
+Company (required):
+Dates (e.g., 2020-2024) (required):
+Description (Enter to keep/skip):
+Experience 03 Title (or Enter to keep/skip):
+Company (required):
+Dates (e.g., 2020-2024) (required):
+Description (Enter to keep/skip):
+Education 01 Degree (or Enter to keep/skip):
+School (required):
+Years (e.g., 2016-2020) (required):
+Education 02 Degree (or Enter to keep/skip):
+Education 03 Degree (or Enter to keep/skip):
+
+SUCCESS: Profile created successfully!
+
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Messages
+  9. Log Out
+  10. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+SUCCESS: Successfully Logged Out!
+
+
+=== Welcome to InCollege! ===
+
+  1. Log In
+  2. Create an Account
+--------------------------------------------------------------------------------
+  3. Exit Program
+--------------------------------------------------------------------------------
+Enter your choice:
+Please enter your username:
+Please enter your password:
+
+SUCCESS: You have successfully logged in.
+
+
+Welcome, alice!
+
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Messages
+  9. Log Out
+  10. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+Creating new profile...
+
+First name:
+Last name:
+University/college attended:
+Major:
+Graduation year (yyyy):
+About me (max 200 chars, Enter to keep/skip):
+Experience 01 Title (or Enter to keep/skip):
+Company (required):
+Dates (e.g., 2020-2024) (required):
+Description (Enter to keep/skip):
+Experience 02 Title (or Enter to keep/skip):
+Company (required):
+Dates (e.g., 2020-2024) (required):
+Description (Enter to keep/skip):
+Experience 03 Title (or Enter to keep/skip):
+Company (required):
+Dates (e.g., 2020-2024) (required):
+Description (Enter to keep/skip):
+Education 01 Degree (or Enter to keep/skip):
+School (required):
+Years (e.g., 2016-2020) (required):
+Education 02 Degree (or Enter to keep/skip):
+School (required):
+Years (e.g., 2016-2020) (required):
+Education 03 Degree (or Enter to keep/skip):
+School (required):
+Years (e.g., 2016-2020) (required):
+
+SUCCESS: Profile created successfully!
+
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Messages
+  9. Log Out
+  10. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+Editing your existing profile...
+
+First name (press enter to keep current):
+Last name (press enter to keep current):
+University/college (press enter to keep current):
+Major (press enter to keep current):
+Graduation year (yyyy, press enter to keep current):
+About me (max 200 chars, Enter to keep/skip):
+Experience 01 Title (or Enter to keep/skip):
+Company (Enter to keep/skip):
+Dates (e.g., 2020-2024) (Enter to keep/skip):
+Description (Enter to keep/skip):
+Experience 02 Title (or Enter to keep/skip):
+Company (Enter to keep/skip):
+Dates (e.g., 2020-2024) (Enter to keep/skip):
+Description (Enter to keep/skip):
+Experience 03 Title (or Enter to keep/skip):
+Company (Enter to keep/skip):
+Dates (e.g., 2020-2024) (Enter to keep/skip):
+Description (Enter to keep/skip):
+Education 01 Degree (or Enter to keep/skip):
+School (Enter to keep/skip):
+Years (e.g., 2016-2020) (Enter to keep/skip):
+Education 02 Degree (or Enter to keep/skip):
+School (Enter to keep/skip):
+Years (e.g., 2016-2020) (Enter to keep/skip):
+Education 03 Degree (or Enter to keep/skip):
+School (Enter to keep/skip):
+Years (e.g., 2016-2020) (Enter to keep/skip):
+
+SUCCESS: Profile updated successfully!
+
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Messages
+  9. Log Out
+  10. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Your Profile ===
+
+First Name: Alice2
+Last Name: Smith2
+University/College: University of InCollege2
+Major: Computer Science2
+Graduation Year: 2026
+About Me: New about me to test edit.
+
+
+
+
+Experience(s):
+
+Job Title: Junior Developer
+Company: Internship Co
+Dates Worked: 2024
+Description: Wrote unit tests.
+
+
+
+Job Title: Project Manager2
+Company: Acme Tech2
+Dates Worked: 2018-20202
+Description: Managed a small team building internal tools.2
+
+
+
+Job Title: Lead Architect2
+Company: Global Solutions2
+Dates Worked: 2015-20182
+Description: Designed system architecture for cloud migration.2
+
+
+
+
+Education(s):
+
+Degree: BS Computer Science2
+School: University of InCollege2
+Years: 20212
+
+
+
+Degree: MS Computer Science2
+School: University of InCollege2
+Years: 20222
+
+
+
+Degree: PhD Computer Science2
+School: University of InCollege2
+Years: 20232
+
+
+
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Messages
+  9. Log Out
+  10. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+SUCCESS: Successfully Logged Out!
+
+
+=== Welcome to InCollege! ===
+
+  1. Log In
+  2. Create an Account
+--------------------------------------------------------------------------------
+  3. Exit Program
+--------------------------------------------------------------------------------
+Enter your choice:
+Please enter your username:
+Please enter your password:
+
+SUCCESS: You have successfully logged in.
+
+
+Welcome, bob!
+
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Messages
+  9. Log Out
+  10. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Job Search/Internship ===
+
+  1. Post a Job/Internship
+  2. Browse Jobs/Internships
+  3. View My Applications
+--------------------------------------------------------------------------------
+  4. Go Back to Main Menu
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Post a New Job ===
+
+Job Title:
+Job Description (max 500 chars):
+Employer:
+Location:
+Salary (optional, press Enter to skip):
+
+SUCCESS: Job posted successfully!
+
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Messages
+  9. Log Out
+  10. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+SUCCESS: Successfully Logged Out!
+
+
+=== Welcome to InCollege! ===
+
+  1. Log In
+  2. Create an Account
+--------------------------------------------------------------------------------
+  3. Exit Program
+--------------------------------------------------------------------------------
+Enter your choice:
+Please enter your username:
+Please enter your password:
+
+SUCCESS: You have successfully logged in.
+
+
+Welcome, alice!
+
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Messages
+  9. Log Out
+  10. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Job Search/Internship ===
+
+  1. Post a Job/Internship
+  2. Browse Jobs/Internships
+  3. View My Applications
+--------------------------------------------------------------------------------
+  4. Go Back to Main Menu
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Post a New Job ===
+
+Job Title:
+Job Description (max 500 chars):
+Employer:
+Location:
+Salary (optional, press Enter to skip):
+
+SUCCESS: Job posted successfully!
+
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Messages
+  9. Log Out
+  10. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Find someone you know ===
+
+Enter FIRST name (or 0 to go back):
+Enter LAST name:
+
+=== User Profile ===
+
+First Name: Carol
+Last Name: Williams
+University/College: State University
+Major: Arts
+Graduation Year: 2027
+About Me: Hi I am Carol, a passionate artist and student at State University.
+
+
+
+
+Experience(s):
+
+Job Title: Intern
+Company: Creative Studios
+Dates Worked: 2023-2024
+Description: Assisted in various art projects and exhibitions.
+
+
+
+Job Title: Freelance Artist
+Company: Self-Employed
+Dates Worked: 2021-2023
+Description: Created custom artwork for clients.
+
+
+
+Job Title: Art Club President
+Company: State University
+Dates Worked: 2020-2021
+Description: Organized events and exhibitions for the art club.
+
+
+
+
+Education(s):
+
+Degree: BA Arts
+School: State University
+Years: 2024
+
+
+
+  1. Send Connection Request
+  2. Back to Main Menu
+Enter your choice:
+
+SUCCESS: Successfully sent Connection Request
+
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Messages
+  9. Log Out
+  10. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+SUCCESS: Successfully Logged Out!
+
+
+=== Welcome to InCollege! ===
+
+  1. Log In
+  2. Create an Account
+--------------------------------------------------------------------------------
+  3. Exit Program
+--------------------------------------------------------------------------------
+Enter your choice:
+Please enter your username:
+Please enter your password:
+
+SUCCESS: You have successfully logged in.
+
+
+Welcome, carol!
+
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Messages
+  9. Log Out
+  10. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Pending Connection Requests ===
+
+Request from: alice
+  1. Accept
+  2. Reject
+Enter your choice:
+
+SUCCESS: Connection request accepted!
+
+
+You have no more pending connection requests.
+
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Messages
+  9. Log Out
+  10. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Your Network ===
+
+Connected with: Alice2 Smith2
+(University: University of InCollege2, Major: Computer Science2)
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Messages
+  9. Log Out
+  10. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Job Search/Internship ===
+
+  1. Post a Job/Internship
+  2. Browse Jobs/Internships
+  3. View My Applications
+--------------------------------------------------------------------------------
+  4. Go Back to Main Menu
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Browse Jobs/Internships ===
+
+  01) COBOL Developer  |  Finance Systems Inc.  |  New York, NY
+  02) Senior COBOL Tester  |  COBOL Inc.  |  Remote
+--------------------------------------------------------------------------------
+Enter a job number to view, or 0 to go back:
+--------------------------------------------------------------------------------
+
+=== Job Details ===
+
+
+Title: COBOL Developer
+
+
+Employer: Finance Systems Inc.
+
+
+Location: New York, NY
+
+
+Salary: $120,000
+
+
+Description:
+
+
+Develop and maintain critical COBOL programs for financial
+
+
+institutions.
+
+--------------------------------------------------------------------------------
+  1. Apply for this Job
+  2. Back to Job List
+--------------------------------------------------------------------------------
+Enter your choice:
+
+SUCCESS: Your application for COBOL Developer at Finance Systems Inc. has been submitted.
+
+
+=== Browse Jobs/Internships ===
+
+  01) COBOL Developer  |  Finance Systems Inc.  |  New York, NY
+  02) Senior COBOL Tester  |  COBOL Inc.  |  Remote
+--------------------------------------------------------------------------------
+Enter a job number to view, or 0 to go back:
+--------------------------------------------------------------------------------
+
+=== Job Details ===
+
+
+Title: Senior COBOL Tester
+
+
+Employer: COBOL Inc.
+
+
+Location: Remote
+
+
+Salary: $80,000
+
+
+Description:
+
+
+This role involves creating comprehensive input files.
+
+--------------------------------------------------------------------------------
+  1. Apply for this Job
+  2. Back to Job List
+--------------------------------------------------------------------------------
+Enter your choice:
+
+SUCCESS: Your application for Senior COBOL Tester at COBOL Inc. has been submitted.
+
+
+=== Browse Jobs/Internships ===
+
+  01) COBOL Developer  |  Finance Systems Inc.  |  New York, NY
+  02) Senior COBOL Tester  |  COBOL Inc.  |  Remote
+--------------------------------------------------------------------------------
+Enter a job number to view, or 0 to go back:
+--------------------------------------------------------------------------------
+
+=== Job Details ===
+
+
+Title: COBOL Developer
+
+
+Employer: Finance Systems Inc.
+
+
+Location: New York, NY
+
+
+Salary: $120,000
+
+
+Description:
+
+
+Develop and maintain critical COBOL programs for financial
+
+
+institutions.
+
+--------------------------------------------------------------------------------
+  1. Apply for this Job
+  2. Back to Job List
+--------------------------------------------------------------------------------
+Enter your choice:
+
+You have already applied to COBOL Developer at Finance Systems Inc..
+
+
+=== Browse Jobs/Internships ===
+
+  01) COBOL Developer  |  Finance Systems Inc.  |  New York, NY
+  02) Senior COBOL Tester  |  COBOL Inc.  |  Remote
+--------------------------------------------------------------------------------
+Enter a job number to view, or 0 to go back:
+
+=== Job Search/Internship ===
+
+  1. Post a Job/Internship
+  2. Browse Jobs/Internships
+  3. View My Applications
+--------------------------------------------------------------------------------
+  4. Go Back to Main Menu
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Your Job Applications ===
+
+
+Application #0001
+
+Job Title: COBOL Developer
+Employer: Finance Systems Inc.
+Location: New York, NY
+Salary: $120,000
+
+
+
+
+Application #0002
+
+Job Title: Senior COBOL Tester
+Employer: COBOL Inc.
+Location: Remote
+Salary: $80,000
+
+
+
+--------------------------------------------------------------------------------
+
+Total Applications: 0002
+
+
+=== Job Search/Internship ===
+
+  1. Post a Job/Internship
+  2. Browse Jobs/Internships
+  3. View My Applications
+--------------------------------------------------------------------------------
+  4. Go Back to Main Menu
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Messages
+  9. Log Out
+  10. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+SUCCESS: Successfully Logged Out!
+
+
+=== Welcome to InCollege! ===
+
+  1. Log In
+  2. Create an Account
+--------------------------------------------------------------------------------
+  3. Exit Program
+--------------------------------------------------------------------------------
+Enter your choice:
+Please enter your username:
+Please enter your password:
+
+SUCCESS: You have successfully logged in.
+
+
+Welcome, alice!
+
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Messages
+  9. Log Out
+  10. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Messages ===
+
+  1. Send a New Message
+  2. View My Messages
+  0. Return to Main Menu
+--------------------------------------------------------------------------------
+Enter your choice:
+Enter the username of the person you want to message:
+Enter your message (blank to go back):
+
+SUCCESS: Message sent successfully!
+
+Enter your message (blank to go back):
+
+=== Messages ===
+
+  1. Send a New Message
+  2. View My Messages
+  0. Return to Main Menu
+--------------------------------------------------------------------------------
+Enter your choice:
+Enter the username of the person you want to message:
+Enter your message (blank to go back):
+
+SUCCESS: Message sent successfully!
+
+Enter your message (blank to go back):
+
+=== Messages ===
+
+  1. Send a New Message
+  2. View My Messages
+  0. Return to Main Menu
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Messages
+  9. Log Out
+  10. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+SUCCESS: Successfully Logged Out!
+
+
+=== Welcome to InCollege! ===
+
+  1. Log In
+  2. Create an Account
+--------------------------------------------------------------------------------
+  3. Exit Program
+--------------------------------------------------------------------------------
+Enter your choice:
+Please enter your username:
+Please enter your password:
+
+SUCCESS: You have successfully logged in.
+
+
+Welcome, carol!
+
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Messages
+  9. Log Out
+  10. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Learn a New Skill ===
+
+  1. Time Management
+  2. Professional Communication and Networking
+  3. Coding
+  4. Financial Literacy
+  5. Physical Wellbeing
+--------------------------------------------------------------------------------
+  6. Go Back
+--------------------------------------------------------------------------------
+Enter your choice:
+
+This feature is under construction.
+
+
+=== Learn a New Skill ===
+
+  1. Time Management
+  2. Professional Communication and Networking
+  3. Coding
+  4. Financial Literacy
+  5. Physical Wellbeing
+--------------------------------------------------------------------------------
+  6. Go Back
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Messages
+  9. Log Out
+  10. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Messages ===
+
+  1. Send a New Message
+  2. View My Messages
+  0. Return to Main Menu
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Your Received Messages ===
+
+
+
+
+From: alice | 2025/11/19 00:28:32
+--------------------------------------------------
+Hello Carol, this is Alice.
+
+
+
+From: alice | 2025/11/19 00:28:32
+--------------------------------------------------
+This is a very long message designed to test the multi-chunk messaging feature. The message payload will exceed 200 characters, requiring the system to split it into two separate records in the
+messages file. It should be reassembled correctly by the recipient's View My Messages function. This is critical for data integrity.
+--------------------------------------------------------------------------------
+
+Total Messages: 0002
+
+
+=== Messages ===
+
+  1. Send a New Message
+  2. View My Messages
+  0. Return to Main Menu
+--------------------------------------------------------------------------------
+Enter your choice:
+
+=== Main Menu ===
+
+  1. Job Search/Internship
+  2. Find Someone You Know
+  3. Learn a New Skill
+--------------------------------------------------------------------------------
+  4. Create/Edit My Profile
+  5. View My Profile
+  6. View My Pending Connection Requests
+  7. View My Network
+  8. Messages
+  9. Log Out
+  10. Exit program
+--------------------------------------------------------------------------------
+Enter your choice:
