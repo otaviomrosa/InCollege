@@ -1,5 +1,5 @@
 alice               Aa1!aaaa
-bob                 Abcdef1!
-carol               Abcdefg1!
-dave                AbcDef1!Gh$Q
-eve                 Aa1!aaaaa
+bob                 Bb2!bbbb
+carol               Cc3!cccc
+dave                Dd4!dddd
+eve                 Ee5!eeee

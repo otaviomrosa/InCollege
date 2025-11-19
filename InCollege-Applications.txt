@@ -1,0 +1,2 @@
+carol               COBOL Developer                                   Finance Systems Inc.                              New York, NY                                      $120,000
+carol               Senior COBOL Tester                               COBOL Inc.                                        Remote                                            $80,000

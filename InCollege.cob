@@ -10,9 +10,9 @@
       file-control.
 *>    Define three files: input-file, output-file, and accounts-file and assign them to text files
 *>    The accounts-file will be used to store user account information
-          select input-file assign to 'InCollege-Input.txt'
+          select input-file assign to 'InCollege_Test.txt'
               organization is line sequential.
-          select output-file assign to 'InCollege-Output.txt'
+          select output-file assign to 'InCollege_Test_Output.txt'
               organization is line sequential.
           select accounts-file assign to 'InCollege-Accounts.txt'
               organization is line sequential
